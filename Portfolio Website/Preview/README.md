@@ -12,3 +12,5 @@ Projects Section: Highlighted projects with detailed descriptions.
 Contact Section: Interactive form for inquiries and collaboration.
 Responsive Design: Optimized for various devices.
 Fast Loading: Designed for speed and accessibility.
+
+⭐ If you find this portfolio helpful or inspiring, please give it a star!
