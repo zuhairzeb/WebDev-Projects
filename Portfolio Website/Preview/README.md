@@ -1,5 +1,6 @@
 Portfolio Website 🌐
 
+<div align="center"> <img src="portfoliowebsite.png" alt="Portfolio Website" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;"> </div>
 
 🚀 Overview
 This is my personal portfolio website showcasing my skills, projects, and experience as a [WordPress Developer | AI Student | Python Programmer | Digital Marketer]. The website features a clean, responsive design and highlights my professional journey effectively.
