@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Contact Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Contact Us</h2>
+    <form action="https://formsubmit.co/zebzuhair71@gmail.com" method="POST">
+      <!-- Hidden Input to Specify Redirect Page -->
+      <input type="hidden" name="_redirect" value="http://127.0.0.1:5500//thank-you.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="Your message has been sent successfully. We will get back to you shortly.">
+      <input type="hidden" name="_template" value="table">
+
+      <!-- Form Fields -->
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
