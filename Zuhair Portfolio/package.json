@@ -2,8 +2,8 @@
   "name": "portfolio-root",
   "private": true,
   "scripts": {
-    "dev": "vite --config artifacts/portfolio/vite.config.ts --host 0.0.0.0",
-    "start": "vite --config artifacts/portfolio/vite.config.ts --host 0.0.0.0",
-    "build": "vite build --config artifacts/portfolio/vite.config.ts"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   }
 }
