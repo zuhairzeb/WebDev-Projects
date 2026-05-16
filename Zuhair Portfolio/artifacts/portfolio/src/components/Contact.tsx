@@ -1,10 +1,32 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
 
 export default function Contact() {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('sending');
+    setErrorMessage(null);
+
+    const formData = new FormData(event.currentTarget);
+    const name = (formData.get('name') as string | null)?.trim() || 'Visitor';
+    const email = (formData.get('email') as string | null)?.trim() || 'No email provided';
+    const message = (formData.get('message') as string | null)?.trim() || '';
+
+    const subject = `Portfolio contact from ${name}`;
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+    const mailto = `mailto:zebzuhair71@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    window.location.href = mailto;
+    setStatus('success');
+  };
+
   return (
     <section id="contact" className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-primary/5 to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
@@ -23,11 +45,15 @@ export default function Contact() {
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Form */}
-            <form className="space-y-5 md:space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 md:space-y-6"
+            >
               <div className="relative group">
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
                   className="w-full bg-transparent border-b-2 border-border py-3 text-foreground font-sans focus:outline-none focus:border-primary transition-colors peer placeholder-transparent text-sm md:text-base"
                   placeholder="Name"
@@ -44,6 +70,7 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
                   className="w-full bg-transparent border-b-2 border-border py-3 text-foreground font-sans focus:outline-none focus:border-primary transition-colors peer placeholder-transparent text-sm md:text-base"
                   placeholder="Email"
@@ -59,6 +86,7 @@ export default function Contact() {
               <div className="relative group">
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={4}
                   className="w-full bg-transparent border-b-2 border-border py-3 text-foreground font-sans focus:outline-none focus:border-primary transition-colors peer placeholder-transparent resize-none text-sm md:text-base"
@@ -76,9 +104,20 @@ export default function Contact() {
                 type="submit"
                 className="w-full py-3.5 md:py-4 bg-primary/10 border border-primary text-primary font-mono font-bold tracking-widest hover:bg-primary hover:text-background transition-all duration-300 flex items-center justify-center gap-2 group text-xs md:text-sm"
               >
-                <span>TRANSMIT</span>
+                <span>{status === 'sending' ? 'OPENING EMAIL...' : 'TRANSMIT'}</span>
                 <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
+
+              {status === 'success' && (
+                <p className="text-sm text-foreground/80 bg-emerald-100 border border-emerald-200 rounded-md p-3">
+                  A new email draft should open now. If it does not, send your message directly to <strong>zebzuhair71@gmail.com</strong>.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-sm text-destructive/90 bg-destructive/10 border border-destructive/20 rounded-md p-3">
+                  {errorMessage || 'Oops! Something went wrong. Please email zebzuhair71@gmail.com directly.'}
+                </p>
+              )}
             </form>
 
             {/* Contact info */}
