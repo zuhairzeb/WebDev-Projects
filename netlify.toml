@@ -1,7 +1,7 @@
 [build]
   base = "Zuhair Portfolio/artifacts/portfolio"
   command = "npm install && npm run build"
-  publish = "Zuhair Portfolio/artifacts/portfolio/dist"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
