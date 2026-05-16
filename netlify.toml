@@ -1,0 +1,9 @@
+[build]
+  base = "Zuhair Portfolio/artifacts/portfolio"
+  command = "npm install && npm run build"
+  publish = "Zuhair Portfolio/artifacts/portfolio/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
