@@ -1,0 +1,120 @@
+import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
+
+const experiences = [
+  {
+    role: 'Freelance WordPress Developer',
+    company: 'Self-Employed',
+    period: '2021 – Present',
+    desc: 'Delivering custom WordPress solutions and ecommerce platforms globally.'
+  },
+  {
+    role: 'WordPress Mentor',
+    company: 'Digital Empowerment Network',
+    period: '2024',
+    desc: 'Training and mentoring aspiring developers in WordPress and web technologies.'
+  },
+  {
+    role: 'Data Analyst Intern',
+    company: 'Elevvo Pathways',
+    period: '2025',
+    desc: 'Analyzing data patterns and creating actionable business reports.'
+  },
+  {
+    role: 'HR Volunteer',
+    company: 'The Order of Pen',
+    period: '2025',
+    desc: 'Assisting in human resource management and community outreach.'
+  },
+  {
+    role: 'Founder & President',
+    company: 'Sociapi Society',
+    period: 'Present',
+    desc: 'Leading a community focused on social impact and technology.'
+  }
+];
+
+const certificates = [
+  { title: 'Certified Cloud Applied Generative AI Engineer', issuer: 'GIAIC' },
+  { title: 'Data Analytics Internship Program', issuer: 'Elevvo Pathways' },
+  { title: 'WordPress Mentorship Certificate', issuer: 'DEN' },
+  { title: 'Python Crash Course', issuer: 'Google' }
+];
+
+import { SectionWrapper } from './SectionWrapper';
+
+export const Career = () => {
+  return (
+    <SectionWrapper id="career">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
+        <div className="lg:col-span-5">
+          <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Professional Journey</span>
+          <h2 className="font-bebas text-8xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
+            EXPERIENCE <br />
+            <span className="text-blue-600">&</span> AWARDS.
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="p-8 rounded-[3rem] bg-gray-50 border border-gray-100">
+              <h3 className="font-bebas text-4xl mb-6">CERTIFICATIONS</h3>
+              <div className="space-y-4">
+                {certificates.map((cert, i) => (
+                  <div key={i} className="flex items-center justify-between group">
+                    <div>
+                      <h4 className="font-bold text-gray-900">{cert.title}</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-widest">{cert.issuer}</p>
+                    </div>
+                    <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-8 rounded-[3rem] bg-black text-white">
+              <h3 className="font-bebas text-4xl mb-6 text-blue-400">ACHIEVEMENTS</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span className="font-bold">Outstanding Contributor</span>
+                  <span className="text-xs text-gray-500">2025</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="font-bold">Top Performer Volunteer</span>
+                  <span className="text-xs text-gray-500">2025</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-7">
+          <div className="space-y-12">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-12 border-b border-gray-100 last:border-0"
+              >
+                <div className="md:col-span-3">
+                  <span className="font-bebas text-2xl text-blue-600 block">{exp.period}</span>
+                </div>
+                <div className="md:col-span-9">
+                  <h3 className="font-bebas text-5xl tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
+                    {exp.role}
+                  </h3>
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-4">{exp.company}</p>
+                  <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
+                    {exp.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </SectionWrapper>
+  );
+};
+

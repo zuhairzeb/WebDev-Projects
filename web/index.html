@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Zuhair Zeb | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      .font-bebas {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: -0.02em;
+      }
+      .font-inter {
+        font-family: 'Inter', sans-serif;
+      }
+      body {
+        cursor: none;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+      .grid-pattern {
+        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      .section-border {
+        border-top: 1px solid #eeeeee;
+        position: relative;
+      }
+      .marker {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        color: #ddd;
+        font-weight: 300;
+        pointer-events: none;
+      }
+      @media (max-width: 768px) {
+        body {
+          cursor: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
