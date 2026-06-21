@@ -42,15 +42,6 @@ export const Contact = () => {
   return (
     <footer id="contact" className="relative bg-slate-950 text-white pt-16 md:pt-32 pb-8 md:pb-12 px-4 sm:px-6 md:px-12 rounded-t-3xl md:rounded-t-[5rem] overflow-hidden">
 
-      {/* Hidden form for Netlify bot detection */}
-      <form name="contact-bot-detection" data-netlify="true" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="tel" name="phone" />
-        <input type="text" name="subject" />
-        <textarea name="message" />
-      </form>
-
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute -left-16 top-10 w-48 md:w-72 h-48 md:h-72 rounded-full bg-blue-500/15 blur-3xl" />
@@ -100,14 +91,17 @@ export const Contact = () => {
                 Looking for internships, freelance projects, collaborations, and community partnerships. Expected response time: 24 hours.
               </p>
 
+              {/* ═══ CLEAN NETLIFY FORM ═══ */}
               <form
                 name="contact"
                 method="POST"
                 data-netlify="true"
+                netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="space-y-3 md:space-y-4"
               >
-                <input type="hidden" name="form-name" value="contact" />
+                {/* Honeypot field for spam protection */}
+                <input type="hidden" name="bot-field" />
 
                 {/* Name Input */}
                 <input
@@ -137,7 +131,7 @@ export const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Your Phone Number"
+                  placeholder="Your Phone Number (Optional)"
                   className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm md:text-base"
                 />
 
