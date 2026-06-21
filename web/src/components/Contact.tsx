@@ -23,15 +23,24 @@ export const Contact = () => {
     setStatus('sending');
 
     try {
-      // ═══ FORMSPREE ID ═══
+      // ═══ FORMSPREE SETUP ═══
       const FORMSPREE_ID = 'xeebjzae';
 
-      const response = await fetch(`https://formspree.io/m/${FORMSPREE_ID}`, {
+      // Convert form data to URL-encoded format (CORS-safe)
+      const encodedData = new URLSearchParams({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(formData),
+        body: encodedData.toString(),
       });
 
       if (response.ok) {
