@@ -21,19 +21,29 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
+
     try {
-      await fetch('/', {
+      // ═══ FORMSPREE ID ═══
+      const FORMSPREE_ID = 'xeebjzae';
+
+      const response = await fetch(`https://formspree.io/m/${FORMSPREE_ID}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          ...formData,
-        }).toString(),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      setStatus('success');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    } catch {
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Form error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
     }
@@ -91,18 +101,11 @@ export const Contact = () => {
                 Looking for internships, freelance projects, collaborations, and community partnerships. Expected response time: 24 hours.
               </p>
 
-              {/* ═══ CLEAN NETLIFY FORM ═══ */}
+              {/* ═══ FORMSPREE FORM ═══ */}
               <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="space-y-3 md:space-y-4"
               >
-                {/* Honeypot field for spam protection */}
-                <input type="hidden" name="bot-field" />
-
                 {/* Name Input */}
                 <input
                   type="text"
