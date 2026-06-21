@@ -5,7 +5,7 @@ import { GlassCard } from './GlassEffect';
 import { VideoPlayer } from './VideoAssets';
 
 export const Contact = () => {
-  const [iframeHeight, setIframeHeight] = useState(600);
+  const [iframeHeight, setIframeHeight] = useState(700);
 
   useEffect(() => {
     // Load Jotform embed script
@@ -14,7 +14,31 @@ export const Contact = () => {
     script.async = true;
     document.body.appendChild(script);
 
+    // Hide Jotform branding after iframe loads
+    const hideJotformBranding = setInterval(() => {
+      const iframe = document.getElementById('JotFormIFrame-261712450487054');
+      if (iframe && iframe.contentWindow) {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          if (iframeDoc) {
+            // Hide Jotform branding/footer
+            const elements = iframeDoc.querySelectorAll('*');
+            elements.forEach(el => {
+              const text = el.textContent;
+              if (text && (text.includes('Jotform') || text.includes('Create your own'))) {
+                el.style.display = 'none !important';
+              }
+            });
+            clearInterval(hideJotformBranding);
+          }
+        } catch (e) {
+          // CORS - form still works, just can't hide branding
+        }
+      }
+    }, 500);
+
     return () => {
+      clearInterval(hideJotformBranding);
       document.body.removeChild(script);
     };
   }, []);
