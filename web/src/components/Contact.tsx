@@ -1,47 +1,63 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { GlassCard } from './GlassEffect';
 import { VideoPlayer } from './VideoAssets';
 
 export const Contact = () => {
-  const [iframeHeight, setIframeHeight] = useState(700);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  useEffect(() => {
-    // Load Jotform embed script
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jotfor.ms/s/umd/latest/r.js';
-    script.async = true;
-    document.body.appendChild(script);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    // Hide Jotform branding after iframe loads
-    const hideJotformBranding = setInterval(() => {
-      const iframe = document.getElementById('JotFormIFrame-261712450487054');
-      if (iframe && iframe.contentWindow) {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          if (iframeDoc) {
-            // Hide Jotform branding/footer
-            const elements = iframeDoc.querySelectorAll('*');
-            elements.forEach(el => {
-              const text = el.textContent;
-              if (text && (text.includes('Jotform') || text.includes('Create your own'))) {
-                el.style.display = 'none !important';
-              }
-            });
-            clearInterval(hideJotformBranding);
-          }
-        } catch (e) {
-          // CORS - form still works, just can't hide branding
-        }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    try {
+      // ═══ WEB3FORMS CONFIG ═══
+      const WEB3FORMS_ACCESS_KEY = '4889b007-7960-4444-b8f7-5f948e45a9ab';
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
       }
-    }, 500);
-
-    return () => {
-      clearInterval(hideJotformBranding);
-      document.body.removeChild(script);
-    };
-  }, []);
+    } catch (error) {
+      console.error('Form error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
+  };
 
   return (
     <footer id="contact" className="relative bg-slate-950 text-white pt-16 md:pt-32 pb-8 md:pb-12 px-4 sm:px-6 md:px-12 rounded-t-3xl md:rounded-t-[5rem] overflow-hidden">
@@ -55,7 +71,7 @@ export const Contact = () => {
 
       <div className="relative z-10 max-w-[1400px] mx-auto">
 
-        {/* ── Row 1: Headline + Jotform ── */}
+        {/* ── Row 1: Headline + Form ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 mb-16 md:mb-32">
 
           {/* Left: Headline */}
@@ -83,39 +99,99 @@ export const Contact = () => {
             </motion.div>
           </div>
 
-          {/* Right: Jotform Embed */}
+          {/* Right: Form - Responsive */}
           <div className="lg:col-span-5 flex justify-center items-start">
             <motion.div
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.3 }}
-              className="w-full max-w-sm bg-linear-to-br from-blue-900/90 to-indigo-900/80 p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-blue-500/30 shadow-[0_20px_80px_rgba(59,130,246,0.15)] overflow-hidden"
+              className="w-full max-w-sm bg-linear-to-br from-blue-900/90 to-indigo-900/80 p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-blue-500/30 shadow-[0_20px_80px_rgba(59,130,246,0.15)]"
             >
-              {/* Jotform Embed */}
-              <div className="jotform-container">
-                <iframe
-                  id="JotFormIFrame-261712450487054"
-                  title="Contact Form"
-                  onLoad={() => {
-                    setTimeout(() => {
-                      const iframeElement = document.getElementById('JotFormIFrame-261712450487054');
-                      if (iframeElement) {
-                        setIframeHeight(iframeElement.contentWindow?.document?.body?.scrollHeight || 600);
-                      }
-                    }, 500);
-                  }}
-                  allow="geolocation; microphone; camera; payment; usb; accelerometer; gyroscope; magnetometer; vr; xr; ar; encrypted-media"
-                  allowFullScreen={true}
-                  src="https://form.jotform.com/261712450487054"
-                  frameBorder="0"
-                  style={{
-                    minWidth: '100%',
-                    height: `${iframeHeight}px`,
-                    border: 'none',
-                    borderRadius: '0.75rem',
-                  }}
-                  scrolling="no"
+              <h3 className="font-bebas text-2xl md:text-3xl mb-4 md:mb-6 text-white">Quick Inquiry</h3>
+              <p className="text-xs md:text-sm text-blue-200 leading-relaxed mb-4 md:mb-6">
+                Looking for internships, freelance projects, collaborations, and community partnerships. Expected response time: 24 hours.
+              </p>
+
+              {/* ═══ WEB3FORMS ═══ */}
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-3 md:space-y-4"
+              >
+                {/* Name Input */}
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Full Name"
+                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm md:text-base"
                 />
-              </div>
+
+                {/* Email Input */}
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Email Address"
+                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm md:text-base"
+                />
+
+                {/* Phone Input */}
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Your Phone Number (Optional)"
+                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm md:text-base"
+                />
+
+                {/* Subject Input */}
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  placeholder="Subject"
+                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm md:text-base"
+                />
+
+                {/* Message Textarea */}
+                <textarea
+                  name="message"
+                  rows={3}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  placeholder="Describe your project"
+                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white resize-none placeholder-gray-400 text-sm md:text-base"
+                />
+
+                {/* Submit Button - Tap-friendly */}
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full py-3 md:py-4 bg-blue-500 text-white rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-blue-400 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-95"
+                >
+                  {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  {status !== 'sending' && <ArrowRight size={16} />}
+                </button>
+
+                {/* Status Messages */}
+                {status === 'success' && (
+                  <p className="text-green-400 text-xs text-center font-bold tracking-widest uppercase">
+                    ✓ Message sent successfully!
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-red-400 text-xs text-center font-bold tracking-widest uppercase">
+                    ✗ Something went wrong. Try again.
+                  </p>
+                )}
+              </form>
             </motion.div>
           </div>
         </div>
