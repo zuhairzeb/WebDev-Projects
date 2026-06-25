@@ -8,7 +8,7 @@ const stats = [
   { label: 'Years Experience', value: '4+', icon: Briefcase },
   { label: 'Websites Delivered', value: '10+', icon: Globe },
   { label: 'Interns Mentored', value: '40+', icon: Users },
-  { label: 'Community Members', value: '500+', icon: Award },
+  { label: 'Community Members', value: '50+', icon: Award },
 ];
 
 export const About = () => {
