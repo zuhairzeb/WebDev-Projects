@@ -17,7 +17,7 @@ export const Hero = () => {
   const rotate = useTransform(scrollY, [0, 500], [0, 15]);
 
   return (
-    <section className="relative min-h-[120vh] flex flex-col justify-center px-6 md:px-12 pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-screen lg:min-h-[120vh] flex flex-col justify-center px-6 md:px-12 pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden">
       {/* Background blobs */}
       <motion.div
         style={{ y: y1, rotate }}
@@ -36,13 +36,15 @@ export const Hero = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-wrap items-center gap-2 mb-10 px-5 py-2 rounded-full bg-blue-700/10 border border-blue-700/20 w-fit"
+            className="flex flex-col sm:flex-row sm:items-center gap-2 mb-10 px-5 py-2 rounded-2xl sm:rounded-full bg-blue-700/10 border border-blue-700/20 w-fit max-w-full"
           >
-            <Sparkles size={14} className="text-blue-700" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-700">
-              Zuhair Portfolio
+            <span className="flex items-center gap-2">
+              <Sparkles size={14} className="text-blue-700 shrink-0" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-700">
+                Zuhair Portfolio
+              </span>
             </span>
-            <span className="ml-4 inline-flex flex-wrap items-center gap-2 rounded-full bg-black px-3 py-1 text-[10px] text-white font-semibold">
+            <span className="sm:ml-4 inline-flex flex-wrap items-center gap-2 rounded-full bg-black px-3 py-1 text-[10px] text-white font-semibold w-fit">
               <span className="relative flex h-2 w-2">
                 <motion.span
                   animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
@@ -51,7 +53,8 @@ export const Hero = () => {
                 />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
               </span>
-              Available for Internships &amp; Entry-Level Roles
+              <span className="sm:hidden">Open to Work</span>
+              <span className="hidden sm:inline">Available for Internships &amp; Entry-Level Roles</span>
             </span>
           </motion.div>
 
@@ -104,7 +107,7 @@ export const Hero = () => {
           >
             {/* Role tags */}
             <div className="flex flex-wrap gap-2 mb-5">
-              {['Data Analyst', 'WordPress Dev', 'Community Founder'].map((role) => (
+              {['WordPress Developer', 'WooCommerce Specialist', 'Community Founder'].map((role) => (
                 <span
                   key={role}
                   className="px-3 py-1 rounded-full border border-blue-700/30 bg-blue-700/5 text-blue-700 text-xs font-bold uppercase tracking-widest"
@@ -116,9 +119,9 @@ export const Hero = () => {
 
             {/* Main tagline */}
             <p className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-3">
-              Raw data becomes sharp decisions.{' '}
+              I build WordPress sites that load fast and{' '}
               <span className="relative inline-block">
-                <span className="relative z-10 text-blue-700">Blank pages become real products.</span>
+                <span className="relative z-10 text-blue-700">actually grow your business.</span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -130,7 +133,7 @@ export const Hero = () => {
 
             {/* Sub-tagline */}
             <p className="text-base text-gray-400 font-medium tracking-wide">
-              Shipping work that actually moves the needle — not just fills a portfolio.
+              Custom themes, WooCommerce stores, and SEO built for speed and simplicity.
             </p>
           </motion.div>
 
@@ -151,7 +154,7 @@ export const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
+          <div className="flex flex-wrap items-end gap-x-6 sm:gap-x-10 gap-y-6">
             {STATS.map((stat, i) => (
               <motion.div key={stat.label} className="group">
                 <div className="flex items-end gap-1 h-5 mb-2">
@@ -195,9 +198,9 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1, duration: 1 }}
-            className="absolute top-[60%] -right-4 md:-right-8 z-30"
+            className="absolute top-[55%] sm:top-[60%] -right-2 sm:-right-4 md:-right-8 z-30"
           >
-            <GlassCard className="p-4 xl:p-6 w-44 xl:w-56">
+            <GlassCard className="p-3 sm:p-4 xl:p-6 w-36 sm:w-44 xl:w-56">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-blue-700 flex items-center justify-center text-white flex-shrink-0">
                   <Sparkles size={16} />

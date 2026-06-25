@@ -3,12 +3,12 @@ import { GlassCard } from './GlassEffect';
 import { Sparkles, ShieldCheck, Users, Code2, BarChart3 } from 'lucide-react';
 
 const reasons = [
-  'Google Certified Data Analyst',
-  'AI Undergraduate Student',
+  '4+ Years Building WordPress Websites',
   'Founder of Sociapi Society',
-  'Experience in WordPress Development',
-  'Skilled in Python, SQL, Power BI, Excel',
-  'Organized events with 300+ attendees',
+  'Skilled in PHP, WooCommerce, Elementor Pro',
+  'SEO and Speed Optimization Built In',
+  'Organized Events with 300+ Attendees',
+  'Mentored 60+ Aspiring Developers',
 ];
 
 export const WhyHireMe = () => {
@@ -17,11 +17,11 @@ export const WhyHireMe = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
         <div className="lg:col-span-5">
           <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-6">Why Work With Me</span>
-          <h2 className="font-bebas text-8xl md:text-[10rem] tracking-tight leading-none mb-8">
+          <h2 className="font-bebas text-6xl sm:text-8xl md:text-[10rem] tracking-tight leading-none mb-8">
             BUILT FOR <br /> <span className="text-blue-600 italic">IMPACT.</span>
           </h2>
           <p className="text-lg text-gray-600 font-medium leading-relaxed max-w-xl">
-            I combine data analytics, WordPress development, and community leadership to deliver measurable results fast. My work is designed to convert insights into action, websites into growth, and communities into engaged networks.
+            I combine WordPress development, performance optimization, and community leadership to deliver results fast. My work turns slow, outdated websites into fast, secure platforms that actually support business growth.
           </p>
         </div>
 

@@ -1,13 +1,12 @@
 import { SectionWrapper } from './SectionWrapper';
-import { CalendarDays, Sparkles, Award, Briefcase, Users } from 'lucide-react';
+import { CalendarDays, Sparkles, Briefcase, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const timeline = [
-  { year: '2023', title: 'BS in AI (ongoing)', company: 'University', icon: Sparkles, bullets: ['Focused on applied ML, statistics, and data visualization'] },
-  { year: '2024', title: 'WordPress Developer & Mentor', company: 'Freelance / Mentorship', icon: Briefcase, bullets: ['Built 10+ client sites, mentored junior developers'] },
-  { year: '2025', title: 'Data Analyst — Projects', company: 'Independent', icon: Award, bullets: ['Delivered Power BI dashboards that automated reporting and cut manual time by 70%'] },
+  { year: '2021', title: 'Freelance WordPress Developer', company: 'Self-Employed', icon: Briefcase, bullets: ['Built 10+ custom WordPress sites and WooCommerce stores for clients globally'] },
+  { year: '2024', title: 'WordPress Intern & Mentor', company: 'Digital Empowerment Network', icon: Sparkles, bullets: ['Mentored 60+ interns in WordPress development and SEO'] },
   { year: '2025', title: 'Founder — Sociapi Society', company: 'Sociapi', icon: Users, bullets: ['Grew community to 300+ event attendees and organized workshops'] },
-  { year: '2026', title: 'Open to Opportunities', company: 'Seeking Roles', icon: CalendarDays, bullets: ['Looking for entry-level roles in data, analytics, and web development'] },
+  { year: '2026', title: 'Open to Opportunities', company: 'Seeking Roles', icon: CalendarDays, bullets: ['Looking for freelance and entry level roles in WordPress development'] },
 ];
 
 const container = {

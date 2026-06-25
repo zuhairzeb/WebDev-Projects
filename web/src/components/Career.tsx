@@ -15,12 +15,6 @@ const experiences = [
     desc: 'Training and mentoring aspiring developers in WordPress and web technologies.'
   },
   {
-    role: 'Data Analyst Intern',
-    company: 'Elevvo Pathways',
-    period: '2025',
-    desc: 'Analyzing data patterns and creating actionable business reports.'
-  },
-  {
     role: 'HR Volunteer',
     company: 'The Order of Pen',
     period: '2025',
@@ -35,10 +29,10 @@ const experiences = [
 ];
 
 const certificates = [
-  { title: 'Certified Cloud Applied Generative AI Engineer', issuer: 'GIAIC' },
-  { title: 'Data Analytics Internship Program', issuer: 'Elevvo Pathways' },
-  { title: 'WordPress Mentorship Certificate', issuer: 'DEN' },
-  { title: 'Python Crash Course', issuer: 'Google' }
+  'WordPress Virtual Internship Program',
+  'WordPress Mentor Recognition',
+  'Web Development Course',
+  'Pakistan Freelancers Association Member'
 ];
 
 import { SectionWrapper } from './SectionWrapper';
@@ -49,7 +43,7 @@ export const Career = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
         <div className="lg:col-span-5">
           <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Professional Journey</span>
-          <h2 className="font-bebas text-8xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
+          <h2 className="font-bebas text-6xl sm:text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
             EXPERIENCE <br />
             <span className="text-blue-600">&</span> AWARDS.
           </h2>
@@ -60,11 +54,8 @@ export const Career = () => {
               <div className="space-y-4">
                 {certificates.map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group">
-                    <div>
-                      <h4 className="font-bold text-gray-900">{cert.title}</h4>
-                      <p className="text-xs text-gray-500 uppercase tracking-widest">{cert.issuer}</p>
-                    </div>
-                    <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base pr-4">{cert}</h4>
+                    <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </div>
                 ))}
               </div>
@@ -117,4 +108,3 @@ export const Career = () => {
     </SectionWrapper>
   );
 };
-

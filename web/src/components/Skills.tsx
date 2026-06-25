@@ -1,22 +1,22 @@
 import { SectionWrapper } from './SectionWrapper';
 import { GlassCard } from './GlassEffect';
-import { CircleDot, Cpu, Code2 } from 'lucide-react';
+import { CircleDot, Cpu, Code2, ShieldCheck } from 'lucide-react';
 
 const skillGroups = [
   {
-    title: 'Data Analytics',
-    skills: ['Power BI', 'SQL', 'Excel', 'Python'],
-    icon: CircleDot,
+    title: 'WordPress',
+    skills: ['WordPress', 'WooCommerce', 'Elementor Pro'],
+    icon: Code2,
   },
   {
-    title: 'AI & Programming',
-    skills: ['Python', 'Pandas', 'NumPy', 'AI Prompting'],
+    title: 'Languages',
+    skills: ['PHP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript'],
     icon: Cpu,
   },
   {
-    title: 'Web Development',
-    skills: ['WordPress', 'React', 'SEO', 'WooCommerce'],
-    icon: Code2,
+    title: 'Tools',
+    skills: ['SEO', 'cPanel', 'SSL', 'GitHub', 'Ubuntu', 'Linux'],
+    icon: ShieldCheck,
   },
 ];
 
@@ -25,11 +25,11 @@ export const Skills = () => {
     <SectionWrapper id="skills" className="bg-white overflow-visible">
       <div className="text-center mb-20">
         <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-6">Skills Snapshot</span>
-        <h2 className="font-bebas text-7xl md:text-8xl tracking-tight">
+        <h2 className="font-bebas text-5xl sm:text-7xl md:text-8xl tracking-tight">
           SKILLS <span className="text-blue-600 italic">FRAMEWORK.</span>
         </h2>
         <p className="text-lg text-gray-600 font-medium leading-relaxed max-w-2xl mx-auto mt-6">
-          Recruiters scan skills first. This section highlights the exact capabilities I bring to analytics, AI, and web development roles.
+          Recruiters scan skills first. This section highlights the exact capabilities I bring to WordPress development and web projects.
         </p>
       </div>
 

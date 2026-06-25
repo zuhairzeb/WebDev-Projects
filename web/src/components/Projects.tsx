@@ -42,15 +42,15 @@ export const Projects = () => {
   
   return (
     <SectionWrapper id="projects" className="bg-transparent overflow-visible">
-      <div className="flex flex-col mb-32">
+      <div className="flex flex-col mb-16 sm:mb-24 md:mb-32">
         <span className="text-blue-600 font-black uppercase tracking-[0.4em] text-[10px] mb-8">Portfolio Showcase</span>
-        <h2 className="font-bebas text-[10vw] leading-[0.8] tracking-tighter">
+        <h2 className="font-bebas text-[13vw] sm:text-[10vw] leading-[0.85] sm:leading-[0.8] tracking-tighter">
           PROJECTS <br />
           <span className="text-blue-600 italic">THAT MATTER.</span>
         </h2>
       </div>
 
-      <div className="flex flex-col gap-40">
+      <div className="flex flex-col gap-20 sm:gap-28 md:gap-40">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -60,7 +60,7 @@ export const Projects = () => {
             className="group grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
           >
             <div className={`lg:col-span-7 ${index % 2 === 0 ? '' : 'lg:order-2'}`}>
-              <div className="relative rounded-[4rem] overflow-hidden aspect-16/10 group">
+              <div className="relative rounded-[2rem] sm:rounded-[3rem] md:rounded-[4rem] overflow-hidden aspect-16/10 group">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -70,9 +70,9 @@ export const Projects = () => {
                   <div className="absolute inset-0 bg-blue-600/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
                 
-                <div className="absolute top-10 left-10 flex gap-3">
+                <div className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-10 md:left-10 flex flex-wrap gap-1.5 sm:gap-3 max-w-[92%]">
                   {project.tech.map((t) => (
-                    <div key={t} className="px-5 py-2 backdrop-blur-xl bg-black/20 border border-white/20 rounded-full text-[10px] font-black uppercase text-white tracking-widest">
+                    <div key={t} className="px-2.5 py-1 sm:px-5 sm:py-2 backdrop-blur-xl bg-black/20 border border-white/20 rounded-full text-[8px] sm:text-[10px] font-black uppercase text-white tracking-widest">
                       {t}
                     </div>
                   ))}
@@ -81,9 +81,9 @@ export const Projects = () => {
             </div>
 
             <div className={`lg:col-span-5 ${index % 2 === 0 ? '' : 'lg:order-1'}`}>
-              <GlassCard className="p-12 border-none">
+              <GlassCard className="p-6 sm:p-8 md:p-12 border-none">
                 <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-4 block">{project.tag}</span>
-                <h3 className="font-bebas text-6xl mb-6 tracking-tight leading-none group-hover:text-blue-600 transition-colors">
+                <h3 className="font-bebas text-4xl sm:text-5xl md:text-6xl mb-6 tracking-tight leading-none group-hover:text-blue-600 transition-colors">
                   {project.title}
                 </h3>
                 <div className="space-y-4 text-gray-600 mb-10">

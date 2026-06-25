@@ -36,7 +36,7 @@ export const Process = () => {
     <SectionWrapper id="process" dark>
       <div className="flex flex-col items-center text-center mb-24">
         <span className="text-blue-400 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Workflow</span>
-        <h2 className="font-bebas text-8xl md:text-[10rem] leading-none mb-8">
+        <h2 className="font-bebas text-6xl sm:text-8xl md:text-[10rem] leading-none mb-8">
           HOW I <span className="text-blue-400">OPERATE.</span>
         </h2>
       </div>
@@ -105,4 +105,3 @@ export const Process = () => {
     </SectionWrapper>
   );
 };
-

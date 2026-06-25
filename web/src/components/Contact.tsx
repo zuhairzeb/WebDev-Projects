@@ -205,7 +205,7 @@ export const Contact = () => {
             <GlassCard className="p-6 md:p-12 bg-white/5 border-white/10">
               <h3 className="font-bebas text-3xl md:text-5xl mb-4 md:mb-6 leading-tight">I'm Ready to Start Your Project</h3>
               <p className="text-base md:text-xl text-gray-400 leading-relaxed mb-6 md:mb-8">
-                Whether you need a WordPress website, data analysis, or AI-powered solution, I'm here to help you turn your vision into reality. Reach out for internships, freelance partnerships, or community collaborations.
+                Whether you need a custom WordPress website, a WooCommerce store, or help speeding up and securing a site you already have, I'm here to help you turn your vision into reality. Reach out for freelance projects, internships, or community collaborations.
               </p>
               <button className="px-6 md:px-10 py-3 md:py-5 bg-white text-black rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-blue-600 hover:text-white transition-all active:scale-95">
                 Book a Free Consultation

@@ -33,7 +33,7 @@ export const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#" className="font-bebas text-3xl tracking-tighter hover:text-blue-600 transition-colors">
+        <a href="#" className="font-bebas text-2xl sm:text-3xl tracking-tighter hover:text-blue-600 transition-colors">
           ZUHAIR.ZEB
         </a>
 

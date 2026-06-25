@@ -14,7 +14,7 @@ const stats = [
 export const About = () => {
   return (
     <>
-      <MarqueeText text="WordPress Expert • Data Storyteller • AI Architect • " outline />
+      <MarqueeText text="WordPress Developer • WooCommerce Specialist • Community Founder • " outline />
       <SectionWrapper id="about" className="overflow-visible">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-6 relative">
@@ -58,7 +58,7 @@ export const About = () => {
             </h2>
 
             <p className="text-xl md:text-2xl text-slate-600 font-medium leading-relaxed mb-12 max-w-xl">
-              I am Muhammad Zuhair Zeb, the founder of Sociapi Society & an undergraduate studying artificial intelligence at Islamia College University. Technology, data, and community development are the main topics of my work, and I'm dedicated to developing chances that link education to practical applications. I work to develop the next generation of talent via innovation, leadership, and teamwork.
+              I'm Muhammad Zuhair Zeb, a WordPress developer with 4+ years of experience building custom websites, WooCommerce stores, and multivendor marketplaces. I also founded Sociapi Society, a community built around technology and social impact. My focus stays simple: clean code, fast load times, and sites that actually help businesses grow.
             </p>
 
             <div className="grid grid-cols-2 gap-6">
