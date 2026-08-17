@@ -3,6 +3,18 @@ import { Award } from 'lucide-react';
 
 const experiences = [
   {
+    role: 'WordPress Developer Intern',
+    company: 'Kaizen Hive',
+    period: 'Jul 2026 - Aug 2026',
+    desc: 'Completed a comprehensive WordPress training program covering 45+ practical tasks on a live training institute website. Configured on-page SEO, built site navigation with dropdowns, set up theme activation and branding, managed media library, performed quality assurance, handled user management and security, configured core site settings, performed maintenance tasks, and executed content migration workflows with full documentation and screenshots following professional QA practices.'
+  },
+  {
+    role: 'Data Analytics Intern',
+    company: 'Elevvo Pathways',
+    period: 'Aug 2025 - Sep 2025',
+    desc: 'Built and designed interactive dashboards using Power BI. Created DAX measures for key performance indicators including Revenue, Average Order Value, and Delivery Rate. Analyzed sales and operations data to generate actionable business insights. Improved reporting efficiency by automating recurring reports.'
+  },
+  {
     role: 'Freelance WordPress Developer',
     company: 'Self-Employed',
     period: '2021 – Present',
