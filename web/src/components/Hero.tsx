@@ -1,229 +1,342 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { GitBranch, Sparkles, Star, ArrowRight, Code2, Rocket, Zap, ChevronDown, Terminal, Braces, Database, Globe, Palette, Cpu } from 'lucide-react';
 import { GlassCard } from './GlassEffect';
 import { VideoPlayer, VIDEOS } from './VideoAssets';
 
 const STATS = [
-  { value: '20+', label: 'Projects' },
-  { value: '300+', label: 'Event Organizers' },
-  { value: '9+', label: 'Certifications' },
-  { value: '4+', label: 'Years Experience' },
+  { value: 20, suffix: '+', label: 'Projects' },
+  { value: 300, suffix: '+', label: 'Organizers' },
+  { value: 9, suffix: '+', label: 'Certifications' },
+  { value: 4, suffix: '+', label: 'Years Exp' },
 ];
+
+const TECH_STACK = [
+  { name: 'WordPress', icon: <Globe size={13} />, color: 'from-blue-500 to-blue-600' },
+  { name: 'WooCommerce', icon: <Braces size={13} />, color: 'from-purple-500 to-purple-600' },
+  { name: 'PHP', icon: <Code2 size={13} />, color: 'from-indigo-500 to-indigo-600' },
+  { name: 'MySQL', icon: <Database size={13} />, color: 'from-emerald-500 to-emerald-600' },
+];
+
+const GITHUB_URL = 'https://github.com/zuhairzeb';
+
+const CountUp = ({ target, suffix = '', duration = 2 }: { target: number; suffix?: string; duration?: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start: number | null = null;
+    let frame: number;
+    
+    const easeOutExpo = (x: number) => {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    };
+    
+    const step = (ts: number) => {
+      if (start === null) start = ts;
+      const progress = Math.min((ts - start) / (duration * 1000), 1);
+      const easedProgress = easeOutExpo(progress);
+      setValue(Math.round(easedProgress * target));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [isInView, target, duration]);
+
+  return <span ref={ref}>{value}{suffix}</span>;
+};
 
 export const Hero = () => {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-  const rotate = useTransform(scrollY, [0, 500], [0, 15]);
+  const y1 = useTransform(scrollY, [0, 500], [0, 30]);
+  const y2 = useTransform(scrollY, [0, 500], [0, 60]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section className="relative min-h-screen lg:min-h-[120vh] flex flex-col justify-center px-6 md:px-12 pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden">
-      {/* Background blobs */}
-      <motion.div
-        style={{ y: y1, rotate }}
-        className="absolute top-40 right-[10%] w-40 h-40 bg-blue-700/15 backdrop-blur-2xl border border-white/30 rounded-4xl -z-10 hidden lg:block"
+    <section className="relative min-h-screen flex items-center px-6 md:px-12 lg:px-16 pt-24 pb-16 bg-gradient-to-b from-white via-blue-50/20 to-white overflow-hidden">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#fafafa_1px,transparent_1px),linear-gradient(to_bottom,#fafafa_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      
+      {/* Soft gradient orbs */}
+      <motion.div 
+        style={{ y: y1 }}
+        className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-100/40 via-indigo-50/30 to-purple-100/40 rounded-full blur-3xl"
       />
-      <motion.div
+      <motion.div 
         style={{ y: y2 }}
-        className="absolute bottom-40 left-[5%] w-60 h-60 bg-gradient-to-tr from-blue-700/10 to-cyan-400/15 backdrop-blur-3xl border border-blue-700/10 rounded-full -z-10 hidden lg:block"
+        className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-gradient-to-tr from-emerald-100/30 to-teal-50/30 rounded-full blur-3xl"
       />
 
-      <div className="max-w-[1500px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-        {/* LEFT COLUMN */}
+      <div className="max-w-[1300px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+        {/* LEFT COLUMN - Fresh, minimal, modern */}
         <div className="lg:col-span-7">
-
-          {/* Badge */}
+          
+          {/* Modern badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col sm:flex-row sm:items-center gap-2 mb-10 px-5 py-2 rounded-2xl sm:rounded-full bg-blue-700/10 border border-blue-700/20 w-fit max-w-full"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-all duration-300"
           >
-            <span className="flex items-center gap-2">
-              <Sparkles size={14} className="text-blue-700 shrink-0" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-700">
-                Zuhair Portfolio
-              </span>
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="sm:ml-4 inline-flex flex-wrap items-center gap-2 rounded-full bg-black px-3 py-1 text-[10px] text-white font-semibold w-fit">
-              <span className="relative flex h-2 w-2">
-                <motion.span
-                  animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-                  className="absolute inline-flex h-full w-full rounded-full bg-white"
-                />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-              </span>
-              <span className="sm:hidden">Open to Work</span>
-              <span className="hidden sm:inline">Available for Internships &amp; Entry-Level Roles</span>
+            <span className="text-xs font-medium text-gray-600">
+              Available for freelance work
             </span>
           </motion.div>
 
-          {/* ✅ FIXED HEADING — no R/ZEB overlap */}
-          <div className="relative mb-12">
-            <h1 className="font-bebas tracking-tighter">
-
-              {/* Line 1: MUHAMMAD */}
-              <div className="overflow-hidden leading-[0.85]">
-                <motion.span
-                  initial={{ y: '100%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="block text-[13vw] sm:text-[11vw] md:text-[9vw] lg:text-[8rem] xl:text-[9rem]"
-                >
-                  MUHAMMAD
-                </motion.span>
-              </div>
-
-              {/* Line 2: ZUHAIR + ZEB — same line, pr-4 on ZUHAIR prevents R bleed */}
-              <div className="overflow-hidden leading-[0.85]">
-                <motion.div
-                  initial={{ x: -100, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 1 }}
-                  className="flex items-baseline"
-                >
-                  <span
-                    className="italic bg-gradient-to-r from-blue-700 to-indigo-900 bg-clip-text text-transparent text-[13vw] sm:text-[11vw] md:text-[9vw] lg:text-[8rem] xl:text-[9rem] pr-3 sm:pr-4"
-                  >
-                    ZUHAIR
-                  </span>
-                  <span
-                    className="text-black text-[13vw] sm:text-[11vw] md:text-[9vw] lg:text-[8rem] xl:text-[9rem]"
-                  >
-                    ZEB
-                  </span>
-                </motion.div>
-              </div>
-
-            </h1>
+          {/* Editorial heading */}
+          <div className="mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight text-gray-900"
+            >
+              MUHAMMAD
+            </motion.h1>
+            
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center gap-3 sm:gap-4"
+            >
+              <h1 className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight">
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  ZUHAIR
+                </span>
+              </h1>
+              <h1 className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight text-gray-900">
+                ZEB
+              </h1>
+            </motion.div>
           </div>
 
-          {/* ✅ FIXED DESCRIPTION — punchy, not cheap */}
+          {/* Role with icons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="mb-8"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-wrap items-center gap-2 mb-5 text-sm"
           >
-            {/* Role tags */}
-            <div className="flex flex-wrap gap-2 mb-5">
-              {['WordPress Developer', 'WooCommerce Specialist', 'Community Founder'].map((role) => (
-                <span
-                  key={role}
-                  className="px-3 py-1 rounded-full border border-blue-700/30 bg-blue-700/5 text-blue-700 text-xs font-bold uppercase tracking-widest"
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
-
-            {/* Main tagline */}
-            <p className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-3">
-              I build WordPress sites that load fast and{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-blue-700">actually grow your business.</span>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}
-                  className="absolute bottom-0 left-0 w-full h-[3px] bg-blue-700/20 origin-left rounded-full"
-                />
-              </span>
-            </p>
-
-            {/* Sub-tagline */}
-            <p className="text-base text-gray-400 font-medium tracking-wide">
-              Custom themes, WooCommerce stores, and SEO built for speed and simplicity.
-            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full font-medium">
+              <Code2 size={14} />
+              WordPress Developer
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full font-medium">
+              <Cpu size={14} />
+              WooCommerce Specialist
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-full font-medium">
+              <Rocket size={14} />
+              Community Founder
+            </span>
           </motion.div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10">
-            <a
-              href="/resume.pdf"
-              className="inline-flex justify-center px-8 py-4 bg-black text-white rounded-full font-bold uppercase tracking-widest text-xs sm:text-sm hover:bg-blue-700 transition-all min-w-[180px]"
+          {/* Clean description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 max-w-lg"
+          >
+            I craft <span className="text-gray-900 font-semibold">fast, beautiful WordPress sites</span> that 
+            help businesses grow and convert better.
+          </motion.p>
+
+          {/* CTA buttons - modern minimal */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-3 mb-10"
+          >
+            <motion.a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group inline-flex justify-center items-center gap-2 px-6 py-3.5 bg-gray-900 text-white rounded-xl font-medium text-sm hover:bg-gray-800 transition-colors"
             >
-              Download Resume
-            </a>
-            <a
+              <GitBranch size={16} />
+              GitHub
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+            
+            <motion.a
               href="#projects"
-              className="inline-flex justify-center px-8 py-4 border-2 border-black rounded-full font-bold uppercase tracking-widest text-xs sm:text-sm hover:border-blue-700 hover:text-blue-700 hover:shadow-lg hover:shadow-blue-700/15 transition-all min-w-[180px]"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex justify-center items-center gap-2 px-6 py-3.5 border border-gray-300 text-gray-700 rounded-xl font-medium text-sm hover:border-gray-400 hover:bg-gray-50 transition-colors"
             >
               View Projects
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap items-end gap-x-6 sm:gap-x-10 gap-y-6">
-            {STATS.map((stat, i) => (
-              <motion.div key={stat.label} className="group">
-                <div className="flex items-end gap-1 h-5 mb-2">
-                  {[6, 12, 18].map((h, j) => (
-                    <motion.span
-                      key={j}
-                      initial={{ height: 0 }}
-                      animate={{ height: h }}
-                      transition={{ delay: 0.9 + i * 0.1 + j * 0.06, duration: 0.5, ease: 'easeOut' }}
-                      style={{ width: 4 }}
-                      className="rounded-full bg-blue-700 group-hover:bg-cyan-500 transition-colors"
-                    />
-                  ))}
+          {/* Tech stack - clean pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="flex flex-wrap gap-2 mb-10"
+          >
+            {TECH_STACK.map((tech) => (
+              <motion.span
+                key={tech.name}
+                whileHover={{ scale: 1.05, y: -1 }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:border-gray-300 hover:shadow-sm transition-all"
+              >
+                <span className="text-gray-500">{tech.icon}</span>
+                {tech.name}
+              </motion.span>
+            ))}
+          </motion.div>
+
+          {/* Stats - minimal horizontal */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="flex items-center gap-8 sm:gap-12"
+          >
+            {STATS.map((stat) => (
+              <div key={stat.label} className="group cursor-default">
+                <div className="flex items-baseline gap-0.5 mb-1">
+                  <span className="text-2xl sm:text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    <CountUp target={stat.value} suffix={stat.suffix} />
+                  </span>
                 </div>
-                <div className="text-3xl font-bebas text-blue-700 leading-none">{stat.value}</div>
-                <div className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mt-1">
+                <div className="text-xs text-gray-500 font-medium">
                   {stat.label}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* RIGHT COLUMN — Video + Founder Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5, filter: 'blur(20px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:col-span-5 relative max-w-sm mx-auto w-full"
-        >
-          {/* Video */}
-          <div className="relative z-20">
-            <VideoPlayer
-              src={VIDEOS.hero}
-              className="w-full h-auto max-w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-[4rem] object-cover"
-            />
-          </div>
-
-          {/* ✅ FIXED: Founder card — visible on ALL screens, not just xl */}
+        {/* RIGHT COLUMN - Video with modern styling */}
+        <div className="lg:col-span-5 relative max-w-sm mx-auto w-full">
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="absolute top-[55%] sm:top-[60%] -right-2 sm:-right-4 md:-right-8 z-30"
+            initial={{ opacity: 0, scale: 0.5, filter: 'blur(20px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
           >
-            <GlassCard className="p-3 sm:p-4 xl:p-6 w-36 sm:w-44 xl:w-56">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 xl:w-9 xl:h-9 rounded-xl bg-blue-700 flex items-center justify-center text-white flex-shrink-0">
-                  <Sparkles size={16} />
-                </div>
-                <div>
-                  <h4 className="font-bebas text-base xl:text-lg leading-tight">Founder</h4>
-                  <p className="text-[8px] xl:text-[9px] text-gray-500 uppercase font-bold tracking-widest">
-                    Sociapi Society
-                  </p>
-                </div>
-              </div>
-              <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '85%' }}
-                  transition={{ delay: 2, duration: 2 }}
-                  className="h-full bg-blue-700"
-                />
-              </div>
-            </GlassCard>
+            {/* Subtle glow */}
+            <div className="absolute -inset-3 bg-gradient-to-r from-blue-200/40 via-indigo-100/30 to-purple-200/40 rounded-[3.5rem] blur-xl" />
+            
+            <div className="relative z-20">
+              <VideoPlayer
+                src={VIDEOS.hero}
+                className="w-full h-auto max-w-full drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)] rounded-[3rem] object-cover hover:scale-[1.02] transition-transform duration-500"
+              />
+            </div>
+
+            {/* Founder card - modern glass */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9, duration: 0.7, type: 'spring' }}
+              className="absolute top-[55%] sm:top-[60%] -right-2 sm:-right-6 md:-right-8 z-30"
+            >
+              <motion.div whileHover={{ scale: 1.05 }}>
+                <GlassCard className="p-4 w-40 sm:w-48 backdrop-blur-xl bg-white/80">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0">
+                      <Sparkles size={16} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-sm leading-tight">Founder</h4>
+                      <p className="text-[9px] text-gray-500 font-medium tracking-wide">
+                        Sociapi Society
+                      </p>
+                    </div>
+                  </div>
+                  <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: '85%' }}
+                      transition={{ delay: 1.8, duration: 1.5, ease: 'easeOut' }}
+                      className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
+                    />
+                  </div>
+                </GlassCard>
+              </motion.div>
+            </motion.div>
+
+            {/* Rating chip */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, rotate: -10 }}
+              animate={{ opacity: 1, y: 0, rotate: -5 }}
+              transition={{ delay: 1.1, duration: 0.7, type: 'spring' }}
+              className="absolute -top-6 -right-2 sm:-right-8 z-30"
+            >
+              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}>
+                <GlassCard className="px-4 py-2.5 bg-white/80 backdrop-blur-xl flex items-center gap-2">
+                  <div className="flex text-amber-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={12} className="fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="font-semibold text-sm">5.0</span>
+                </GlassCard>
+              </motion.div>
+            </motion.div>
+
+            {/* Floating badges */}
+            {['Fast', 'SEO', 'Secure'].map((badge, i) => (
+              <motion.span
+                key={badge}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  y: [0, -10, 0]
+                }}
+                transition={{
+                  opacity: { delay: 1.3 + i * 0.15, duration: 0.5 },
+                  scale: { delay: 1.3 + i * 0.15, duration: 0.5, type: 'spring' },
+                  y: { duration: 3 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }
+                }}
+                className={`hidden sm:flex items-center gap-1.5 absolute z-10 px-3 py-1.5 bg-white shadow-md border border-gray-200 rounded-full text-xs font-semibold text-gray-700 ${
+                  i === 0 ? '-left-6 top-[20%]' : i === 1 ? '-left-10 top-[45%]' : 'top-[75%] right-0'
+                }`}
+              >
+                <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${
+                  i === 0 ? 'from-blue-500 to-blue-600' : 
+                  i === 1 ? 'from-emerald-500 to-emerald-600' : 
+                  'from-purple-500 to-purple-600'
+                }`} />
+                {badge}
+              </motion.span>
+            ))}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-1.5 text-gray-400"
+        >
+          <span className="text-[10px] uppercase tracking-widest font-medium">Scroll</span>
+          <ChevronDown size={16} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

@@ -54,35 +54,44 @@ export const Career = () => {
     <SectionWrapper id="career">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
         <div className="lg:col-span-5">
-          <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Professional Journey</span>
-          <h2 className="font-bebas text-6xl sm:text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
-            EXPERIENCE <br />
-            <span className="text-blue-600">&</span> AWARDS.
-          </h2>
-          
-          <div className="space-y-6">
-            <div className="p-8 rounded-[3rem] bg-gray-50 border border-gray-100">
-              <h3 className="font-bebas text-4xl mb-6">CERTIFICATIONS</h3>
-              <div className="space-y-4">
-                {certificates.map((cert, i) => (
-                  <div key={i} className="flex items-center justify-between group">
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base pr-4">{cert}</h4>
-                    <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/*
+            This sidebar used to be a fixed block that ended far
+            before the timeline on the right, leaving a large empty
+            gap underneath it. Making it sticky keeps it visually
+            paired with the timeline as the visitor scrolls, instead
+            of leaving dead white space.
+          */}
+          <div className="lg:sticky lg:top-28">
+            <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Professional Journey</span>
+            <h2 className="font-bebas text-6xl sm:text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
+              EXPERIENCE <br />
+              <span className="text-blue-600">&</span> AWARDS.
+            </h2>
 
-            <div className="p-8 rounded-[3rem] bg-black text-white">
-              <h3 className="font-bebas text-4xl mb-6 text-blue-400">ACHIEVEMENTS</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <span className="font-bold">Outstanding Contributor</span>
-                  <span className="text-xs text-gray-500">2025</span>
+            <div className="space-y-6">
+              <div className="p-8 rounded-[3rem] bg-gray-50 border border-gray-100">
+                <h3 className="font-bebas text-4xl mb-6">CERTIFICATIONS</h3>
+                <div className="space-y-4">
+                  {certificates.map((cert, i) => (
+                    <div key={i} className="flex items-center justify-between group">
+                      <h4 className="font-bold text-gray-900 text-sm sm:text-base pr-4">{cert}</h4>
+                      <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    </div>
+                  ))}
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-bold">Top Performer Volunteer</span>
-                  <span className="text-xs text-gray-500">2025</span>
+              </div>
+
+              <div className="p-8 rounded-[3rem] bg-black text-white">
+                <h3 className="font-bebas text-4xl mb-6 text-blue-400">ACHIEVEMENTS</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                    <span className="font-bold">Outstanding Contributor</span>
+                    <span className="text-xs text-gray-500">2025</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold">Top Performer Volunteer</span>
+                    <span className="text-xs text-gray-500">2025</span>
+                  </div>
                 </div>
               </div>
             </div>

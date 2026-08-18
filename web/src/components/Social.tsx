@@ -739,57 +739,58 @@ export const Reviews = () => {
         </div>
 
         {/* FAQ Right - Accordion */}
+        {/*
+          NOTE: these rows used to fade in with whileInView. On fast scroll or
+          slower phones that animation could get stuck partway through,
+          leaving a question looking greyed out and broken (this is what was
+          happening with the SEO question). FAQ rows don't need a scroll
+          reveal since the user is already looking right at this section, so
+          they now render fully visible immediately. Only the open/close
+          animation (height + fade of the answer) is kept.
+        */}
         <div className="lg:col-span-7 space-y-4">
           {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <GlassCard className="p-8 group hover:shadow-2xl transition-all duration-300">
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex justify-between items-center text-left"
+            <GlassCard key={i} className="p-8 group hover:shadow-2xl transition-all duration-300">
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full flex justify-between items-center text-left"
+              >
+                <span className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  {faq.q}
+                </span>
+                <motion.div
+                  animate={{ rotate: openFaq === i ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="shrink-0 ml-4"
                 >
-                  <span className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                    {faq.q}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: openFaq === i ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="shrink-0 ml-4"
-                  >
-                    {openFaq === i ? (
-                      <Minus className="text-blue-600" />
-                    ) : (
-                      <Plus className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                    )}
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <motion.div
-                        initial={{ y: -10 }}
-                        animate={{ y: 0 }}
-                        className="pt-6"
-                      >
-                        <p className="text-gray-600 text-lg leading-relaxed">
-                          {faq.a}
-                        </p>
-                      </motion.div>
-                    </motion.div>
+                  {openFaq === i ? (
+                    <Minus className="text-blue-600" />
+                  ) : (
+                    <Plus className="text-gray-400 group-hover:text-blue-500 transition-colors" />
                   )}
-                </AnimatePresence>
-              </GlassCard>
-            </motion.div>
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {openFaq === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <motion.div
+                      initial={{ y: -10 }}
+                      animate={{ y: 0 }}
+                      className="pt-6"
+                    >
+                      <p className="text-gray-600 text-lg leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </GlassCard>
           ))}
         </div>
       </div>
