@@ -52,25 +52,25 @@ import { SectionWrapper } from './SectionWrapper';
 export const Career = () => {
   return (
     <SectionWrapper id="career">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
+      {/* Shared section header — spans both columns so the sidebar
+          and the timeline start from the same baseline. */}
+      <div className="mb-16">
+        <span className="text-blue-600 font-bold tracking-[0.3em] text-xs block mb-8">Professional Journey</span>
+        <h2 className="font-bebas text-6xl sm:text-8xl leading-[0.9] tracking-tighter">
+          Experience <br />
+          <span className="text-blue-600">&</span> awards.
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
         <div className="lg:col-span-5">
           {/*
-            This sidebar used to be a fixed block that ended far
-            before the timeline on the right, leaving a large empty
-            gap underneath it. Making it sticky keeps it visually
-            paired with the timeline as the visitor scrolls, instead
-            of leaving dead white space.
+            Sticky sidebar: stays paired with the timeline while the
+            visitor scrolls instead of leaving dead white space.
           */}
-          <div className="lg:sticky lg:top-28">
-            <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Professional Journey</span>
-            <h2 className="font-bebas text-6xl sm:text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-12">
-              EXPERIENCE <br />
-              <span className="text-blue-600">&</span> AWARDS.
-            </h2>
-
-            <div className="space-y-6">
-              <div className="p-8 rounded-[3rem] bg-gray-50 border border-gray-100">
-                <h3 className="font-bebas text-4xl mb-6">CERTIFICATIONS</h3>
+          <div className="lg:sticky lg:top-28 space-y-6">
+              <div className="p-8 rounded-3xl bg-gray-50 border border-gray-100">
+                <h3 className="font-bebas text-3xl mb-6">Certifications</h3>
                 <div className="space-y-4">
                   {certificates.map((cert, i) => (
                     <div key={i} className="flex items-center justify-between group">
@@ -81,8 +81,8 @@ export const Career = () => {
                 </div>
               </div>
 
-              <div className="p-8 rounded-[3rem] bg-black text-white">
-                <h3 className="font-bebas text-4xl mb-6 text-blue-400">ACHIEVEMENTS</h3>
+              <div className="p-8 rounded-3xl bg-black text-white">
+                <h3 className="font-bebas text-3xl mb-6 text-blue-400">Achievements</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center border-b border-white/10 pb-4">
                     <span className="font-bold">Outstanding Contributor</span>
@@ -94,7 +94,6 @@ export const Career = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
 
@@ -110,7 +109,7 @@ export const Career = () => {
                 className="group relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-12 border-b border-gray-100 last:border-0"
               >
                 <div className="md:col-span-3">
-                  <span className="font-bebas text-2xl text-blue-600 block">{exp.period}</span>
+                  <span className="font-bebas text-3xl text-blue-600 block">{exp.period}</span>
                 </div>
                 <div className="md:col-span-9">
                   <h3 className="font-bebas text-5xl tracking-tight mb-2 group-hover:text-blue-600 transition-colors">

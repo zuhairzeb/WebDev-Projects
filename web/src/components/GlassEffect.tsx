@@ -41,7 +41,7 @@ export const GlassCard = ({ children, className = "" }: { children: ReactNode; c
   return (
     <motion.div
       whileHover={{ y: -5, scale: 1.01 }}
-      className={`backdrop-blur-xl bg-white/40 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-[2.5rem] ${className}`}
+      className={`backdrop-blur-xl bg-white/40 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl ${className}`}
     >
       {children}
     </motion.div>
