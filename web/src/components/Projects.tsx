@@ -279,8 +279,6 @@ interface Accent {
   bg: string;
   glow: string;
   ring: string;
-  text: string;
-  groupHoverText: string;
   particle: string;
 }
 
@@ -289,56 +287,42 @@ const ACCENTS: Record<string, Accent> = {
     bg: 'from-blue-600 via-indigo-700 to-slate-900',
     glow: 'rgba(37,99,235,0.55)',
     ring: 'ring-blue-400/30',
-    text: 'text-blue-600',
-    groupHoverText: 'group-hover:text-blue-600',
     particle: 'bg-blue-300',
   },
   'Game Development': {
     bg: 'from-violet-600 via-fuchsia-700 to-slate-900',
     glow: 'rgba(168,85,247,0.55)',
     ring: 'ring-violet-400/30',
-    text: 'text-violet-600',
-    groupHoverText: 'group-hover:text-violet-600',
     particle: 'bg-violet-300',
   },
   'Full Stack Development': {
     bg: 'from-cyan-600 via-blue-700 to-slate-900',
     glow: 'rgba(8,145,178,0.55)',
     ring: 'ring-cyan-400/30',
-    text: 'text-cyan-600',
-    groupHoverText: 'group-hover:text-cyan-600',
     particle: 'bg-cyan-300',
   },
   'Management System': {
     bg: 'from-emerald-600 via-teal-700 to-slate-900',
     glow: 'rgba(5,150,105,0.55)',
     ring: 'ring-emerald-400/30',
-    text: 'text-emerald-600',
-    groupHoverText: 'group-hover:text-emerald-600',
     particle: 'bg-emerald-300',
   },
   'Multivendor Ecommerce': {
     bg: 'from-amber-500 via-orange-600 to-slate-900',
     glow: 'rgba(217,119,6,0.55)',
     ring: 'ring-amber-400/30',
-    text: 'text-amber-600',
-    groupHoverText: 'group-hover:text-amber-600',
     particle: 'bg-amber-300',
   },
   'Website Redesign': {
     bg: 'from-rose-500 via-pink-600 to-slate-900',
     glow: 'rgba(225,29,72,0.55)',
     ring: 'ring-rose-400/30',
-    text: 'text-rose-600',
-    groupHoverText: 'group-hover:text-rose-600',
     particle: 'bg-rose-300',
   },
   'Automation Solution': {
     bg: 'from-lime-500 via-green-600 to-slate-900',
     glow: 'rgba(22,163,74,0.55)',
     ring: 'ring-lime-400/30',
-    text: 'text-lime-600',
-    groupHoverText: 'group-hover:text-lime-600',
     particle: 'bg-lime-300',
   },
 };
@@ -430,13 +414,13 @@ const IconFallback = ({ Icon, category }: { Icon: typeof Code2; category: string
         <motion.div
           animate={{ scale: [1, 1.25, 1], opacity: [0.5, 0, 0.5] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute inset-0 rounded-[2rem] bg-white/30 blur-md"
+          className="absolute inset-0 rounded-3xl bg-white/30 blur-md"
         />
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           whileHover={{ scale: 1.08, rotate: 3 }}
-          className={`relative p-8 rounded-[2rem] bg-white/10 border border-white/25 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-4 ${accent.ring}`}
+          className={`relative p-8 rounded-3xl bg-white/10 border border-white/25 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.25)] ring-4 ${accent.ring}`}
         >
           <Icon size={56} className="text-white drop-shadow-lg" strokeWidth={1.5} />
         </motion.div>
@@ -483,7 +467,7 @@ const TagList = ({ items }: { items?: string[] }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.03 * i, type: 'spring', stiffness: 300, damping: 20 }}
           whileHover={{ scale: 1.08, y: -1 }}
-          className="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-600 text-[11px] font-bold uppercase tracking-widest cursor-default"
+          className="px-3 py-1.5 rounded-full bg-blue-600/10 text-blue-600 text-xs font-bold cursor-default"
         >
           {t}
         </motion.span>
@@ -513,7 +497,8 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <ProjectVisual project={project} />
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md flex items-center justify-center text-white transition-colors"
+            aria-label="Close project details"
+            className="icon-btn absolute top-4 right-4 sm:top-6 sm:right-6 bg-black/30 hover:bg-black/50 backdrop-blur-md text-white"
           >
             <X size={20} />
           </button>
@@ -523,7 +508,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <span className="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">
             {project.category}
           </span>
-          <h3 className="font-bebas text-4xl sm:text-5xl tracking-tight mb-2 leading-none">
+          <h3 className="font-bebas text-5xl tracking-tight mb-2 leading-none">
             {project.title}
           </h3>
           {project.date && (
@@ -569,7 +554,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full bg-black text-white hover:bg-blue-600 transition-all inline-flex items-center gap-2 text-sm font-bold"
+                className="btn-primary"
               >
                 <ArrowUpRight size={18} /> Live Site
               </a>
@@ -579,7 +564,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border-2 border-black hover:bg-black hover:text-white transition-all inline-flex items-center gap-2 text-sm font-bold"
+                className="btn-secondary"
               >
                 <GitBranch size={18} /> Repository
               </a>
@@ -589,7 +574,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 href={project.caseStudyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border-2 border-black hover:bg-black hover:text-white transition-all inline-flex items-center gap-2 text-sm font-bold"
+                className="btn-secondary"
               >
                 <BookOpen size={18} /> Case Study
               </a>
@@ -628,7 +613,7 @@ const ProjectCard = ({
     >
       {/* Ambient glow that appears behind the card on hover */}
       <div
-        className="absolute -inset-2 rounded-[2.7rem] opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500 -z-10"
+        className="absolute -inset-2 rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500 -z-10"
         style={{ backgroundColor: accent.glow }}
       />
 
@@ -646,20 +631,20 @@ const ProjectCard = ({
           >
             <ProjectVisual project={project} />
           </motion.div>
-          <span className="absolute top-4 left-4 px-3 py-1.5 backdrop-blur-xl bg-black/30 border border-white/20 rounded-full text-[10px] font-black uppercase text-white tracking-widest">
+          <span className="absolute top-4 left-4 px-3 py-1.5 backdrop-blur-xl bg-black/30 border border-white/20 rounded-full text-xs font-bold text-white tracking-wide">
             {project.category}
           </span>
         </div>
 
         <div className="relative z-10 p-6 sm:p-8 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-3 mb-3">
-            <h3 className={`font-bebas text-3xl sm:text-4xl tracking-tight leading-none transition-colors ${accent.groupHoverText}`}>
+            <h3 className="font-bebas text-3xl tracking-tight leading-none transition-colors group-hover:text-blue-600">
               {project.title}
             </h3>
           </div>
 
           {project.date && (
-            <p className="flex items-center gap-1.5 text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-3">
+            <p className="flex items-center gap-1.5 text-gray-400 text-xs font-bold tracking-wide mb-3">
               <Calendar size={12} /> {project.date}
             </p>
           )}
@@ -673,7 +658,7 @@ const ProjectCard = ({
               {previewTech.map((t) => (
                 <span
                   key={t}
-                  className="px-2.5 py-1 rounded-full bg-gray-100 group-hover:bg-gray-50 border border-transparent group-hover:border-gray-200 text-gray-600 text-[10px] font-bold uppercase tracking-widest transition-colors"
+                  className="px-2.5 py-1 rounded-full bg-gray-100 group-hover:bg-gray-50 border border-transparent group-hover:border-gray-200 text-gray-600 text-xs font-bold tracking-wide transition-colors"
                 >
                   {t}
                 </span>
@@ -685,7 +670,7 @@ const ProjectCard = ({
             <motion.button
               onClick={onOpen}
               whileTap={{ scale: 0.96 }}
-              className={`font-bold text-xs uppercase tracking-widest inline-flex items-center gap-1.5 hover:gap-2.5 transition-all ${accent.text}`}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-current text-blue-600 font-bold text-xs transition-all hover:gap-3"
             >
               View Details <Sparkles size={14} />
             </motion.button>
@@ -699,8 +684,9 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: -6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="w-10 h-10 rounded-full bg-black text-white hover:bg-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)] transition-all flex items-center justify-center"
+                  className="icon-btn bg-black text-white hover:bg-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
                   aria-label={`${project.title} live site`}
+                  title={`${project.title} — open live site`}
                 >
                   <ArrowUpRight size={16} />
                 </motion.a>
@@ -713,8 +699,9 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="w-10 h-10 rounded-full border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)] transition-all flex items-center justify-center"
+                  className="icon-btn border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)]"
                   aria-label={`${project.title} repository`}
+                  title={`${project.title} — view source on GitHub`}
                 >
                   <GitBranch size={16} />
                 </motion.a>
@@ -727,8 +714,9 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="w-10 h-10 rounded-full border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)] transition-all flex items-center justify-center"
+                  className="icon-btn border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)]"
                   aria-label={`${project.title} case study`}
+                  title={`${project.title} — read the case study`}
                 >
                   <BookOpen size={16} />
                 </motion.a>
@@ -751,12 +739,12 @@ export const Projects = () => {
   return (
     <SectionWrapper id="projects" className="bg-transparent overflow-visible">
       <div className="flex flex-col mb-16 sm:mb-24">
-        <span className="text-blue-600 font-black uppercase tracking-[0.4em] text-[10px] mb-8">
+        <span className="text-blue-600 font-bold uppercase tracking-[0.4em] text-xs mb-8">
           Portfolio Showcase
         </span>
-        <h2 className="font-bebas text-[13vw] sm:text-[10vw] leading-[0.85] sm:leading-[0.8] tracking-tighter">
-          PROJECTS <br />
-          <span className="text-blue-600 italic">THAT MATTER.</span>
+        <h2 className="font-bebas text-6xl sm:text-8xl leading-[0.9] tracking-tighter">
+          Projects <br />
+          <span className="text-blue-600 italic">that matter.</span>
         </h2>
       </div>
 
