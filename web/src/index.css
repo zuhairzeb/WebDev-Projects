@@ -1,1 +1,51 @@
 @import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS — the single source of truth for the page.
+
+   Type scale (10 steps, nothing outside it):
+     text-xs · text-sm · text-base · text-lg · text-xl
+     text-3xl · text-5xl · text-6xl · text-7xl · text-8xl
+
+   Corner radii (3):
+     rounded-xl   → inputs, small tiles, thumbnails
+     rounded-3xl  → cards, media frames, panels
+     rounded-full → pills, dots, circular icon buttons
+
+   Text palette (12):
+     gray-900/600/500/400 · white
+     blue-600 (light bg) · blue-400 (dark bg) · blue-200 (helper)
+     amber-400 (stars) · green-400 (success) · red-400 (errors)
+     transparent (gradient display text)
+
+   Buttons (5 styles):
+     .btn-primary  → the one true CTA (blue pill), used everywhere
+     .btn-secondary→ outlined pill
+     .btn-inverse  → white pill on dark/coloured surfaces
+     .icon-btn     → 48px circular icon button
+     (tertiary actions are plain text links, not styled buttons)
+   ───────────────────────────────────────────────────────────── */
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-gray-900 text-gray-900 text-sm font-bold hover:bg-gray-900 hover:text-white transition-all duration-300;
+  }
+
+  .btn-inverse {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-gray-900 text-sm font-bold hover:bg-blue-600 hover:text-white transition-all duration-300;
+  }
+
+  .icon-btn {
+    @apply w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300;
+  }
+}
+
+/* Visible keyboard focus for every interactive element */
+:focus-visible {
+  outline: 2px solid var(--color-blue-600);
+  outline-offset: 2px;
+}

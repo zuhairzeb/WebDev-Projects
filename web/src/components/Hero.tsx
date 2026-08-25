@@ -96,26 +96,29 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight text-gray-900"
+              className="font-bebas text-7xl sm:text-8xl leading-[0.9] tracking-tight text-gray-900"
             >
-              MUHAMMAD
-            </motion.h1>
-            
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-3 sm:gap-4"
-            >
-              <h1 className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight">
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="block"
+              >
+                Muhammad
+              </motion.span>
+
+              <motion.span
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-3 sm:gap-4"
+              >
                 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  ZUHAIR
+                  Zuhair
                 </span>
-              </h1>
-              <h1 className="font-bebas text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[5.5rem] xl:text-[7rem] leading-[0.9] tracking-tight text-gray-900">
-                ZEB
-              </h1>
-            </motion.div>
+                <span>Zeb</span>
+              </motion.span>
+            </motion.h1>
           </div>
 
           {/* Role with icons */}
@@ -125,15 +128,15 @@ export const Hero = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex flex-wrap items-center gap-2 mb-5 text-sm"
           >
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full font-medium">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full font-medium">
               <Code2 size={14} />
               WordPress Developer
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full font-medium">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full font-medium">
               <Cpu size={14} />
               WooCommerce Specialist
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-full font-medium">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full font-medium">
               <Rocket size={14} />
               Community Founder
             </span>
@@ -144,7 +147,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 max-w-lg"
+            className="text-xl text-gray-600 leading-relaxed mb-8 max-w-lg"
           >
             I craft <span className="text-gray-900 font-semibold">fast, beautiful WordPress sites</span> that 
             help businesses grow and convert better.
@@ -163,7 +166,7 @@ export const Hero = () => {
               rel="noopener noreferrer"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group inline-flex justify-center items-center gap-2 px-6 py-3.5 bg-gray-900 text-white rounded-xl font-medium text-sm hover:bg-gray-800 transition-colors"
+              className="btn-primary group"
             >
               <GitBranch size={16} />
               GitHub
@@ -174,7 +177,7 @@ export const Hero = () => {
               href="#projects"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex justify-center items-center gap-2 px-6 py-3.5 border border-gray-300 text-gray-700 rounded-xl font-medium text-sm hover:border-gray-400 hover:bg-gray-50 transition-colors"
+              className="btn-secondary"
             >
               View Projects
             </motion.a>
@@ -191,7 +194,7 @@ export const Hero = () => {
               <motion.span
                 key={tech.name}
                 whileHover={{ scale: 1.05, y: -1 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:border-gray-300 hover:shadow-sm transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-medium text-gray-600 hover:border-gray-300 hover:shadow-sm transition-all"
               >
                 <span className="text-gray-500">{tech.icon}</span>
                 {tech.name}
@@ -209,7 +212,7 @@ export const Hero = () => {
             {STATS.map((stat) => (
               <div key={stat.label} className="group cursor-default">
                 <div className="flex items-baseline gap-0.5 mb-1">
-                  <span className="text-2xl sm:text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <span className="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                     <CountUp target={stat.value} suffix={stat.suffix} />
                   </span>
                 </div>
@@ -253,8 +256,8 @@ export const Hero = () => {
                       <Sparkles size={16} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm leading-tight">Founder</h4>
-                      <p className="text-[9px] text-gray-500 font-medium tracking-wide">
+                      <p className="font-semibold text-sm leading-tight">Founder</p>
+                      <p className="text-xs text-gray-500 font-medium tracking-wide">
                         Sociapi Society
                       </p>
                     </div>
@@ -333,7 +336,7 @@ export const Hero = () => {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-1.5 text-gray-400"
         >
-          <span className="text-[10px] uppercase tracking-widest font-medium">Scroll</span>
+          <span className="text-xs tracking-widest font-medium">Scroll</span>
           <ChevronDown size={16} />
         </motion.div>
       </motion.div>

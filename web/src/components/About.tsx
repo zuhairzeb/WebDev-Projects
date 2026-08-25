@@ -27,7 +27,7 @@ export const About = () => {
               <div className="absolute -inset-10 bg-blue-600/10 blur-[100px] -z-10 rounded-full" />
               <VideoPlayer
                 src={VIDEOS.about}
-                className="w-full h-auto relative z-10 scale-110 drop-shadow-2xl rounded-[4rem]"
+                className="w-full h-auto relative z-10 scale-110 drop-shadow-2xl rounded-3xl"
               />
 
               <motion.div
@@ -42,8 +42,8 @@ export const About = () => {
                       <GraduationCap size={24} className="hidden sm:block" />
                     </div>
                     <div>
-                      <p className="text-[7px] sm:text-[10px] font-black uppercase tracking-widest text-gray-400">Currently Studying</p>
-                      <h4 className="font-bebas text-xs sm:text-xl leading-tight">BS Artificial Intelligence</h4>
+                      <p className="text-xs font-bold text-gray-400">Currently Studying</p>
+                      <h3 className="font-bebas text-xs sm:text-xl leading-tight">BS Artificial Intelligence</h3>
                     </div>
                   </div>
                 </GlassCard>
@@ -52,12 +52,12 @@ export const About = () => {
           </div>
 
           <div className="lg:col-span-6">
-            <h2 className="font-bebas text-5xl md:text-[6.5rem] leading-[0.92] tracking-tight mb-10 text-slate-950">
-              CRAFTING THE <br />
-              <span className="text-blue-600 italic">FUTURE</span> OF WEB.
+            <h2 className="font-bebas text-5xl md:text-8xl leading-[0.92] tracking-tight mb-10 text-gray-900">
+              Crafting the <br />
+              <span className="text-blue-600 italic">future</span> of web.
             </h2>
 
-            <p className="text-xl md:text-2xl text-slate-600 font-medium leading-relaxed mb-12 max-w-xl">
+            <p className="text-xl text-gray-600 font-medium leading-relaxed mb-12 max-w-xl">
               I'm Muhammad Zuhair Zeb, a WordPress developer with 4+ years of experience building custom websites, WooCommerce stores, and multivendor marketplaces. I also founded Sociapi Society, a community built around technology and social impact. My focus stays simple: clean code, fast load times, and sites that actually help businesses grow.
             </p>
 
@@ -66,19 +66,19 @@ export const About = () => {
                 <GlassCard key={i} className="p-8 group overflow-hidden relative">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500" />
                   <div className="text-5xl font-bebas text-blue-600 mb-2">{stat.value}</div>
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">{stat.label}</div>
+                  <div className="text-xs font-bold tracking-wide text-gray-400">{stat.label}</div>
                 </GlassCard>
               ))}
             </div>
 
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="mt-10 p-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem]"
+              className="mt-10 p-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl"
             >
-              <div className="bg-white p-8 rounded-[2.3rem] flex items-center justify-between">
+              <div className="bg-white p-8 rounded-3xl flex items-center justify-between">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Current Leadership</p>
-                  <h4 className="font-bebas text-3xl">Founder of Sociapi Society</h4>
+                  <p className="text-xs font-bold text-gray-400 mb-1">Current Leadership</p>
+                  <h3 className="font-bebas text-3xl">Founder of Sociapi Society</h3>
                 </div>
                 <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center">
                   <Users className="text-blue-600" />

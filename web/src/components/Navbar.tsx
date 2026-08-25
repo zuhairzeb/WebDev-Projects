@@ -33,8 +33,8 @@ export const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#" className="font-bebas text-2xl sm:text-3xl tracking-tighter hover:text-blue-600 transition-colors">
-          ZUHAIR.ZEB
+        <a href="#" className="font-bebas text-3xl tracking-tighter hover:text-blue-600 transition-colors">
+          Zuhair.Zeb
         </a>
 
         {/* Desktop Nav */}
@@ -51,7 +51,7 @@ export const Navbar = () => {
           ))}
           <a
             href="https://beacons.ai/zuhairzeb"
-            className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300"
+            className="btn-primary"
           >
             Let's Talk
           </a>
@@ -59,8 +59,10 @@ export const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2"
+          className="icon-btn md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -87,7 +89,7 @@ export const Navbar = () => {
             ))}
             <a
               href="https://beacons.ai/zuhairzeb"
-              className="bg-black text-white px-6 py-3 rounded-full text-center font-medium"
+              className="btn-primary w-full"
               onClick={() => setIsMenuOpen(false)}
             >
               Let's Talk
