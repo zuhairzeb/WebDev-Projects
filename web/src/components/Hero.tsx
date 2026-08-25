@@ -161,25 +161,25 @@ export const Hero = () => {
             className="flex flex-col sm:flex-row gap-3 mb-10"
           >
             <motion.a
+              href="#projects"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary group"
+            >
+              View Projects
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+
+            <motion.a
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="btn-primary group"
+              className="btn-secondary group"
             >
               <GitBranch size={16} />
               GitHub
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </motion.a>
-            
-            <motion.a
-              href="#projects"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="btn-secondary"
-            >
-              View Projects
             </motion.a>
           </motion.div>
 
@@ -207,11 +207,11 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex items-center gap-8 sm:gap-12"
+            className="flex flex-wrap justify-center sm:justify-start items-center gap-6 sm:gap-10"
           >
             {STATS.map((stat) => (
-              <div key={stat.label} className="group cursor-default">
-                <div className="flex items-baseline gap-0.5 mb-1">
+              <div key={stat.label} className="group cursor-default text-center sm:text-left">
+                <div className="mb-1">
                   <span className="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                     <CountUp target={stat.value} suffix={stat.suffix} />
                   </span>

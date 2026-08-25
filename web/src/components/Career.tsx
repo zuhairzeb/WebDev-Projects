@@ -15,6 +15,12 @@ const experiences = [
     desc: 'Built and designed interactive dashboards using Power BI. Created DAX measures for key performance indicators including Revenue, Average Order Value, and Delivery Rate. Analyzed sales and operations data to generate actionable business insights. Improved reporting efficiency by automating recurring reports.'
   },
   {
+    role: 'Founder & President',
+    company: 'Sociapi Society',
+    period: 'Present',
+    desc: 'Leading a community focused on social impact and technology.'
+  },
+  {
     role: 'Freelance WordPress Developer',
     company: 'Self-Employed',
     period: '2021 – Present',
@@ -31,12 +37,6 @@ const experiences = [
     company: 'The Order of Pen',
     period: '2025',
     desc: 'Assisting in human resource management and community outreach.'
-  },
-  {
-    role: 'Founder & President',
-    company: 'Sociapi Society',
-    period: 'Present',
-    desc: 'Leading a community focused on social impact and technology.'
   }
 ];
 
@@ -81,10 +81,10 @@ export const Career = () => {
                 </div>
               </div>
 
-              <div className="p-8 rounded-3xl bg-black text-white">
-                <h3 className="font-bebas text-3xl mb-6 text-blue-400">Achievements</h3>
+              <div className="p-8 rounded-3xl bg-gray-50 border border-gray-100 text-gray-900">
+                <h3 className="font-bebas text-3xl mb-6 text-blue-600">Achievements</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                  <div className="flex justify-between items-center border-b border-gray-200 pb-4">
                     <span className="font-bold">Outstanding Contributor</span>
                     <span className="text-xs text-gray-500">2025</span>
                   </div>
@@ -106,7 +106,7 @@ export const Career = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-12 border-b border-gray-100 last:border-0"
+                className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-start pb-12 border-b border-gray-100 last:border-0"
               >
                 <div className="md:col-span-3">
                   <span className="font-bebas text-3xl text-blue-600 block">{exp.period}</span>

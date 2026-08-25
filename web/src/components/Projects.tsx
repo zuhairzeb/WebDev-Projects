@@ -619,7 +619,7 @@ const ProjectCard = ({
 
       <GlassCard className="p-0 overflow-hidden border border-gray-100 group-hover:border-transparent h-full flex flex-col relative shadow-[0_4px_20px_rgba(0,0,0,0.04)] group-hover:shadow-[0_24px_50px_-15px_rgba(0,0,0,0.25)] transition-shadow duration-500">
         {/* Large faint project number, revealed on hover */}
-        <span className="pointer-events-none absolute -bottom-4 -right-2 font-bebas text-[7rem] leading-none text-gray-900/[0.03] group-hover:text-gray-900/[0.06] transition-colors duration-500 select-none z-0">
+        <span className="pointer-events-none absolute -bottom-4 -right-2 font-bebas text-[7rem] leading-none text-gray-900/[0.03] group-hover:text-gray-900/[0.06] transition-colors duration-500 select-none z-[1]">
           {String(index + 1).padStart(2, '0')}
         </span>
 
@@ -684,7 +684,7 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: -6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn bg-black text-white hover:bg-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
+                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
                   aria-label={`${project.title} live site`}
                   title={`${project.title} — open live site`}
                 >
@@ -699,7 +699,7 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)]"
+                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
                   aria-label={`${project.title} repository`}
                   title={`${project.title} — view source on GitHub`}
                 >
@@ -714,7 +714,7 @@ const ProjectCard = ({
                   onClick={(e) => e.stopPropagation()}
                   whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn border-2 border-black hover:bg-black hover:text-white hover:shadow-[0_0_0_6px_rgba(0,0,0,0.08)]"
+                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
                   aria-label={`${project.title} case study`}
                   title={`${project.title} — read the case study`}
                 >

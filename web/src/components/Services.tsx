@@ -31,8 +31,8 @@ export const Services = () => {
         <div className="lg:col-span-4">
           <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-6">Capabilities</span>
           <h2 className="font-bebas text-5xl sm:text-6xl md:text-8xl leading-none mb-8">
-            SERVICES <br />
-            <span className="text-blue-600">&</span> TOOLS.
+            Services <br />
+            <span className="text-blue-600">&</span> tools.
           </h2>
           <p className="text-lg text-gray-500 font-medium leading-relaxed">
             I offer practical WordPress development, performance, and SEO services that solve real business problems.
@@ -46,7 +46,7 @@ export const Services = () => {
                 href="https://calendly.com/zebzuhair71/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center py-4 bg-blue-600 rounded-full font-bold hover:bg-blue-700 transition-all uppercase tracking-widest text-xs"
+                className="btn-primary w-full"
               >
                 Book a Strategy Call
               </a>

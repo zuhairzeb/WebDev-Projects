@@ -87,9 +87,9 @@ export const Contact = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="p-6 md:p-8 bg-linear-to-br from-gray-800 to-gray-700 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              className="p-6 md:p-8 bg-linear-to-br from-gray-800 to-gray-700 rounded-3xl flex items-center gap-4"
             >
-              <div>
+              <div className="flex-1">
                 <h3 className="font-bebas text-xl md:text-3xl mb-1">Ready to Start?</h3>
                 <p className="text-xs tracking-wide font-bold opacity-80">Let's build something amazing</p>
               </div>
@@ -106,8 +106,8 @@ export const Contact = () => {
               transition={{ duration: 0.3 }}
               className="w-full max-w-sm bg-linear-to-br from-blue-900/90 to-indigo-900/80 p-6 md:p-8 rounded-3xl border border-blue-500/30 shadow-[0_20px_80px_rgba(59,130,246,0.15)]"
             >
-              <h3 className="font-bebas text-2xl md:text-3xl mb-4 md:mb-6 text-white">Quick Inquiry</h3>
-              <p className="text-xs md:text-sm text-blue-200 leading-relaxed mb-4 md:mb-6">
+              <h3 className="font-bebas text-2xl md:text-3xl mb-3 md:mb-4 text-white">Quick Inquiry</h3>
+              <p className="text-xs md:text-sm text-blue-200 leading-relaxed mb-4 md:mb-5">
                 Looking for internships, freelance projects, collaborations, and community partnerships. Expected response time: 24 hours.
               </p>
 
@@ -203,13 +203,13 @@ export const Contact = () => {
           </div>
           <div className="lg:col-span-7 order-1 lg:order-2">
             <GlassCard className="p-6 md:p-12 bg-white/5 border-white/10">
-              <h3 className="font-bebas text-3xl md:text-5xl mb-4 md:mb-6 leading-tight">I'm Ready to Start Your Project</h3>
-              <p className="text-base md:text-xl text-gray-400 leading-relaxed mb-6 md:mb-8">
-                Whether you need a custom WordPress website, a WooCommerce store, or help speeding up and securing a site you already have, I'm here to help you turn your vision into reality. Reach out for freelance projects, internships, or community collaborations.
-              </p>
-              <button className="btn-inverse px-6 md:px-10 py-3 md:py-5 active:scale-95">
-                Book a Free Consultation
-              </button>
+              <p className="text-xs uppercase tracking-[0.3em] text-blue-300 font-bold mb-4">What I deliver</p>
+              <h3 className="font-bebas text-3xl md:text-5xl mb-4 md:mb-6 leading-tight">Clear strategy, fast delivery, and business-focused results.</h3>
+              <ul className="space-y-3 text-base md:text-lg text-gray-300 leading-relaxed">
+                <li>• Custom WordPress builds and WooCommerce storefronts</li>
+                <li>• Performance, SEO, and security improvements for existing sites</li>
+                <li>• Reliable communication and launch support from start to finish</li>
+              </ul>
             </GlassCard>
           </div>
         </div>
@@ -251,7 +251,7 @@ export const Contact = () => {
                   <p className="text-xs uppercase tracking-[0.35em] text-gray-400 font-bold mb-3 md:mb-4">Click to copy</p>
                   <button
                     onClick={() => navigator.clipboard.writeText('zuhairzeb@yahoo.com')}
-                    className="btn-inverse px-4 py-2 break-all"
+                    className="btn-primary px-4 py-2 break-all"
                   >
                     zuhairzeb@yahoo.com
                   </button>

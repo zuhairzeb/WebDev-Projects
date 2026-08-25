@@ -19,10 +19,8 @@ export const Navbar = () => {
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Review', href: '#social' },
-    {name:  'Faq', href: '#faq'},
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
