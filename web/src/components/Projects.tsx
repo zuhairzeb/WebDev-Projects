@@ -491,9 +491,9 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
         transition={{ type: 'spring', stiffness: 260, damping: 26 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-[2.5rem] sm:rounded-[3rem] bg-white shadow-2xl"
+        className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
       >
-        <div className="h-40 sm:h-52 relative rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden group">
+        <div className="h-40 sm:h-52 relative rounded-t-3xl overflow-hidden group">
           <ProjectVisual project={project} />
           <button
             onClick={onClose}
@@ -619,7 +619,7 @@ const ProjectCard = ({
 
       <GlassCard className="p-0 overflow-hidden border border-gray-100 group-hover:border-transparent h-full flex flex-col relative shadow-[0_4px_20px_rgba(0,0,0,0.04)] group-hover:shadow-[0_24px_50px_-15px_rgba(0,0,0,0.25)] transition-shadow duration-500">
         {/* Large faint project number, revealed on hover */}
-        <span className="pointer-events-none absolute -bottom-4 -right-2 font-bebas text-[7rem] leading-none text-gray-900/[0.03] group-hover:text-gray-900/[0.06] transition-colors duration-500 select-none z-[1]">
+        <span className="pointer-events-none absolute -bottom-4 -right-2 font-bebas text-8xl leading-none text-gray-900/[0.03] group-hover:text-gray-900/[0.06] transition-colors duration-500 select-none z-0 opacity-70">
           {String(index + 1).padStart(2, '0')}
         </span>
 
@@ -637,58 +637,61 @@ const ProjectCard = ({
         </div>
 
         <div className="relative z-10 p-6 sm:p-8 flex flex-col flex-1">
-          <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="mb-3">
             <h3 className="font-bebas text-3xl tracking-tight leading-none transition-colors group-hover:text-blue-600">
               {project.title}
             </h3>
+            {project.date && (
+              <p className="flex items-center gap-1.5 text-gray-400 text-xs font-semibold tracking-wide mt-2">
+                <Calendar size={12} aria-hidden="true" /> {project.date}
+              </p>
+            )}
           </div>
 
-          {project.date && (
-            <p className="flex items-center gap-1.5 text-gray-400 text-xs font-bold tracking-wide mb-3">
-              <Calendar size={12} /> {project.date}
+          {/* Middle flex area absorbs variable description height */}
+          <div className="flex flex-col flex-1 mb-6">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
+              {project.description}
             </p>
-          )}
 
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6 flex-1">
-            {project.description}
-          </p>
+            {previewTech.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {previewTech.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 rounded-full bg-gray-100 group-hover:bg-gray-50 border border-transparent group-hover:border-gray-200 text-gray-600 text-xs font-semibold tracking-wide transition-colors"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
 
-          {previewTech.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {previewTech.map((t) => (
-                <span
-                  key={t}
-                  className="px-2.5 py-1 rounded-full bg-gray-100 group-hover:bg-gray-50 border border-transparent group-hover:border-gray-200 text-gray-600 text-xs font-bold tracking-wide transition-colors"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <div className="flex flex-wrap gap-3 items-center pt-5 mt-auto border-t border-gray-100">
+          {/* Action bar pinned to identical bottom baseline */}
+          <div className="flex flex-wrap gap-3 items-center pt-4 mt-auto border-t border-gray-100">
             <motion.button
               onClick={onOpen}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-current text-blue-600 font-bold text-xs transition-all hover:gap-3"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-current text-blue-600 font-bold text-xs transition-all hover:gap-3 hover:bg-blue-50"
             >
-              View Details <Sparkles size={14} />
+              View Details <Sparkles size={14} aria-hidden="true" />
             </motion.button>
             <div className="flex-1" />
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-2 items-center">
               {project.liveDemo && (
                 <motion.a
                   href={project.liveDemo}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  whileHover={{ scale: 1.12, rotate: -6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
-                  aria-label={`${project.title} live site`}
-                  title={`${project.title} — open live site`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-semibold text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors shadow-2xs"
+                  aria-label={`${project.title} live demo (opens in a new tab)`}
+                  title={`${project.title} — open live demo`}
                 >
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                  <span>Demo</span>
                 </motion.a>
               )}
               {project.github && (
@@ -697,13 +700,13 @@ const ProjectCard = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
-                  aria-label={`${project.title} repository`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-semibold text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors shadow-2xs"
+                  aria-label={`${project.title} source code on GitHub (opens in a new tab)`}
                   title={`${project.title} — view source on GitHub`}
                 >
-                  <GitBranch size={16} />
+                  <GitBranch size={13} aria-hidden="true" />
+                  <span>Code</span>
                 </motion.a>
               )}
               {!project.github && project.caseStudyUrl && (
@@ -712,13 +715,13 @@ const ProjectCard = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  whileHover={{ scale: 1.12, rotate: 6 }}
                   whileTap={{ scale: 0.94 }}
-                  className="icon-btn border border-gray-200 bg-white text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-[0_0_0_6px_rgba(37,99,235,0.15)]"
-                  aria-label={`${project.title} case study`}
-                  title={`${project.title} — read the case study`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-semibold text-gray-900 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors shadow-2xs"
+                  aria-label={`${project.title} case study (opens in a new tab)`}
+                  title={`${project.title} — read case study`}
                 >
-                  <BookOpen size={16} />
+                  <BookOpen size={13} aria-hidden="true" />
+                  <span>Case</span>
                 </motion.a>
               )}
             </div>
@@ -739,7 +742,7 @@ export const Projects = () => {
   return (
     <SectionWrapper id="projects" className="bg-transparent overflow-visible">
       <div className="flex flex-col mb-16 sm:mb-24">
-        <span className="text-blue-600 font-bold uppercase tracking-[0.4em] text-xs mb-8">
+        <span className="text-blue-600 font-bold tracking-wider text-xs block mb-8">
           Portfolio Showcase
         </span>
         <h2 className="font-bebas text-6xl sm:text-8xl leading-[0.9] tracking-tighter">

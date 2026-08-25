@@ -33,7 +33,7 @@ export const MarqueeText = ({ text, outline = false }: { text: string; outline?:
       <motion.div
         animate={{ x: [0, -1000] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className={`text-5xl sm:text-7xl md:text-[12rem] font-bebas leading-none flex gap-8 pr-8 uppercase ${outline ? 'text-transparent stroke-black stroke-1' : ''}`}
+        className={`text-5xl sm:text-7xl md:text-8xl font-bebas leading-none flex gap-8 pr-8 ${outline ? 'text-transparent stroke-black stroke-1' : ''}`}
         style={outline ? { WebkitTextStroke: '1px #ddd' } : {}}
       >
         <span>{text}</span>

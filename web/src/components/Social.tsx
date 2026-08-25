@@ -39,7 +39,7 @@ const GlassCard = ({
   children: React.ReactNode;
 }) => (
   <div
-    className={`rounded-[2.5rem] bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-black/5 ${className ?? ''}`}
+    className={`rounded-3xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-black/5 ${className ?? ''}`}
   >
     {children}
   </div>
@@ -235,7 +235,7 @@ const TestimonialCard = ({
         damping: 15,
       }}
       whileHover={{ y: -8, scale: 1.02, boxShadow: '0 24px 48px -12px rgba(37,99,235,0.18)' }}
-      className={`p-7 md:p-8 rounded-[2.5rem] bg-gradient-to-br ${colorClass} border hover:shadow-2xl transition-all duration-500 h-full flex flex-col relative overflow-hidden group`}
+      className={`p-7 md:p-8 rounded-3xl bg-gradient-to-br ${colorClass} border hover:shadow-2xl transition-all duration-500 h-full flex flex-col relative overflow-hidden group`}
     >
       {/* Glow effect on hover */}
       <motion.div className="absolute -top-20 -right-20 w-40 h-40 bg-white/50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -258,7 +258,7 @@ const TestimonialCard = ({
       </div>
 
       {/* Review text */}
-      <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1 italic relative z-10">
+      <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1 relative z-10">
         &ldquo;{review.text}&rdquo;
       </p>
 
@@ -393,7 +393,7 @@ export const Reviews = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="font-bebas text-7xl md:text-9xl tracking-tight leading-none"
+          className="font-bebas text-7xl md:text-8xl tracking-tight leading-none"
         >
           WHAT{' '}
           <motion.span
@@ -460,7 +460,7 @@ export const Reviews = () => {
           <div className="relative">
             <VideoPlayer
               src={VIDEOS.testimonials}
-              className="w-full h-auto rounded-[4rem] object-cover drop-shadow-2xl aspect-video"
+              className="w-full h-auto rounded-3xl object-cover drop-shadow-2xl aspect-video"
             />
 
             {/* Floating average rating badge */}
@@ -473,18 +473,11 @@ export const Reviews = () => {
             </motion.div>
 
             {/* Bold CTA button anchored on the video */}
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 18 }}
-              whileHover={{ scale: 1.06, boxShadow: '0 16px 32px -8px rgba(37,99,235,0.45)' }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() =>
-                document
-                  .getElementById('leave-a-review')
-                  ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              }
               className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-1.5 sm:gap-2.5 px-4 sm:px-6 py-2 sm:py-3 bg-white text-blue-700 font-bold rounded-full shadow-2xl border border-blue-100 text-xs sm:text-base whitespace-nowrap max-w-[90%]"
             >
               <motion.span
@@ -494,7 +487,7 @@ export const Reviews = () => {
                 <Heart size={14} className="fill-red-500 text-red-500 sm:w-[18px] sm:h-[18px]" />
               </motion.span>
               What Clients Say
-            </motion.button>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -680,14 +673,14 @@ export const Reviews = () => {
       <SectionDivider />
 
       {/* ═══════════════════ FAQ ═══════════════════ */}
-      <div id="faq" className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start pt-6 relative z-10 scroll-mt-24">
+      <div id="faq" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-6 relative z-10 scroll-mt-24">
         {/* FAQ Left */}
         <div className="lg:col-span-5">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs block mb-8"
+            className="text-blue-600 font-bold tracking-wider uppercase text-xs block mb-8"
           >
             FAQ
           </motion.span>
@@ -722,7 +715,7 @@ export const Reviews = () => {
           >
             <VideoPlayer
               src={VIDEOS.faqs}
-              className="w-full h-auto rounded-[4rem] object-cover aspect-video drop-shadow-xl"
+              className="w-full h-auto rounded-3xl object-cover aspect-video drop-shadow-xl"
               overlay
               overlayText="Got Questions?"
               icon={
@@ -783,7 +776,7 @@ export const Reviews = () => {
                       animate={{ y: 0 }}
                       className="pt-6"
                     >
-                      <p className="text-gray-600 text-lg leading-relaxed">
+                      <p className="text-gray-600 text-base leading-relaxed">
                         {faq.a}
                       </p>
                     </motion.div>

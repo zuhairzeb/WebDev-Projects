@@ -100,11 +100,11 @@ export const Contact = () => {
           </div>
 
           {/* Right: Form - Responsive */}
-          <div className="lg:col-span-5 flex justify-center items-start">
+          <div className="lg:col-span-5 flex justify-center items-stretch">
             <motion.div
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.3 }}
-              className="w-full max-w-sm bg-linear-to-br from-blue-900/90 to-indigo-900/80 p-6 md:p-8 rounded-3xl border border-blue-500/30 shadow-[0_20px_80px_rgba(59,130,246,0.15)]"
+              className="w-full max-w-sm bg-linear-to-br from-blue-900/90 to-indigo-900/80 p-6 md:p-8 rounded-3xl border border-blue-500/30 shadow-[0_20px_80px_rgba(59,130,246,0.15)] h-full"
             >
               <h3 className="font-bebas text-2xl md:text-3xl mb-3 md:mb-4 text-white">Quick Inquiry</h3>
               <p className="text-xs md:text-sm text-blue-200 leading-relaxed mb-4 md:mb-5">
@@ -117,58 +117,88 @@ export const Contact = () => {
                 className="space-y-3 md:space-y-4"
               >
                 {/* Name Input */}
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Your Full Name"
-                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl px-4 md:px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
-                />
+                <div className="space-y-1 text-left">
+                  <label htmlFor="contact-name" className="block text-xs font-semibold text-blue-200">
+                    Your Name <span className="text-red-400" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. Alex Smith"
+                    className="w-full bg-slate-900 border border-blue-400/50 focus:border-blue-300 rounded-xl px-4 md:px-5 py-2.5 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
+                  />
+                </div>
 
                 {/* Email Input */}
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="Your Email Address"
-                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl px-4 md:px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
-                />
+                <div className="space-y-1 text-left">
+                  <label htmlFor="contact-email" className="block text-xs font-semibold text-blue-200">
+                    Your Email <span className="text-red-400" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. alex@example.com"
+                    className="w-full bg-slate-900 border border-blue-400/50 focus:border-blue-300 rounded-xl px-4 md:px-5 py-2.5 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
+                  />
+                </div>
 
                 {/* Phone Input */}
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Your Phone Number (Optional)"
-                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl px-4 md:px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
-                />
+                <div className="space-y-1 text-left">
+                  <label htmlFor="contact-phone" className="block text-xs font-semibold text-blue-200">
+                    Phone Number <span className="text-blue-200/80 text-[11px]">(Optional)</span>
+                  </label>
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="e.g. +1 555 019 283"
+                    className="w-full bg-slate-900 border border-blue-400/50 focus:border-blue-300 rounded-xl px-4 md:px-5 py-2.5 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
+                  />
+                </div>
 
                 {/* Subject Input */}
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  placeholder="Subject"
-                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl px-4 md:px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
-                />
+                <div className="space-y-1 text-left">
+                  <label htmlFor="contact-subject" className="block text-xs font-semibold text-blue-200">
+                    Subject <span className="text-red-400" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id="contact-subject"
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. WordPress Redesign Project"
+                    className="w-full bg-slate-900 border border-blue-400/50 focus:border-blue-300 rounded-xl px-4 md:px-5 py-2.5 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white placeholder-gray-400 text-sm"
+                  />
+                </div>
 
                 {/* Message Textarea */}
-                <textarea
-                  name="message"
-                  rows={3}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  placeholder="Describe your project"
-                  className="w-full bg-slate-950 border border-blue-500/40 rounded-xl px-4 md:px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white resize-none placeholder-gray-400 text-sm"
-                />
+                <div className="space-y-1 text-left">
+                  <label htmlFor="contact-message" className="block text-xs font-semibold text-blue-200">
+                    Message <span className="text-red-400" aria-hidden="true">*</span>
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Describe your project goals and timeline..."
+                    className="w-full bg-slate-900 border border-blue-400/50 focus:border-blue-300 rounded-xl px-4 md:px-5 py-2.5 md:py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-white resize-none placeholder-gray-400 text-sm"
+                  />
+                </div>
 
                 {/* Submit Button - Tap-friendly */}
                 <button
@@ -197,12 +227,12 @@ export const Contact = () => {
         </div>
 
         {/* ── Row 2: Video + CTA ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-20 items-center">
-          <div className="lg:col-span-5 order-2 lg:order-1">
-            <VideoPlayer src="/desktop.mp4" className="w-full h-auto rounded-3xl object-cover" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-20 items-stretch">
+          <div className="lg:col-span-5 order-2 lg:order-2">
+            <VideoPlayer src="/desktop.mp4" className="w-full h-full rounded-3xl object-cover" />
           </div>
-          <div className="lg:col-span-7 order-1 lg:order-2">
-            <GlassCard className="p-6 md:p-12 bg-white/5 border-white/10">
+          <div className="lg:col-span-7 order-1 lg:order-1">
+            <GlassCard className="h-full p-6 md:p-12 bg-gray-800/80 border-white/10">
               <p className="text-xs uppercase tracking-[0.3em] text-blue-300 font-bold mb-4">What I deliver</p>
               <h3 className="font-bebas text-3xl md:text-5xl mb-4 md:mb-6 leading-tight">Clear strategy, fast delivery, and business-focused results.</h3>
               <ul className="space-y-3 text-base md:text-lg text-gray-300 leading-relaxed">
@@ -220,12 +250,12 @@ export const Contact = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
               {/* Video Card */}
-              <div className="bg-white/5 p-4 md:p-6 rounded-3xl border border-white/10 overflow-hidden">
+              <div className="bg-white/5 p-4 md:p-6 rounded-3xl border border-white/10 overflow-hidden h-full">
                 <VideoPlayer src="/idea.mp4" className="w-full h-40 md:h-56 rounded-xl object-cover" />
               </div>
 
               {/* Navigation Links */}
-              <div className="space-y-3 md:space-y-4">
+              <div className="space-y-3 md:space-y-4 bg-white/5 p-4 md:p-6 rounded-3xl border border-white/10">
                 <h3 className="text-xs uppercase tracking-[0.35em] text-gray-400 font-bold">Home</h3>
                 <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
                   <a href="#home" className="block hover:text-blue-400 transition-colors">Home</a>
@@ -235,7 +265,7 @@ export const Contact = () => {
               </div>
 
               {/* Social Links */}
-              <div className="space-y-3 md:space-y-4">
+              <div className="space-y-3 md:space-y-4 bg-white/5 p-4 md:p-6 rounded-3xl border border-white/10">
                 <h3 className="text-xs uppercase tracking-[0.35em] text-gray-400 font-bold">Socials</h3>
                 <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
                   <a href="https://twitter.com/zuhairzeb" className="block hover:text-blue-400 transition-colors">X (Twitter)</a>
@@ -246,7 +276,7 @@ export const Contact = () => {
               </div>
 
               {/* Email Card */}
-              <div className="bg-white/5 p-4 md:p-6 rounded-2xl md:rounded-[3rem] border border-white/10 flex flex-col justify-between">
+              <div className="bg-white/5 p-4 md:p-6 rounded-3xl border border-white/10 flex flex-col justify-between h-full">
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-gray-400 font-bold mb-3 md:mb-4">Click to copy</p>
                   <button
@@ -256,12 +286,12 @@ export const Contact = () => {
                     zuhairzeb@yahoo.com
                   </button>
                 </div>
-                <p className="text-xs text-gray-400 mt-4 md:mt-6">
-                  © {new Date().getFullYear()} Muhammad Zuhair Zeb
-                </p>
               </div>
 
             </div>
+            <p className="text-xs text-gray-400 mt-6 text-center md:text-left">
+              © {new Date().getFullYear()} Muhammad Zuhair Zeb
+            </p>
           </div>
         </div>
 

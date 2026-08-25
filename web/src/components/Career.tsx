@@ -62,19 +62,19 @@ export const Career = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
-        <div className="lg:col-span-5">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-4 lg:pr-6 lg:border-r lg:border-gray-100">
           {/*
             Sticky sidebar: stays paired with the timeline while the
             visitor scrolls instead of leaving dead white space.
           */}
           <div className="lg:sticky lg:top-28 space-y-6">
               <div className="p-8 rounded-3xl bg-gray-50 border border-gray-100">
-                <h3 className="font-bebas text-3xl mb-6">Certifications</h3>
-                <div className="space-y-4">
+                <h3 className="font-bebas text-3xl mb-6 text-blue-600">Certifications</h3>
+                <div className="space-y-5">
                   {certificates.map((cert, i) => (
-                    <div key={i} className="flex items-center justify-between group">
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base pr-4">{cert}</h4>
+                    <div key={i} className="flex items-center justify-between gap-3 group border-b border-gray-200 pb-3 last:border-0 last:pb-0">
+                      <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-relaxed pr-4">{cert}</h4>
                       <Award size={16} className="text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     </div>
                   ))}
@@ -97,29 +97,29 @@ export const Career = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-7">
-          <div className="space-y-12">
+        <div className="lg:col-span-8 lg:pl-4">
+          <div className="space-y-10">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-start pb-12 border-b border-gray-100 last:border-0"
+                transition={{ delay: i * 0.08 }}
+                className="group relative pb-10 border-b border-gray-100 last:border-0"
               >
-                <div className="md:col-span-3">
-                  <span className="font-bebas text-3xl text-blue-600 block">{exp.period}</span>
-                </div>
-                <div className="md:col-span-9">
-                  <h3 className="font-bebas text-5xl tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                  <h3 className="font-bebas text-3xl sm:text-4xl tracking-tight group-hover:text-blue-600 transition-colors">
                     {exp.role}
                   </h3>
-                  <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-4">{exp.company}</p>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-                    {exp.desc}
-                  </p>
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full">
+                    {exp.period}
+                  </span>
                 </div>
+                <p className="text-gray-400 font-semibold text-xs mb-3">{exp.company}</p>
+                <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                  {exp.desc}
+                </p>
               </motion.div>
             ))}
           </div>

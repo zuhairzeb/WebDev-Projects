@@ -14,7 +14,7 @@ const stats = [
 export const About = () => {
   return (
     <>
-      <MarqueeText text="WordPress Developer • WooCommerce Specialist • Community Founder • " outline />
+      <MarqueeText text="WordPress developer • WooCommerce specialist • Community founder • " outline />
       <SectionWrapper id="about" className="overflow-visible">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-6 relative">
@@ -43,7 +43,7 @@ export const About = () => {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-gray-400">Currently Studying</p>
-                      <h3 className="font-bebas text-xs sm:text-xl leading-tight">BS Artificial Intelligence</h3>
+                      <p className="font-bebas text-xs sm:text-xl leading-tight text-gray-900">BS Artificial Intelligence</p>
                     </div>
                   </div>
                 </GlassCard>

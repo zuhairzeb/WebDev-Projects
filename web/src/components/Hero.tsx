@@ -79,13 +79,13 @@ export const Hero = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+            className="inline-flex items-center gap-2 mb-3 px-3.5 py-1.5 bg-white border border-gray-200 rounded-full shadow-xs hover:shadow-sm transition-all duration-300"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="text-xs font-medium text-gray-600">
+            <span className="text-xs font-semibold text-gray-600">
               Available for freelance work
             </span>
           </motion.div>
@@ -96,7 +96,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-bebas text-7xl sm:text-8xl leading-[0.9] tracking-tight text-gray-900"
+              className="font-bebas text-6xl sm:text-7xl leading-[0.9] tracking-tight text-gray-900"
             >
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
@@ -147,7 +147,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-xl text-gray-600 leading-relaxed mb-8 max-w-lg"
+            className="text-2xl font-medium text-gray-600 leading-relaxed mb-8 max-w-lg"
           >
             I craft <span className="text-gray-900 font-semibold">fast, beautiful WordPress sites</span> that 
             help businesses grow and convert better.
@@ -196,7 +196,7 @@ export const Hero = () => {
                 whileHover={{ scale: 1.05, y: -1 }}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-medium text-gray-600 hover:border-gray-300 hover:shadow-sm transition-all"
               >
-                <span className="text-gray-500">{tech.icon}</span>
+                <span className="text-gray-400">{tech.icon}</span>
                 {tech.name}
               </motion.span>
             ))}
@@ -233,12 +233,12 @@ export const Hero = () => {
             className="relative"
           >
             {/* Subtle glow */}
-            <div className="absolute -inset-3 bg-gradient-to-r from-blue-200/40 via-indigo-100/30 to-purple-200/40 rounded-[3.5rem] blur-xl" />
+            <div className="absolute -inset-3 bg-gradient-to-r from-blue-200/40 via-indigo-100/30 to-purple-200/40 rounded-3xl blur-xl" />
             
             <div className="relative z-20">
               <VideoPlayer
                 src={VIDEOS.hero}
-                className="w-full h-auto max-w-full drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)] rounded-[3rem] object-cover hover:scale-[1.02] transition-transform duration-500"
+                className="w-full h-auto max-w-full drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)] rounded-3xl object-cover hover:scale-[1.02] transition-transform duration-500"
               />
             </div>
 
@@ -308,7 +308,7 @@ export const Hero = () => {
                   scale: { delay: 1.3 + i * 0.15, duration: 0.5, type: 'spring' },
                   y: { duration: 3 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }
                 }}
-                className={`hidden sm:flex items-center gap-1.5 absolute z-10 px-3 py-1.5 bg-white shadow-md border border-gray-200 rounded-full text-xs font-semibold text-gray-700 ${
+                className={`hidden sm:flex items-center gap-1.5 absolute z-10 px-3 py-1.5 bg-white shadow-md border border-gray-200 rounded-full text-xs font-semibold text-gray-600 ${
                   i === 0 ? '-left-6 top-[20%]' : i === 1 ? '-left-10 top-[45%]' : 'top-[75%] right-0'
                 }`}
               >

@@ -34,62 +34,33 @@ import { SectionWrapper } from './SectionWrapper';
 export const Process = () => {
   return (
     <SectionWrapper id="process" dark>
-      <div className="flex flex-col items-center text-center mb-24">
-        <span className="text-blue-400 font-bold tracking-[0.3em] uppercase text-xs block mb-8">Workflow</span>
-        <h2 className="font-bebas text-6xl sm:text-8xl leading-none mb-8">
+      <div className="flex flex-col items-center text-center mb-16">
+        <span className="text-blue-400 font-bold tracking-wider text-xs block mb-6">Workflow</span>
+        <h2 className="font-bebas text-6xl sm:text-8xl leading-none mb-6">
           How I <span className="text-blue-400">operate.</span>
         </h2>
+        <p className="text-gray-400 text-sm sm:text-base max-w-lg leading-relaxed">
+          A clear, structured 5-step process designed for reliable execution and high-quality results.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-4 order-2 lg:order-1">
-          <div className="space-y-4">
-            {steps.slice(0, 3).map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-              >
-                <span className="text-blue-400 font-bebas text-3xl mb-2 block">{step.num}</span>
-                <h3 className="font-bebas text-3xl mb-2 tracking-tight">{step.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center">
-          <div className="relative rounded-3xl bg-white/10 border border-white/20 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] overflow-hidden">
-            <motion.div
-              animate={{ 
-                rotate: [0, 360],
-              }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-[120%] h-[120%] -left-[10%] -top-[10%] border border-dashed border-white/10 rounded-full"
-            />
-            <VideoPlayer src="/desktop.mp4" className="w-full max-w-sm relative z-10" />
-          </div>
-        </div>
-
-        <div className="lg:col-span-4 order-3">
-          <div className="space-y-4">
-            {steps.slice(3).map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-              >
-                <span className="text-blue-400 font-bebas text-3xl mb-2 block">{step.num}</span>
-                <h3 className="font-bebas text-3xl mb-2 tracking-tight">{step.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.num}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all flex flex-col justify-between"
+          >
+            <div>
+              <span className="text-blue-400 font-bebas text-3xl mb-2 block">{step.num}</span>
+              <h3 className="font-bebas text-2xl mb-2 tracking-tight text-white">{step.title}</h3>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mt-2">{step.desc}</p>
+          </motion.div>
+        ))}
       </div>
 
       {/* Full-width closing CTA — centred below the steps so the
@@ -99,14 +70,14 @@ export const Process = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-12 p-8 sm:p-10 rounded-3xl bg-blue-600 text-white flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center"
+        className="mt-12 p-8 sm:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center"
       >
-        <h3 className="font-bebas text-3xl">Ready to start?</h3>
+        <h3 className="font-bebas text-3xl text-white">Ready to start?</h3>
         <a
           href="https://beacons.ai/zuhairzeb"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-inverse"
+          className="btn-primary px-10 py-4 text-base"
         >
           Let's Talk
         </a>
