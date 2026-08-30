@@ -6,9 +6,9 @@ import { VideoPlayer, VIDEOS } from './VideoAssets';
 
 const STATS = [
   { value: 20, suffix: '+', label: 'Projects' },
-  { value: 300, suffix: '+', label: 'Organizers' },
-  { value: 9, suffix: '+', label: 'Certifications' },
-  { value: 4, suffix: '+', label: 'Years Exp' },
+  { value: 340, suffix: '+', label: 'Participants' },
+  { value: 10, suffix: '+', label: 'Certifications' },
+  { value: 5, suffix: '+', label: 'Years Exp' },
 ];
 
 const TECH_STACK = [
