@@ -1871,3 +1871,26 @@
     top: 260px;
   }
 }
+
+/* The mobile dock belongs to the viewport, not the clipped scene container. */
+@media (max-width:760px) {
+ .destination-menu {
+  position:fixed;
+  top:auto;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  left:10px;
+  right:10px;
+  width:auto;
+  height:100px;
+  min-height:100px;
+  max-height:none;
+  box-sizing:border-box;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  overflow:visible;
+  transform:none;
+  margin:0;
+  z-index:20;
+ }
+ .destination-menu button { height:100%; min-height:0; box-sizing:border-box; }
+ .map-toggle,.has-panel .map-toggle,.world-app[data-moving="true"] .map-toggle { bottom:calc(132px + env(safe-area-inset-bottom,0px)); }
+}
