@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { getWorld, setWorld } from "../../world/store";
 import type { Point } from "../../world/zones";
@@ -38,10 +38,11 @@ export function Sign({
   background?: string;
   rotation?: Point;
 }) {
+  const gl = useThree(state => state.gl);
   const texture = useMemo(() => {
     const c = document.createElement("canvas");
-    c.width = 1024;
-    c.height = Math.round((1024 * height) / width);
+    c.width = 2048;
+    c.height = Math.max(128, Math.round((2048 * height) / width));
     const ctx = c.getContext("2d")!;
     ctx.fillStyle = background;
     ctx.fillRect(0, 0, c.width, c.height);
@@ -63,8 +64,11 @@ export function Sign({
     );
     const map = new THREE.CanvasTexture(c);
     map.colorSpace = THREE.SRGBColorSpace;
+    map.anisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
+    map.minFilter = THREE.LinearMipmapLinearFilter;
+    map.magFilter = THREE.LinearFilter;
     return map;
-  }, [text, width, height, color, background]);
+  }, [text, width, height, color, background, gl]);
   useEffect(() => () => texture.dispose(), [texture]);
   return (
     <group position={position} rotation={rotation}>

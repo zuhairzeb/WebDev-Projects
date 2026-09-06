@@ -1894,3 +1894,12 @@
  .destination-menu button { height:100%; min-height:0; box-sizing:border-box; }
  .map-toggle,.has-panel .map-toggle,.world-app[data-moving="true"] .map-toggle { bottom:calc(132px + env(safe-area-inset-bottom,0px)); }
 }
+
+@media (min-width:761px) {
+ .home-panel { width:250px; padding:14px 15px; }
+ .home-panel h1 { font-size:28px; margin:12px 0; letter-spacing:-1.5px; }
+ .home-panel p { font-size:11px; line-height:1.5; margin:12px 0; }
+ .home-panel .panel-top .w-mono { font-size:8px; }
+ .home-panel .world-button { padding:12px 14px; font-size:9px; margin-top:12px; }
+ .home-panel .availability-world { margin-top:14px; font-size:8px; }
+}

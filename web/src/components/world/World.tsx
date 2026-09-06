@@ -35,10 +35,10 @@ export default function World() {
     <Canvas
       className="world-canvas"
       shadows={!mobile}
-      dpr={[1, mobile ? 1 : 1.5]}
+      dpr={[1, mobile ? 1.5 : 2]}
       frameloop={state.paused || !visible ? "never" : "always"}
       camera={{ position: [25, 40, 36], fov: 42, near: 0.1, far: 160 }}
-      gl={{ antialias: !mobile, alpha: false, powerPreference: "low-power" }}
+      gl={{ antialias: true, alpha: false, powerPreference: "low-power" }}
       onCreated={({ gl }) => {
         gl.domElement.setAttribute(
           "aria-label",
