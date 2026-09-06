@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 export const LiquidBackground = () => {
   return (
@@ -37,7 +37,13 @@ export const LiquidBackground = () => {
   );
 };
 
-export const GlassCard = ({ children, className = "" }: { children: ReactNode; className?: string }) => {
+export const GlassCard = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
     <motion.div
       whileHover={{ y: -5, scale: 1.01 }}
@@ -48,7 +54,13 @@ export const GlassCard = ({ children, className = "" }: { children: ReactNode; c
   );
 };
 
-export const RevealText = ({ text, className = "" }: { text: string; className?: string }) => {
+export const RevealText = ({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) => {
   return (
     <div className={`overflow-hidden ${className}`}>
       <motion.span

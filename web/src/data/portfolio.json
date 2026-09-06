@@ -1,0 +1,321 @@
+{
+  "projects": [
+    {
+      "id": "portfolio-website",
+      "title": "Portfolio Website",
+      "category": "Front End Development",
+      "description": "A simple personal portfolio website built with HTML, CSS, and JavaScript.",
+      "overview": "A small static portfolio site intended to showcase projects and responsive layouts.",
+      "technologies": ["HTML5", "CSS3", "JavaScript"],
+      "files": [
+        "index.html",
+        "styles.css",
+        "mediaqueries.css",
+        "script.js",
+        "Preview/README.md"
+      ],
+      "github": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Portfolio%20Website",
+      "image": "01.png"
+    },
+    {
+      "id": "personal-portfolio-website",
+      "title": "Personal Portfolio Website",
+      "category": "Front End Development",
+      "date": "Jun 2025",
+      "description": "Designed and developed a modern, responsive personal portfolio website to showcase professional experience, technical skills, projects, and contact information.",
+      "overview": "Features a clean dark theme, smooth animations, mobile friendly navigation, downloadable CV, and optimized performance across all devices.",
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Responsive Web Design",
+        "UI Design",
+        "Front End Development",
+        "Git",
+        "GitHub"
+      ],
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Boxicons",
+        "Font Awesome",
+        "Google Fonts"
+      ],
+      "features": [
+        "Responsive design for desktop, tablet, and mobile",
+        "Modern dark theme with custom UI",
+        "Smooth scrolling and page animations",
+        "Interactive navigation menu",
+        "Portfolio and resume sections",
+        "Downloadable CV",
+        "Social media integration",
+        "Contact section"
+      ],
+      "github": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Personal%20Portfolio%20Website",
+      "image": "portfoliowebsite.png"
+    },
+    {
+      "id": "arcade-pong-game",
+      "title": "Arcade PONG Game",
+      "category": "Game Development",
+      "description": "A retro-style, browser-based PONG game with authentic arcade aesthetics, realistic physics, and sound effects.",
+      "features": [
+        "Two-player gameplay",
+        "Realistic physics with paddle acceleration and deceleration",
+        "Collision detection",
+        "Retro 8-bit arcade aesthetic with Press Start 2P typography",
+        "Sound effects for hits, bounces, and scoring",
+        "Real-time score tracking",
+        "3D perspective effect with smooth animation"
+      ],
+      "controls": [
+        "Player 1: W / S to move paddle up and down",
+        "Player 2: Arrow Up / Arrow Down to move paddle up and down"
+      ],
+      "technicalDetails": [
+        "Game area: 600px × 400px",
+        "Paddle size: 20px × 100px",
+        "Ball size: 20px × 20px",
+        "Maximum paddle speed: 5 pixels per frame",
+        "Initial ball speed: 2 pixels per frame",
+        "Game loop runs every 8 milliseconds",
+        "Physics: wall collision, paddle collision, out-of-bounds scoring, randomized ball direction on reset"
+      ],
+      "technologies": ["HTML5", "CSS3", "JavaScript", "Web Audio API", "ES6+"],
+      "github": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Arcade%20PONG%20Game",
+      "image": "PONG GAME.png"
+    },
+    {
+      "id": "sociapi-society-website",
+      "title": "Sociapi Society Website",
+      "category": "Full Stack Development",
+      "description": "The official Sociapi Society website, built as a modern and interactive web platform.",
+      "features": [
+        "Home, About Us, Team, Events, Blog, Careers, Contact, FAQ, Gallery",
+        "Partner information",
+        "Reviews",
+        "Merch Store",
+        "WhatsApp Chatbot",
+        "Responsive design",
+        "Performance monitoring",
+        "Animated particles background",
+        "Contact form",
+        "Community and event information",
+        "Team profiles"
+      ],
+      "technologies": [
+        "React 19.2.6",
+        "TypeScript 5.9.3",
+        "Vite 7.3.2",
+        "Tailwind CSS 4.1.17",
+        "Framer Motion 12.39.0",
+        "Lucide React 1.16.0",
+        "Vercel Analytics",
+        "Vercel Speed Insights",
+        "clsx",
+        "tailwind-merge",
+        "Netlify"
+      ],
+      "github": "https://github.com/sociapi/Sociapi-Society-Web",
+      "image": "old version of sociapi.png"
+    },
+    {
+      "id": "sociapi-society-web",
+      "title": "Sociapi Society Web",
+      "category": "Full Stack Development",
+      "description": "A modern, responsive website for Sociapi Society built with React, TypeScript, and Tailwind CSS. The newer version of the Sociapi Society website, serving as a comprehensive hub for community engagement, events, services, and member management.",
+      "features": [
+        "Multi-page platform: Home, About, Chapters, Team, Events & Blog, Services, Partner, Gallery, Shop, Career, Contact, Reviews, FAQs",
+        "Certificate Verification System",
+        "E-Commerce integration with order management",
+        "Team management with member roles and departments",
+        "Supabase integration for authentication and authorization",
+        "Server-side validation",
+        "SEO metadata and sitemap",
+        "Pre-rendered pages with Static Site Generation",
+        "Google Forms integration",
+        "Performance monitoring and optimization"
+      ],
+      "technologies": [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS 4",
+        "React Router v7",
+        "Framer Motion",
+        "Supabase",
+        "Vercel",
+        "Vercel Analytics",
+        "Vercel Speed Insights",
+        "Vite SSG",
+        "Puppeteer",
+        "ESBuild"
+      ],
+      "liveDemo": "https://sociapis.vercel.app/",
+      "image": "New verion of sociapi.png"
+    },
+    {
+      "id": "sociapi-society-management-system",
+      "title": "Sociapi Society Management System",
+      "category": "Management System",
+      "description": "A lightweight React and Vite application for managing society membership, events, communications, and internal tools.",
+      "features": [
+        "Dashboard",
+        "Member management",
+        "Attendance tracking and reports",
+        "Email communication integration",
+        "WhatsApp communication integration",
+        "Authentication flows",
+        "Account management",
+        "Admin tools",
+        "Activity logs"
+      ],
+      "technicalDetails": [
+        "src/ for the React application",
+        "api/ for server-side helpers and email integrations",
+        "supabase/ for SQL schema and edge functions",
+        "netlify/functions for serverless functions",
+        "Environment: Supabase URL and keys, Mailjet API keys"
+      ],
+      "technologies": [
+        "React",
+        "Vite",
+        "Supabase",
+        "JavaScript",
+        "Netlify Functions",
+        "Mailjet"
+      ],
+      "github": "https://github.com/sociapisociety",
+      "image": "ERP.png"
+    },
+    {
+      "id": "homeitems-marketplace",
+      "title": "HomeItems Marketplace",
+      "category": "Multivendor Ecommerce",
+      "description": "HomeItems needed a multivendor platform where multiple sellers could manage their own products, pricing, and inventory under one branded marketplace.",
+      "overview": "Built a fully custom multivendor website with a tailored theme, advanced search and filtering, and a streamlined checkout flow designed around the client's brand identity.",
+      "results": "Delivered a responsive, fully tested marketplace that gave vendors independent control and gave customers a smooth shopping experience across all devices.",
+      "technologies": ["WooCommerce", "WordPress", "PHP"],
+      "liveDemo": "https://homeitemss.com/",
+      "image": "homeitems.jpg"
+    },
+    {
+      "id": "ospherics-pharma",
+      "title": "Ospherics Pharma",
+      "category": "Website Redesign",
+      "description": "The brand needed a polished online presence to support product launches and investor trust.",
+      "overview": "Redesigned the website with modern branding, faster navigation, and mobile-first layouts.",
+      "results": "Delivered a professional site that increased lead engagement and strengthened brand trust.",
+      "technologies": ["WordPress", "SEO", "Elementor"],
+      "liveDemo": "https://ospherics.com/",
+      "caseStudyUrl": "https://www.refrens.com/zuhairzeb/portfolio/674966bb0a94c604a2c3718b-redesign-website-of-ospheric",
+      "image": "ospheric.png"
+    },
+    {
+      "id": "sociapi-whatsapp-chatbot",
+      "title": "Sociapi WhatsApp Chatbot",
+      "category": "Automation Solution",
+      "description": "Customer support needed faster responses for common enquiries.",
+      "overview": "Built a WhatsApp chatbot that handled FAQs, appointment scheduling, and lead capture.",
+      "results": "Automated repetitive support tasks, improved response consistency, and freed team time for higher-value work.",
+      "technologies": ["Node.js", "Railway", "JavaScript"]
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Wocketpocket",
+      "rating": 5,
+      "text": "We recently had the pleasure of working with Muhammad Zuhair Zeb on our WordPress website project, and we couldn't be happier with the results. Zuhair not only designed a sleek, user-friendly website that exceeded our expectations but also contributed to our blog with well-crafted content that perfectly aligns with our brand voice. His expertise in WordPress, attention to detail, and dedication to quality are evident in every aspect of his work. The whole process was seamless, and Zuhair was always responsive, professional, and easy to work with. We highly recommend him for anyone seeking a skilled WordPress developer and content creator.",
+      "date": "Oct 13, 2024"
+    },
+    {
+      "id": 2,
+      "name": "TecWideBlog",
+      "rating": 5,
+      "text": "We had the pleasure of collaborating with Muhammad Zuhair Zeb on building our blog website for TecWideBlog, and we are overjoyed with the outcomes! He designed a slick, user-friendly website that fulfilled our exact specifications and wrote entertaining, well-researched posts for us. His meticulous attention to detail and commitment to producing high-quality work stand out. We truly adore his work and look forward to continuing our collaboration!",
+      "date": "Oct 18, 2024"
+    },
+    {
+      "id": 3,
+      "name": "Homeitems",
+      "rating": 5,
+      "text": "This is my e-commerce store I made it from Mr. Zuhair and I like his work because he always fulfills promise when he says thank you 🙏",
+      "date": "Oct 12, 2024"
+    },
+    {
+      "id": 4,
+      "name": "OSPHERIC Pharma",
+      "rating": 5,
+      "text": "I am thrilled to share my experience working with Muhammad Zuhair Zeb. His professionalism and creativity truly stood out throughout our project. Zuhair designed a stunning website for us that exceeded all our expectations. The aesthetic is beautiful, and the functionality is seamless, making it a joy for our users. We genuinely appreciate his hard work and dedication. Highly recommend his services to anyone looking to elevate their online presence.",
+      "date": "Oct 12, 2024"
+    }
+  ],
+  "experiences": [
+    {
+      "role": "WordPress Developer Intern",
+      "company": "Kaizen Hive",
+      "period": "Jul 2026 - Aug 2026",
+      "desc": "Completed a comprehensive WordPress training program covering 45+ practical tasks on a live training institute website. Configured on-page SEO, built site navigation with dropdowns, set up theme activation and branding, managed media library, performed quality assurance, handled user management and security, configured core site settings, performed maintenance tasks, and executed content migration workflows with full documentation and screenshots following professional QA practices."
+    },
+    {
+      "role": "Data Analytics Intern",
+      "company": "Elevvo Pathways",
+      "period": "Aug 2025 - Sep 2025",
+      "desc": "Built and designed interactive dashboards using Power BI. Created DAX measures for key performance indicators including Revenue, Average Order Value, and Delivery Rate. Analyzed sales and operations data to generate actionable business insights. Improved reporting efficiency by automating recurring reports."
+    },
+    {
+      "role": "Founder & President",
+      "company": "Sociapi Society",
+      "period": "Present",
+      "desc": "Leading a community focused on social impact and technology."
+    },
+    {
+      "role": "Freelance WordPress Developer",
+      "company": "Self-Employed",
+      "period": "2021 – Present",
+      "desc": "Delivering custom WordPress solutions and ecommerce platforms globally."
+    },
+    {
+      "role": "WordPress Mentor",
+      "company": "Digital Empowerment Network",
+      "period": "2024",
+      "desc": "Training and mentoring aspiring developers in WordPress and web technologies."
+    },
+    {
+      "role": "HR Volunteer",
+      "company": "The Order of Pen",
+      "period": "2025",
+      "desc": "Assisting in human resource management and community outreach."
+    }
+  ],
+  "certificates": [
+    "WordPress Virtual Internship Program",
+    "WordPress Mentor Recognition",
+    "Web Development Course",
+    "Pakistan Freelancers Association Member"
+  ],
+  "faqs": [
+    {
+      "q": "What services do you provide?",
+      "a": "I specialize in WordPress development, Data Analysis, and AI solutions including prompt engineering and automation."
+    },
+    {
+      "q": "Do you build ecommerce websites?",
+      "a": "Yes, I build robust multivendor and single-vendor ecommerce platforms using WooCommerce and custom PHP solutions."
+    },
+    {
+      "q": "Can you create custom WordPress plugins?",
+      "a": "Absolutely. I develop custom plugins to extend WordPress functionality tailored to specific business needs."
+    },
+    {
+      "q": "Do you provide SEO optimization?",
+      "a": "Yes, performance and SEO are integral parts of my web development process."
+    },
+    {
+      "q": "Can you create Power BI dashboards?",
+      "a": "Yes, I create interactive Power BI dashboards for data-driven decision making."
+    }
+  ]
+}

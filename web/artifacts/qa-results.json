@@ -1,0 +1,38 @@
+{
+  "responsive": [
+    {
+      "viewport": 320,
+      "content": 320
+    },
+    {
+      "viewport": 360,
+      "content": 360
+    },
+    {
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "viewport": 768,
+      "content": 768
+    },
+    {
+      "viewport": 1024,
+      "content": 1024
+    },
+    {
+      "viewport": 1440,
+      "content": 1440
+    }
+  ],
+  "projects": "9 detail permalinks, archive, Escape, focus restoration passed",
+  "accordions": "Pointer and keyboard passed",
+  "mobileMenu": "passed",
+  "contact": "Required fields, success, error, and reset passed; requests intercepted, no messages sent",
+  "anchors": "All section links resolve",
+  "assets": "All local assets return 200",
+  "reducedMotion": "Static hero, no canvas",
+  "accessibility": [],
+  "noWebGL": "Static fallback passed",
+  "pageErrors": []
+}

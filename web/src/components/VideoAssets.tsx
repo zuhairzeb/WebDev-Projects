@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface VideoProps {
   src: string;
@@ -8,7 +8,13 @@ interface VideoProps {
   autoPlay?: boolean;
 }
 
-export const VideoPlayer = ({ src, className = "", loop = true, muted = true, autoPlay = true }: VideoProps) => {
+export const VideoPlayer = ({
+  src,
+  className = "",
+  loop = true,
+  muted = true,
+  autoPlay = true,
+}: VideoProps) => {
   return (
     <motion.video
       initial={{ opacity: 0, scale: 0.9 }}
@@ -29,7 +35,8 @@ export const VIDEOS = {
   hero: "hero.mp4",
   about: "about avator.mp4",
   faqs: "https://framerusercontent.com/assets/2pJZUnx8CCykmeDNfmBwxlRHgI.mp4",
-  testimonials: "https://framerusercontent.com/assets/QpSh5ePt6LJ9h3sDWXuemKzE.mp4",
+  testimonials:
+    "https://framerusercontent.com/assets/QpSh5ePt6LJ9h3sDWXuemKzE.mp4",
   cta: "https://framerusercontent.com/assets/fiyZJo4xOiwxKrM3t8QYZ5LNYnk.mp4",
   footer: "https://framerusercontent.com/assets/YPFx7qAc2UGdUn03CPT6hmYY.mp4",
 };

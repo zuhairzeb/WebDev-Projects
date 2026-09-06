@@ -1,56 +1,49 @@
-import { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
-
-export const CustomCursor = () => {
-
-  const [isHovering, setIsHovering] = useState(false);
-
-  const mouseX = useSpring(0, { stiffness: 500, damping: 50 });
-  const mouseY = useSpring(0, { stiffness: 500, damping: 50 });
-
+import { useEffect, useRef } from "react";
+export function CustomCursor() {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+    const query = matchMedia(
+      "(pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference)",
+    );
+    const el = ref.current;
+    if (!el) return;
+    let frame = 0;
+    const move = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        el.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+        el.style.opacity = "1";
+        const target = e.target as Element;
+        const control = target.closest("[data-cursor],a,button,summary");
+        const label =
+          control?.getAttribute("data-cursor") || (control ? "OPEN ↗" : "");
+        el.dataset.expanded = String(!!label);
+        el.textContent = label;
+      });
     };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.closest('button') ||
-        target.closest('a') ||
-        target.classList.contains('interactive')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+    const leave = () => {
+      el.style.opacity = "0";
     };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseover', handleMouseOver);
-
+    const sync = () => {
+      document.documentElement.classList.toggle(
+        "custom-pointer",
+        query.matches,
+      );
+      window.removeEventListener("pointermove", move);
+      if (query.matches)
+        window.addEventListener("pointermove", move, { passive: true });
+      else leave();
+    };
+    sync();
+    query.addEventListener("change", sync);
+    document.addEventListener("pointerleave", leave);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseover', handleMouseOver);
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", move);
+      document.removeEventListener("pointerleave", leave);
+      query.removeEventListener("change", sync);
+      document.documentElement.classList.remove("custom-pointer");
     };
-  }, [mouseX, mouseY]);
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-blue-600 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-      style={{
-        x: mouseX,
-        y: mouseY,
-        translateX: '-50%',
-        translateY: '-50%',
-      }}
-      animate={{
-        scale: isHovering ? 2.5 : 1,
-        backgroundColor: isHovering ? 'rgba(37, 99, 235, 1)' : 'rgba(37, 99, 235, 0)',
-      }}
-    />
-  );
-};
+  }, []);
+  return <div ref={ref} className="custom-cursor" aria-hidden="true" />;
+}

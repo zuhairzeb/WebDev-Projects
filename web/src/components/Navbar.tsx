@@ -1,100 +1,77 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { cn } from '../lib/utils';
-
-export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+import { useEffect, useRef, useState } from "react";
+const links = [
+  ["WORK", "projects"],
+  ["ABOUT", "about"],
+  ["SKILLS", "skills"],
+  ["EXPERIENCE", "career"],
+  ["CONTACT", "contact"],
+];
+export function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+  const [active, setActive] = useState("");
+  const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const scroll = () => setCompact(window.scrollY > 40);
+    scroll();
+    window.addEventListener("scroll", scroll, { passive: true });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+      },
+      { rootMargin: "-15% 0px -65% 0px" },
+    );
+    links.forEach(([, id]) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => {
+      window.removeEventListener("scroll", scroll);
+      observer.disconnect();
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
   return (
-    <nav
-      className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 md:px-12 py-4',
-        isScrolled ? 'bg-white/80 backdrop-blur-md border-b border-gray-100 py-3' : 'bg-transparent'
-      )}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#" className="font-bebas text-3xl tracking-tighter hover:text-blue-600 transition-colors">
-          Zuhair.Zeb
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium hover:text-blue-600 transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+    <header className={`navigation ${compact ? "compact" : ""}`}>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <a className="logo" href="#home" aria-label="MZZ — back to home">
+        MZZ<span>.</span>
+      </a>
+      <nav
+        aria-label="Main navigation"
+        id="main-navigation"
+        className={open ? "nav-links open" : "nav-links"}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setOpen(false);
+            toggle.current?.focus();
+          }
+        }}
+      >
+        {links.map(([label, id]) => (
           <a
-            href="https://beacons.ai/zuhairzeb"
-            className="btn-primary"
+            key={id}
+            href={`#${id}`}
+            aria-current={active === id ? "location" : undefined}
+            onClick={() => setOpen(false)}
           >
-            Let's Talk
+            {label}
           </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="icon-btn md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-white border-b border-gray-100 p-6 flex flex-col gap-4 md:hidden"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xl font-bebas tracking-wide py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="https://beacons.ai/zuhairzeb"
-              className="btn-primary w-full"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Let's Talk
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+        ))}
+      </nav>
+      <a className="availability mono" href="#contact">
+        <i /> AVAILABLE FOR WORK
+      </a>
+      <button
+        ref={toggle}
+        className="menu-toggle"
+        aria-controls="main-navigation"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+      >
+        {open ? "CLOSE −" : "MENU ＋"}
+      </button>
+    </header>
   );
-};
+}

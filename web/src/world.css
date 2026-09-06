@@ -1,0 +1,1873 @@
+.world-app {
+  height: 100svh;
+  min-height: 540px;
+  overflow: hidden;
+  position: relative;
+  background: #e9e9e2;
+}
+.world-app button,
+.world-app a {
+  touch-action: manipulation;
+}
+.world-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  padding: 0 35px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  pointer-events: none;
+}
+.world-header > * {
+  pointer-events: auto;
+}
+.world-logo {
+  font:
+    700 34px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -3px;
+  text-decoration: none;
+  position: relative;
+}
+.world-logo > span {
+  color: #2357ff;
+  font-size: 14px;
+  vertical-align: top;
+  letter-spacing: 0;
+}
+.world-logo small {
+  display: block;
+  font:
+    9px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 5px;
+  margin-top: 1px;
+}
+.w-mono {
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 0.025em;
+}
+.mode-button {
+  background: #f4f1e8;
+  border: 1px solid #111;
+  padding: 12px 15px;
+  box-shadow: 3px 3px #111;
+}
+.world-stage {
+  position: absolute;
+  inset: 0;
+}
+.world-canvas {
+  touch-action: none;
+}
+.destination-panel {
+  position: absolute;
+  right: 32px;
+  top: 125px;
+  width: 330px;
+  max-height: calc(100svh - 310px);
+  overflow-y: auto;
+  z-index: 3;
+  padding: 22px;
+  background: #f4f1e8;
+  border: 1px solid #111;
+  box-shadow: 5px 5px #111;
+  animation: panel-arrive 0.25s ease-out;
+}
+.home-panel {
+  left: 35px;
+  right: auto;
+  top: 135px;
+  width: 335px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.destination-panel h1 {
+  font:
+    700 41px/0.98 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -2.6px;
+  margin: 20px 0;
+}
+.destination-panel h1 em {
+  font-style: normal;
+  color: #2357ff;
+}
+.destination-panel p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 16px 0;
+}
+.destination-panel .panel-muted {
+  font-size: 12px;
+  color: #565d56;
+}
+.destination-panel h2 {
+  font:
+    600 24px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -1px;
+}
+.destination-panel img {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid #111;
+}
+.world-button {
+  padding: 15px 20px;
+  background: #2357ff;
+  border: 1px solid #111;
+  box-shadow: 4px 4px #111;
+  color: white;
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  margin-top: 12px;
+}
+.world-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px #111;
+}
+.world-stats {
+  display: flex;
+  gap: 25px;
+  margin: 25px 0;
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+}
+.world-stats b {
+  display: block;
+  font:
+    600 38px "Space Grotesk",
+    sans-serif;
+}
+.destination-menu {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 6px;
+  background: #111;
+  border: 1px solid #111;
+  box-shadow: 5px 5px #2357ff;
+  gap: 3px;
+  max-width: calc(100% - 50px);
+}
+.destination-menu button {
+  background: #f4f1e8;
+  border: none;
+  padding: 13px 20px;
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+}
+.destination-menu button > span {
+  font-size: 8px;
+  color: #666;
+}
+.destination-menu button > i {
+  font-style: normal;
+}
+.destination-menu button[data-target="true"] {
+  background: #2357ff;
+  color: white;
+}
+.destination-menu button[data-target="true"] > span {
+  color: #d7e1ff;
+}
+.destination-menu button:hover {
+  background: #c6f36a;
+  color: #111;
+}
+.mini-map {
+  position: absolute;
+  bottom: 150px;
+  left: 35px;
+  width: 148px;
+  border: 1px solid #b9bdb0;
+  background: #f4f1e8d9;
+  padding: 12px;
+  z-index: 3;
+}
+.mini-map > .w-mono {
+  font-size: 8px;
+}
+.mini-map svg {
+  width: 100%;
+  display: block;
+}
+.map-point {
+  cursor: pointer;
+}
+.map-caption {
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+}
+.world-hint {
+  position: absolute;
+  bottom: 135px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 9px;
+  pointer-events: none;
+  z-index: 3;
+}
+.world-hint > span {
+  display: block;
+  font-size: 8px;
+  color: #66705e;
+  margin-top: 8px;
+}
+.world-coordinate {
+  position: absolute;
+  bottom: 17px;
+  left: 35px;
+  right: 35px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #485244;
+}
+.travel-status {
+  position: absolute;
+  right: 35px;
+  top: 140px;
+  padding: 22px;
+  border: 1px solid #111;
+  background: #111;
+  color: #f4f1e8;
+  width: 250px;
+}
+.travel-status strong {
+  display: block;
+  font:
+    500 60px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -4px;
+}
+.travel-status small {
+  font-size: 20px;
+}
+.travel-status > div {
+  height: 3px;
+  background: #444;
+}
+.travel-status i {
+  display: block;
+  height: 100%;
+  background: #c6f36a;
+}
+.world-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background: #111;
+  color: #c6f36a;
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.simple-world {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: #2357ff;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      #d5d7cc 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      #d5d7cc 40px
+    );
+}
+.simple-world > span {
+  font-size: 180px;
+}
+.simple-world > p {
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+}
+@keyframes panel-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 760px) {
+  .world-app {
+    min-height: 560px;
+  }
+  .world-header {
+    height: 70px;
+    padding: 0 20px;
+  }
+  .world-logo {
+    font-size: 27px;
+  }
+  .world-edition {
+    display: none;
+  }
+  .mode-button {
+    font-size: 8px;
+    padding: 10px;
+  }
+  .home-panel {
+    top: 85px;
+    left: 20px;
+    width: 260px;
+  }
+  .home-panel h1 {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+  .home-panel p {
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  .home-panel .panel-muted {
+    display: none;
+  }
+  .home-panel .world-button {
+    padding: 11px 15px;
+    font-size: 9px;
+    margin-top: 5px;
+  }
+  .destination-panel:not(.home-panel) {
+    top: auto;
+    right: 15px;
+    left: 15px;
+    bottom: 145px;
+    width: auto;
+    max-height: 38svh;
+    padding: 18px;
+  }
+  .destination-panel:not(.home-panel) h1 {
+    font-size: 28px;
+    margin: 10px 0;
+  }
+  .destination-menu {
+    bottom: 45px;
+    max-width: calc(100% - 30px);
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .destination-menu button {
+    padding: 12px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  .destination-menu button > span {
+    display: none;
+  }
+  .mini-map {
+    left: auto;
+    right: 20px;
+    bottom: 155px;
+    width: 95px;
+    padding: 8px;
+  }
+  .mini-map .w-mono {
+    font-size: 6px;
+  }
+  .map-caption {
+    font-size: 6px;
+  }
+  .world-hint {
+    bottom: 112px;
+    width: 100%;
+    font-size: 8px;
+  }
+  .world-hint > span {
+    font-size: 7px;
+  }
+  .world-coordinate {
+    left: 20px;
+    right: 20px;
+    font-size: 7px;
+  }
+  .travel-status {
+    top: 90px;
+    right: 20px;
+    width: 190px;
+    padding: 15px;
+  }
+  .travel-status > .w-mono {
+    font-size: 8px;
+  }
+  .world-stats {
+    margin: 15px 0;
+  }
+  .world-stats b {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* World interfaces are destination overlays, never a vertically stacked page. */
+.world-logo {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+.world-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.world-controls > button:not(.mode-button) {
+  background: none;
+  border: 0;
+  padding: 12px 0;
+  font-size: 9px;
+}
+.mode-button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+.panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.panel-close {
+  border: 1px solid #111;
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.destination-panel {
+  width: 355px;
+  top: 115px;
+  max-height: calc(100svh - 285px);
+  scrollbar-width: thin;
+  scrollbar-color: #2357ff #e7e5da;
+  overscroll-behavior: contain;
+}
+.destination-panel:not(.home-panel) h1 {
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -1.6px;
+  margin: 18px 0 22px;
+}
+.destination-panel h2 {
+  font-size: 24px;
+  line-height: 1.12;
+  margin: 18px 0 12px;
+}
+.destination-panel h3 {
+  font:
+    600 10px/1.6 "IBM Plex Mono",
+    monospace;
+  margin-top: 22px;
+  text-transform: uppercase;
+}
+.destination-panel p {
+  font-size: 12px;
+  line-height: 1.75;
+}
+.destination-panel details {
+  border-top: 1px solid #b2b6a8;
+  margin-top: 22px;
+  padding-top: 15px;
+}
+.destination-panel summary {
+  font:
+    500 9px/1.7 "IBM Plex Mono",
+    monospace;
+  cursor: pointer;
+  min-height: 30px;
+  list-style: none;
+}
+.destination-panel summary:after {
+  content: " ＋";
+}
+.destination-panel details[open] > summary:after {
+  content: " −";
+}
+.destination-panel ul,
+.destination-panel ol {
+  padding-left: 20px;
+  font-size: 11px;
+  line-height: 1.9;
+}
+.destination-panel li {
+  margin-bottom: 7px;
+}
+.destination-panel blockquote {
+  margin: 15px 0;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #c9ccbf;
+}
+.destination-panel cite {
+  font:
+    9px/1.6 "IBM Plex Mono",
+    monospace;
+}
+.home-panel {
+  max-height: none;
+  width: 335px;
+  top: 130px;
+}
+.home-panel h1 {
+  font-size: 41px;
+}
+.home-panel .availability-world {
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 26px;
+}
+.availability-world i {
+  width: 6px;
+  height: 6px;
+  background: #2357ff;
+  border-radius: 50%;
+}
+.panel-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 22px 0;
+}
+.panel-links > a,
+.panel-links > button,
+.panel-link {
+  font:
+    500 9px/1.7 "IBM Plex Mono",
+    monospace;
+  border: 0;
+  border-bottom: 1px solid #111;
+  background: none;
+  text-decoration: none;
+  padding: 5px 0;
+  color: #111;
+}
+.panel-links > a:hover,
+.panel-links > button:hover {
+  color: #2357ff;
+  border-color: #2357ff;
+}
+.panel-link {
+  display: inline-block;
+  margin-top: 18px;
+}
+.project-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font:
+    9px "IBM Plex Mono",
+    monospace;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.project-controls button {
+  background: none;
+  border: 1px solid #111;
+  padding: 10px;
+  font: inherit;
+}
+.project-controls button:hover {
+  background: #111;
+  color: #f4f1e8;
+}
+.project-preview {
+  width: 100%;
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  object-position: top;
+  height: auto;
+}
+.panel-category {
+  display: block;
+  font-size: 8px;
+  margin-top: 18px;
+  text-transform: uppercase;
+  color: #5b6256;
+}
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech-list span {
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+  border: 1px solid #bfc3b6;
+  padding: 5px;
+}
+.project-index {
+  display: flex;
+  flex-direction: column;
+}
+.project-index button {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #b7bdad;
+  padding: 13px 0;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  font:
+    11px/1.5 "Space Grotesk",
+    sans-serif;
+}
+.project-index button[aria-pressed="true"] {
+  color: #2357ff;
+}
+.world-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0;
+}
+.world-skill-tags button {
+  padding: 9px 10px;
+  background: #f4f1e8;
+  border: 1px solid #111;
+  font-size: 10px;
+}
+.world-skill-tags button[aria-pressed="true"],
+.world-skill-tags button:hover {
+  color: white;
+  background: #2357ff;
+}
+.skill-readout {
+  border-left: 3px solid #2357ff;
+  padding: 2px 0 2px 15px;
+  margin: 20px 0;
+}
+.skill-readout h2 {
+  font-size: 22px;
+}
+.skill-readout p {
+  margin-bottom: 8px;
+}
+.checkpoint-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+}
+.checkpoint-selector button {
+  padding: 12px 0;
+  border: 1px solid #111;
+  background: none;
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.checkpoint-selector button[aria-pressed="true"] {
+  background: #2357ff;
+  color: white;
+}
+.community-panel {
+  background: #111;
+  color: #f4f1e8;
+  box-shadow: 5px 5px #c6f36a;
+}
+.community-panel .panel-close {
+  border-color: #e9e9df;
+  color: #f4f1e8;
+}
+.community-panel h1,
+.community-panel .world-stats b {
+  color: #c6f36a;
+}
+.community-panel .panel-links > * {
+  color: #c6f36a;
+  border-color: #c6f36a;
+}
+.community-panel img {
+  border: 1px solid #747b6e;
+}
+.community-panel .panel-top {
+  color: #b3bfa7;
+}
+.service-selector {
+  display: flex;
+  flex-direction: column;
+}
+.service-selector button {
+  border: 0;
+  border-bottom: 1px solid #b8beaf;
+  padding: 13px 0;
+  background: none;
+  text-align: left;
+  font:
+    12px "Space Grotesk",
+    sans-serif;
+  display: flex;
+  gap: 15px;
+}
+.service-selector button[aria-pressed="true"] {
+  color: #2357ff;
+}
+.service-selector span {
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+}
+.contact-email {
+  display: block;
+  font:
+    500 20px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.8px;
+  color: #2357ff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.terminal-form label {
+  display: block;
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+  margin: 16px 0;
+}
+.terminal-form input,
+.terminal-form textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #79836d;
+  border-radius: 0;
+  padding: 10px 0;
+  background: none;
+  font:
+    12px/1.5 "Inter",
+    sans-serif;
+  color: #111;
+  resize: vertical;
+}
+.terminal-form input:focus,
+.terminal-form textarea:focus {
+  outline: 2px solid #2357ff;
+  outline-offset: 3px;
+}
+.terminal-form .world-button {
+  width: 100%;
+  margin: 4px 0 8px;
+}
+.terminal-form .world-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.terminal-form .form-feedback {
+  font:
+    9px/1.7 "IBM Plex Mono",
+    monospace;
+}
+.terminal-form .success {
+  color: #286014;
+}
+.terminal-form .error {
+  color: #a12c19;
+}
+.honeypot {
+  display: none !important;
+}
+.destination-menu button {
+  padding: 13px 14px;
+  font-size: 9px;
+  gap: 8px;
+}
+.destination-menu button[aria-current="location"] {
+  background: #2357ff;
+  color: white;
+}
+.destination-menu button:hover {
+  color: #111;
+}
+.destination-menu button[aria-current="location"]:hover {
+  color: white;
+  background: #1640c7;
+}
+.world-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+}
+.world-loading strong {
+  font:
+    700 80px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -6px;
+}
+.travel-note {
+  display: block;
+  margin-top: 14px;
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+  color: #a4b79c;
+}
+.reopen-panel {
+  position: absolute;
+  right: 35px;
+  top: 115px;
+  z-index: 4;
+}
+.simple-world {
+  display: block;
+}
+.simple-world svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.simple-location {
+  cursor: pointer;
+}
+.simple-mode-label {
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+}
+.map-leg {
+  transform-box: fill-box;
+  transform-origin: center top;
+}
+.walking .map-leg.left {
+  animation: map-walk 0.4s alternate infinite;
+}
+.walking .map-leg.right {
+  animation: map-walk 0.4s alternate-reverse infinite;
+}
+.walking .map-arm {
+  animation: map-walk 0.4s alternate infinite;
+  transform-origin: center;
+}
+.semantic-portfolio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.world-skip {
+  position: absolute;
+  top: -80px;
+  left: 20px;
+  z-index: 100;
+  padding: 14px;
+  background: #111;
+  color: white;
+  font-size: 12px;
+}
+.world-skip:focus {
+  top: 12px;
+}
+.touch-hint {
+  display: none !important;
+}
+.world-hint .desktop-hint {
+  color: #111;
+  font-size: 9px;
+}
+.has-panel .world-hint {
+  left: 43%;
+}
+.world-controls button[aria-pressed="true"] {
+  color: #2357ff;
+}
+.world-controls button:hover {
+  color: #2357ff;
+}
+.world-coordinate {
+  pointer-events: none;
+}
+.world-coordinate span {
+  pointer-events: none;
+}
+@keyframes map-walk {
+  from {
+    transform: rotate(-25deg);
+  }
+  to {
+    transform: rotate(25deg);
+  }
+}
+@media (min-width: 1600px) {
+  .destination-panel {
+    right: 45px;
+    width: 380px;
+    top: 145px;
+  }
+  .home-panel {
+    left: 45px;
+    right: auto;
+    width: 370px;
+  }
+  .home-panel h1 {
+    font-size: 48px;
+  }
+  .destination-menu button {
+    padding: 16px 20px;
+  }
+  .world-header {
+    padding-inline: 45px;
+  }
+  .mini-map {
+    left: 45px;
+  }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .world-header {
+    padding-inline: 25px;
+  }
+  .world-edition {
+    display: none;
+  }
+  .home-panel {
+    left: 25px;
+    width: 270px;
+  }
+  .home-panel h1 {
+    font-size: 34px;
+  }
+  .destination-panel:not(.home-panel) {
+    right: 25px;
+    width: 310px;
+  }
+  .destination-menu button {
+    padding: 12px 10px;
+    font-size: 8px;
+    gap: 6px;
+  }
+  .destination-menu button > span {
+    display: none;
+  }
+  .mini-map {
+    left: 25px;
+    width: 120px;
+  }
+  .world-hint {
+    font-size: 8px;
+  }
+  .has-panel .world-hint {
+    left: 40%;
+  }
+}
+@media (max-width: 760px) {
+  .world-app {
+    min-height: 540px;
+  }
+  .world-controls {
+    gap: 12px;
+  }
+  .world-controls > button:not(.mode-button) {
+    font-size: 7px;
+  }
+  .world-controls .mode-button {
+    font-size: 7px;
+    padding: 9px;
+  }
+  .world-header {
+    padding: 0 16px;
+  }
+  .world-logo {
+    font-size: 26px;
+  }
+  .world-logo small {
+    font-size: 7px;
+  }
+  .home-panel {
+    left: 18px;
+    top: 83px;
+    width: 245px;
+  }
+  .home-panel h1 {
+    font-size: 29px;
+    letter-spacing: -1.7px;
+    margin: 10px 0;
+  }
+  .home-panel p {
+    font-size: 10px;
+    margin: 8px 0;
+  }
+  .home-panel .availability-world {
+    font-size: 7px;
+    margin-top: 15px;
+  }
+  .home-panel .world-button {
+    padding: 10px 13px;
+    font-size: 8px;
+  }
+  .home-panel .panel-top > .w-mono {
+    font-size: 8px;
+  }
+  .destination-menu {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: calc(100% - 28px);
+    max-width: 500px;
+    bottom: 32px;
+    padding: 4px;
+    gap: 3px;
+    overflow: visible;
+    box-shadow: 3px 3px #2357ff;
+  }
+  .destination-menu button {
+    font-size: 8px;
+    padding: 11px 7px;
+    min-height: 42px;
+    justify-content: center;
+    gap: 5px;
+  }
+  .destination-menu button > span {
+    display: none;
+  }
+  .destination-menu button > i {
+    font-size: 9px;
+  }
+  .world-coordinate {
+    bottom: 11px;
+    left: 17px;
+    right: 17px;
+    font-size: 6px;
+  }
+  .world-hint,
+  .has-panel .world-hint {
+    bottom: 138px;
+    left: 50%;
+    font-size: 7px;
+  }
+  .world-hint > span {
+    font-size: 7px;
+  }
+  .desktop-hint {
+    display: none !important;
+  }
+  .touch-hint {
+    display: block !important;
+    color: #111 !important;
+    font-size: 8px !important;
+  }
+  .world-hint > span:last-child {
+    font-size: 6px;
+    margin-top: 5px;
+  }
+  .mini-map {
+    right: 16px;
+    bottom: 195px;
+    width: 90px;
+    padding: 7px;
+  }
+  .has-panel .mini-map {
+    display: none;
+  }
+  .destination-panel:not(.home-panel) {
+    top: auto;
+    right: 14px;
+    left: 14px;
+    bottom: 180px;
+    width: auto;
+    max-height: 39svh;
+    padding: 17px;
+    box-shadow: 3px 3px #111;
+  }
+  .destination-panel:not(.home-panel) h1 {
+    font-size: 26px;
+    margin: 12px 0 18px;
+  }
+  .destination-panel h2 {
+    font-size: 22px;
+  }
+  .destination-panel .w-mono {
+    font-size: 8px;
+  }
+  .destination-panel .project-preview {
+    max-height: 190px;
+    object-fit: cover;
+  }
+  .destination-panel p {
+    font-size: 11px;
+  }
+  .travel-status {
+    top: 86px;
+    right: 16px;
+    width: 185px;
+  }
+  .reopen-panel {
+    top: auto;
+    bottom: 190px;
+    right: 16px;
+    font-size: 9px;
+  }
+  .simple-mode-label {
+    display: none;
+  }
+  .simple-world svg {
+    transform: scale(1.3);
+  }
+  .checkpoint-selector button {
+    min-height: 40px;
+  }
+  .panel-close {
+    min-width: 35px;
+    min-height: 35px;
+  }
+  .project-controls button {
+    min-height: 40px;
+  }
+  .world-stats b {
+    font-size: 31px;
+  }
+  .panel-links > a,
+  .panel-links > button {
+    padding: 9px 0;
+  }
+  .terminal-form input,
+  .terminal-form textarea {
+    font-size: 16px;
+  }
+  .service-selector button {
+    padding: 16px 0;
+  }
+  .world-skill-tags button {
+    min-height: 38px;
+  }
+}
+@media (max-width: 370px) {
+  .world-header {
+    padding: 0 12px;
+  }
+  .world-controls {
+    gap: 8px;
+  }
+  .pause-control {
+    font-size: 6px !important;
+  }
+  .world-controls .mode-button {
+    font-size: 6px;
+  }
+  .destination-menu button {
+    font-size: 7px;
+    padding-inline: 4px;
+  }
+  .world-logo {
+    font-size: 23px;
+  }
+  .home-panel {
+    left: 14px;
+    width: 235px;
+  }
+  .home-panel h1 {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.world-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  margin: -4px;
+  border: 1px solid #f4f1e8;
+  border-radius: 50%;
+  background: #111;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font:
+    8px "IBM Plex Mono",
+    monospace;
+  transition:
+    width 0.1s,
+    height 0.1s,
+    margin 0.1s;
+}
+.world-cursor[data-expanded="true"] {
+  width: 45px;
+  height: 45px;
+  margin: -22px;
+  background: #2357ff;
+  border: 1px solid #111;
+}
+.world-pointer .world-cursor {
+  display: flex;
+}
+.world-pointer .world-app,
+.world-pointer .world-app button,
+.world-pointer .world-app a,
+.world-pointer .world-app summary,
+.world-pointer canvas {
+  cursor: none;
+}
+.world-pointer input,
+.world-pointer textarea {
+  cursor: text;
+}
+.destination-menu button[data-target="true"] > span {
+  color: #ffffff;
+}
+.home-panel {
+  background: #e9e9e2;
+  padding: 20px;
+  border-left: 3px solid #2357ff;
+  left: 24px;
+  width: 310px;
+  top: 118px;
+}
+.home-panel h1 {
+  font-size: 37px;
+}
+@media (min-width: 1600px) {
+  .home-panel {
+    left: 35px;
+    width: 340px;
+  }
+  .home-panel h1 {
+    font-size: 43px;
+  }
+}
+@media (max-width: 760px) {
+  .home-panel {
+    left: 16px;
+    top: 82px;
+    width: 245px;
+    padding: 12px 14px;
+  }
+  .home-panel h1 {
+    font-size: 27px;
+  }
+  .home-panel .availability-world {
+    margin-top: 12px;
+  }
+  .destination-menu button[data-target="true"] > span {
+    color: #fff;
+  }
+}
+@media (max-height: 560px) and (orientation: landscape) {
+  .world-app {
+    min-height: 360px;
+  }
+  .world-header {
+    height: 55px;
+  }
+  .home-panel {
+    top: 68px;
+    max-height: calc(100svh - 195px);
+    overflow-y: auto;
+  }
+  .destination-panel:not(.home-panel) {
+    top: 65px;
+    bottom: auto;
+    right: 15px;
+    left: auto;
+    width: 300px;
+    max-height: calc(100svh - 190px);
+  }
+  .mini-map {
+    display: none;
+  }
+  .world-hint {
+    display: none;
+  }
+  .world-controls .mode-button {
+    padding: 7px;
+  }
+  .destination-menu {
+    bottom: 25px;
+  }
+  .world-coordinate {
+    bottom: 6px;
+  }
+}
+
+/* A single readable map in simple mode; the 3D inset stays clear of copy. */
+.simple-world > .simple-mode-label {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  width: max-content;
+  max-width: 90%;
+  bottom: 165px;
+  padding: 8px 12px;
+  background: #f4f1e8;
+  color: #111;
+}
+.mini-map {
+  left: auto;
+  right: 28px;
+  top: 100px;
+  bottom: auto;
+  width: 230px;
+  background: #f4f1e8;
+  border: 2px solid #111;
+  box-shadow: 4px 4px #111;
+}
+.mini-map > .w-mono,
+.mini-map .map-caption {
+  font-size: 9px;
+  color: #111;
+}
+.has-panel .mini-map {
+  right: auto;
+  left: 28px;
+  top: auto;
+  bottom: 155px;
+}
+.lite-mode .mini-map {
+  display: none;
+}
+.map-point:focus {
+  outline: none;
+}
+.map-point:focus rect {
+  stroke: #2357ff;
+  stroke-width: 3px;
+}
+.lite-mode .desktop-hint {
+  display: none;
+}
+@media (max-width: 760px) {
+  .mini-map {
+    display: none;
+  }
+  .simple-world svg {
+    transform: none;
+  }
+  .simple-world > .simple-mode-label {
+    display: none;
+  }
+}
+@media (max-height: 700px) and (min-width: 761px) {
+  .mini-map {
+    width: 180px;
+    top: 90px;
+  }
+  .has-panel .mini-map {
+    top: auto;
+    bottom: 145px;
+  }
+}
+
+/* Viewport layout: controls and scene remain inside the browser's visible area. */
+.world-app {
+  height: 100dvh;
+  min-height: 0;
+}
+.world-app[data-moving="true"] .mini-map {
+  top: auto;
+  bottom: 155px;
+  left: 28px;
+  right: auto;
+}
+.map-toggle {
+  display: none;
+}
+.world-preloader {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  overflow: hidden;
+  background: #f4f1e8;
+  color: #111;
+}
+.loader-edition {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.world-preloader h2 {
+  font:
+    700 clamp(26px, 5vw, 58px)/1 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.05em;
+  text-align: center;
+  margin: 10px 0;
+}
+.world-preloader em {
+  color: #2357ff;
+  font-style: normal;
+}
+.loader-scene {
+  width: 220px;
+  height: 150px;
+  position: relative;
+}
+.loader-platform {
+  position: absolute;
+  width: 160px;
+  height: 90px;
+  left: 30px;
+  top: 50px;
+  background: #2357ff;
+  border: 3px solid #111;
+  transform: skewY(-12deg);
+  box-shadow: 10px 12px #111;
+}
+.loader-block {
+  position: absolute;
+  width: 45px;
+  height: 55px;
+  border: 3px solid #111;
+  background: #f4f1e8;
+  box-shadow: 7px 7px #111;
+  animation: loader-float 1.3s ease-in-out infinite alternate;
+}
+.block-one {
+  left: 35px;
+  top: 32px;
+}
+.block-two {
+  right: 28px;
+  top: 14px;
+  background: #c6f36a;
+  animation-delay: -0.7s;
+}
+.loader-person {
+  position: absolute;
+  left: 108px;
+  top: 47px;
+  animation: loader-float 0.55s ease-in-out infinite alternate;
+}
+.loader-person i {
+  display: block;
+  width: 19px;
+  height: 19px;
+  background: #bd8d6b;
+  border: 3px solid #111;
+}
+.loader-person b {
+  display: block;
+  width: 23px;
+  height: 31px;
+  background: #111;
+  border-bottom: 8px solid #f4f1e8;
+}
+.loader-orbit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 35px;
+  color: #2357ff;
+}
+.loader-track {
+  width: 220px;
+  height: 6px;
+  background: #d7d9cf;
+  overflow: hidden;
+}
+.loader-track i {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: #2357ff;
+  animation: loader-scan 1.2s ease-in-out infinite alternate;
+}
+.world-preloader p {
+  font-size: 10px;
+  margin: 0;
+}
+.world-preloader button {
+  border-bottom: 1px solid #111;
+  padding: 12px;
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+}
+@keyframes loader-float {
+  to {
+    transform: translateY(-9px);
+  }
+}
+@keyframes loader-scan {
+  to {
+    transform: translateX(150%);
+  }
+}
+@media (max-width: 760px) {
+  .world-header {
+    height: 66px;
+    padding: 0 12px;
+    gap: 8px;
+    background: #e9e9e2;
+  }
+  .world-controls {
+    gap: 9px;
+  }
+  .world-controls button {
+    min-height: 40px;
+  }
+  .world-controls .mode-button {
+    padding: 8px;
+    font-size: 7px;
+  }
+  .world-stage {
+    top: 66px;
+    bottom: 132px;
+  }
+  .home-panel {
+    top: 76px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-height: none;
+    padding: 10px 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+    align-items: center;
+    background: #e9e9e2;
+  }
+  .home-panel .panel-top {
+    grid-column: 1/-1;
+  }
+  .home-panel h1 {
+    font-size: 26px;
+    letter-spacing: -1.4px;
+    margin: 9px 0;
+  }
+  .home-panel p {
+    grid-column: 1/-1;
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .home-panel .world-button {
+    padding: 12px 9px;
+    font-size: 8px;
+    margin: 0;
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .home-panel .availability-world {
+    display: none;
+  }
+  .destination-menu {
+    position: absolute;
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    left: 12px;
+    right: 12px;
+    width: auto;
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .destination-menu button {
+    min-height: 44px;
+    padding: 8px 3px;
+    font-size: 8px;
+  }
+  .world-coordinate {
+    bottom: calc(5px + env(safe-area-inset-bottom, 0px));
+  }
+  .world-hint,
+  .has-panel .world-hint {
+    display: none;
+  }
+  .destination-panel:not(.home-panel) {
+    bottom: calc(134px + env(safe-area-inset-bottom, 0px));
+    max-height: 34dvh;
+    padding: 14px;
+  }
+  .map-toggle {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 245px;
+    padding: 11px;
+    min-height: 44px;
+    background: #f4f1e8;
+    border: 2px solid #111;
+    box-shadow: 3px 3px #111;
+    z-index: 6;
+    font-size: 9px;
+  }
+  .has-panel .map-toggle,
+  .world-app[data-moving="true"] .map-toggle {
+    top: 76px;
+  }
+  .mini-map,
+  .has-panel .mini-map,
+  .world-app[data-moving="true"] .mini-map {
+    display: none;
+  }
+  .mini-map.map-expanded,
+  .has-panel .mini-map.map-expanded,
+  .world-app[data-moving="true"] .mini-map.map-expanded {
+    display: block;
+    width: min(270px, calc(100vw - 28px));
+    right: 14px;
+    left: auto;
+    top: 294px;
+    bottom: auto;
+    z-index: 7;
+  }
+  .has-panel .mini-map.map-expanded,
+  .world-app[data-moving="true"] .mini-map.map-expanded {
+    top: 126px;
+  }
+  .lite-mode .map-toggle {
+    display: none;
+  }
+  .travel-status {
+    top: auto;
+    bottom: 145px;
+    right: 14px;
+    left: 14px;
+    width: auto;
+    padding: 12px 15px;
+    z-index: 4;
+  }
+  .travel-status strong {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  .travel-note {
+    display: none;
+  }
+  .reopen-panel {
+    bottom: 145px;
+  }
+}
+@media (max-width: 760px) and (max-height: 650px) {
+  .home-panel h1 {
+    font-size: 22px;
+  }
+  .home-panel p {
+    font-size: 10px;
+  }
+  .map-toggle {
+    top: 210px;
+  }
+  .mini-map.map-expanded {
+    top: 76px;
+    width: 220px;
+  }
+  .loader-scene {
+    transform: scale(0.75);
+    height: 120px;
+  }
+  .world-preloader {
+    gap: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-preloader * {
+    animation: none !important;
+  }
+}
+
+/* Compact introduction and a reserved mobile control dock. */
+.world-app {
+  height: var(--world-height, 100dvh);
+}
+@media (min-width: 761px) {
+  .home-panel {
+    width: 280px;
+    padding: 16px 18px;
+    background: #f4f1e8;
+  }
+  .home-panel h1 {
+    font-size: 32px;
+    margin: 15px 0;
+  }
+  .home-panel p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .home-panel .world-button {
+    padding: 14px 16px;
+  }
+  .home-panel .availability-world {
+    margin-top: 18px;
+  }
+}
+@media (max-width: 760px) {
+  .home-panel {
+    display: block;
+    top: 70px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 14px;
+    background: #f4f1e8;
+  }
+  .home-panel h1 {
+    font-size: 28px;
+    margin: 8px 0;
+  }
+  .home-panel .panel-top {
+    font-size: 9px;
+  }
+  .home-panel p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .home-panel .world-button {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    font-size: 11px;
+    margin-top: 12px;
+    padding: 10px;
+  }
+  .world-app[data-zone="home"][data-moving="false"] .world-stage {
+    top: 290px;
+    bottom: 173px;
+  }
+  .destination-menu {
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: 10px;
+    right: 10px;
+    border-width: 2px;
+    box-shadow: 3px 3px #2357ff;
+  }
+  .destination-menu button {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    min-height: 48px;
+    padding: 8px 2px;
+    border-width: 1px;
+    color: #111;
+    background: #f4f1e8;
+  }
+  .destination-menu button[data-target="true"] {
+    background: #2357ff;
+    color: #fff;
+  }
+  .destination-menu button > i {
+    display: none;
+  }
+  .world-coordinate {
+    display: none;
+  }
+  .map-toggle,
+  .has-panel .map-toggle,
+  .world-app[data-moving="true"] .map-toggle {
+    top: auto;
+    bottom: calc(123px + env(safe-area-inset-bottom, 0px));
+    right: 12px;
+    min-height: 40px;
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+  .mini-map.map-expanded,
+  .has-panel .mini-map.map-expanded,
+  .world-app[data-moving="true"] .mini-map.map-expanded {
+    top: auto;
+    bottom: 172px;
+    max-height: calc(var(--world-height, 100dvh) - 245px);
+    overflow: auto;
+  }
+  .destination-panel:not(.home-panel) {
+    bottom: 174px;
+  }
+  .travel-status {
+    bottom: 174px;
+  }
+  .world-controls .sound-control,
+  .world-controls .pause-control,
+  .world-controls .mode-button {
+    font-size: 9px !important;
+  }
+  .world-controls {
+    gap: 7px;
+  }
+  .world-stage {
+    bottom: 173px;
+  }
+}
+@media (max-width: 370px) {
+  .destination-menu button {
+    font-size: 10px;
+  }
+  .world-controls .sound-control,
+  .world-controls .pause-control,
+  .world-controls .mode-button {
+    font-size: 8px !important;
+  }
+}
+@media (max-width: 760px) and (max-height: 650px) {
+  .home-panel {
+    padding: 8px 12px;
+  }
+  .home-panel h1 {
+    font-size: 23px;
+    margin: 6px 0;
+  }
+  .home-panel p {
+    font-size: 10px;
+  }
+  .home-panel .world-button {
+    margin-top: 8px;
+    min-height: 40px;
+  }
+  .world-app[data-zone="home"][data-moving="false"] .world-stage {
+    top: 260px;
+  }
+}

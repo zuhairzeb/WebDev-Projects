@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Portfolio%20Website",
+    "status": 200,
+    "final": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Portfolio%20Website"
+  },
+  {
+    "url": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Personal%20Portfolio%20Website",
+    "status": 200,
+    "final": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Personal%20Portfolio%20Website"
+  },
+  {
+    "url": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Arcade%20PONG%20Game",
+    "status": 200,
+    "final": "https://github.com/zuhairzeb/WebDev-Projects/tree/Zuhair-Portfolio/Arcade%20PONG%20Game"
+  },
+  {
+    "url": "https://github.com/sociapi/Sociapi-Society-Web",
+    "status": 200,
+    "final": "https://github.com/sociapi/Sociapi-Society-Web"
+  },
+  {
+    "url": "https://sociapis.vercel.app/",
+    "status": 200,
+    "final": "https://sociapis.vercel.app/"
+  },
+  {
+    "url": "https://github.com/sociapisociety",
+    "status": 200,
+    "final": "https://github.com/sociapisociety"
+  },
+  {
+    "url": "https://homeitemss.com/",
+    "status": "unverified",
+    "reason": "ENOTFOUND"
+  },
+  {
+    "url": "https://ospherics.com/",
+    "status": 200,
+    "final": "https://ospherics.com/"
+  },
+  {
+    "url": "https://www.refrens.com/zuhairzeb/portfolio/674966bb0a94c604a2c3718b-redesign-website-of-ospheric",
+    "status": 404,
+    "final": "https://www.refrens.com/zuhairzeb/portfolio/674966bb0a94c604a2c3718b-redesign-website-of-ospheric"
+  }
+]

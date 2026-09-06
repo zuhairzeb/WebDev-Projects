@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xuhair.netlify.app/sitemap.xml

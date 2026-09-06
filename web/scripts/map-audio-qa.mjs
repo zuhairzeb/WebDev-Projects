@@ -1,0 +1,13 @@
+import {chromium,expect} from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge',headless:true,args:['--enable-unsafe-swiftshader']});
+const page=await browser.newPage({viewport:{width:1440,height:960}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.addInitScript(()=>{window.audioChecks={contexts:[],tones:0};const Original=window.AudioContext;window.AudioContext=class extends Original{constructor(...args){super(...args);window.audioChecks.contexts.push(this);}createOscillator(){window.audioChecks.tones++;return super.createOscillator();}};});
+await page.goto('http://127.0.0.1:4175/',{waitUntil:'networkidle'});
+await expect(page.locator('.mini-map [role=button]')).toHaveCount(8);
+const overlap=await page.evaluate(()=>{const a=document.querySelector('.mini-map').getBoundingClientRect(),b=document.querySelector('.home-panel').getBoundingClientRect();return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;});expect(overlap).toBe(false);
+await page.getByRole('button',{name:'SOUND OFF',exact:true}).click();await expect(page.getByRole('button',{name:'SOUND ON',exact:true})).toBeVisible();expect(await page.evaluate(()=>window.audioChecks.contexts[0].state)).toBe('running');
+await page.getByRole('button',{name:'SIMPLE VIEW ↗',exact:true}).click();await expect(page.locator('.mini-map')).not.toBeVisible();expect(await page.locator('.simple-mode-label').evaluate(e=>getComputedStyle(e).fontSize)).toBe('10px');
+await page.getByRole('navigation',{name:'World destinations'}).getByRole('button',{name:/about/i}).click();await page.waitForTimeout(900);expect(await page.evaluate(()=>window.audioChecks.tones)).toBeGreaterThan(2);await expect(page.locator('.world-app')).toHaveAttribute('data-zone','about',{timeout:8000});
+await page.getByRole('button',{name:'SOUND ON',exact:true}).click();expect(await page.evaluate(()=>window.audioChecks.contexts[0].state)).toBe('suspended');
+await page.getByRole('navigation',{name:'World destinations'}).getByRole('button',{name:/home/i}).click();await expect(page.locator('.world-app')).toHaveAttribute('data-zone','home',{timeout:8000});await page.screenshot({path:'artifacts/simple-map-fixed.png'});
+await page.getByRole('button',{name:'BACK TO 3D ↗',exact:true}).click();await page.waitForTimeout(2500);await page.screenshot({path:'artifacts/map-fixed.png'});expect(errors).toEqual([]);console.log('PASS: small simple label; eight labeled destinations; no introduction overlap; one simple map; audio running, footsteps, mute; return to 3D; no page errors');await browser.close();

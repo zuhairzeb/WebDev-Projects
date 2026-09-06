@@ -1,0 +1,30 @@
+{
+  "sizes": [
+    {
+      "width": 320,
+      "height": 740,
+      "scrollWidth": 320,
+      "scrollHeight": 740
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390
+    }
+  ],
+  "violations": [],
+  "errors": []
+}

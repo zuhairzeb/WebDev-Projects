@@ -1,46 +1,48 @@
-import { motion } from 'framer-motion';
-import { VideoPlayer } from './VideoAssets';
+import { motion } from "framer-motion";
 
 const steps = [
   {
-    num: '01',
-    title: 'Discovery & Planning',
-    desc: 'Understanding goals, requirements, and challenges.'
+    num: "01",
+    title: "Discovery & Planning",
+    desc: "Understanding goals, requirements, and challenges.",
   },
   {
-    num: '02',
-    title: 'Design & Architecture',
-    desc: 'Creating scalable solutions and workflows.'
+    num: "02",
+    title: "Design & Architecture",
+    desc: "Creating scalable solutions and workflows.",
   },
   {
-    num: '03',
-    title: 'Development',
-    desc: 'Building secure and high-performance systems.'
+    num: "03",
+    title: "Development",
+    desc: "Building secure and high-performance systems.",
   },
   {
-    num: '04',
-    title: 'Testing & Optimization',
-    desc: 'Improving speed, reliability, and user experience.'
+    num: "04",
+    title: "Testing & Optimization",
+    desc: "Improving speed, reliability, and user experience.",
   },
   {
-    num: '05',
-    title: 'Launch & Support',
-    desc: 'Deployment, maintenance, and continuous improvement.'
-  }
+    num: "05",
+    title: "Launch & Support",
+    desc: "Deployment, maintenance, and continuous improvement.",
+  },
 ];
 
-import { SectionWrapper } from './SectionWrapper';
+import { SectionWrapper } from "./SectionWrapper";
 
 export const Process = () => {
   return (
     <SectionWrapper id="process" dark>
       <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-blue-400 font-bold tracking-wider text-xs block mb-6">Workflow</span>
+        <span className="text-blue-400 font-bold tracking-wider text-xs block mb-6">
+          Workflow
+        </span>
         <h2 className="font-bebas text-6xl sm:text-8xl leading-none mb-6">
           How I <span className="text-blue-400">operate.</span>
         </h2>
         <p className="text-gray-400 text-sm sm:text-base max-w-lg leading-relaxed">
-          A clear, structured 5-step process designed for reliable execution and high-quality results.
+          A clear, structured 5-step process designed for reliable execution and
+          high-quality results.
         </p>
       </div>
 
@@ -55,10 +57,16 @@ export const Process = () => {
             className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all flex flex-col justify-between"
           >
             <div>
-              <span className="text-blue-400 font-bebas text-3xl mb-2 block">{step.num}</span>
-              <h3 className="font-bebas text-2xl mb-2 tracking-tight text-white">{step.title}</h3>
+              <span className="text-blue-400 font-bebas text-3xl mb-2 block">
+                {step.num}
+              </span>
+              <h3 className="font-bebas text-2xl mb-2 tracking-tight text-white">
+                {step.title}
+              </h3>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mt-2">{step.desc}</p>
+            <p className="text-gray-400 text-sm leading-relaxed mt-2">
+              {step.desc}
+            </p>
           </motion.div>
         ))}
       </div>

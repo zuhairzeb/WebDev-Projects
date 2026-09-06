@@ -1,0 +1,24 @@
+{
+  "destinations": [
+    "about",
+    "projects",
+    "skills",
+    "experience",
+    "sociapi",
+    "services",
+    "contact",
+    "home"
+  ],
+  "walkCycle": "Actual left/right leg joint rotations change during travel",
+  "retarget": "Passed mid-route destination replacement",
+  "manual": "WASD moves the character after menu navigation",
+  "projects": "9 projects preserved; next exhibit causes physical travel",
+  "skills": "Tool selection passed",
+  "checkpoints": "Character travels to selected milestone",
+  "contact": "Validation, input-safe keys, intercepted success and character celebration passed",
+  "pause": "Motion freezes and resumes",
+  "accessibility": [],
+  "simple": "SVG world navigates with character travel",
+  "reducedMotion": "Immediate accessible destination navigation without WebGL",
+  "errors": []
+}
