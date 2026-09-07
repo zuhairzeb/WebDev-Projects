@@ -1,3 +1,5 @@
+import { useWorld } from "../../world/store";
+import { ContactPanel } from "./ContactPanel";
 import {
   projects,
   experiences,
@@ -6,8 +8,11 @@ import {
   reviews,
   faqs,
   certificates,
+  unavailableProjectLinks,
 } from "../../data/site";
 export function SemanticPortfolio() {
+  const s = useWorld();
+  const simple = s.simpleMode || s.reduced;
   return (
     <article
       className="semantic-portfolio"
@@ -24,10 +29,37 @@ export function SemanticPortfolio() {
       {projects.map((p) => (
         <section key={p.id}>
           <h4>{p.title}</h4>
+          {simple && p.image && (
+            <img
+              loading="lazy"
+              src={"/optimized/" + p.image.replace(/\.(png|jpg)$/i, ".webp")}
+              alt={p.title + " screenshot"}
+            />
+          )}
           <p>
             {p.description} {p.overview} {p.results}
           </p>
           <p>{p.technologies?.join(", ")}</p>
+          {simple && (
+            <div className="panel-links">
+              {p.liveDemo && !unavailableProjectLinks.has(p.liveDemo) && (
+                <a href={p.liveDemo} target="_blank" rel="noreferrer">
+                  LIVE WEBSITE ↗
+                </a>
+              )}
+              {p.github && (
+                <a href={p.github} target="_blank" rel="noreferrer">
+                  SOURCE CODE ↗
+                </a>
+              )}
+              {p.caseStudyUrl &&
+                !unavailableProjectLinks.has(p.caseStudyUrl) && (
+                  <a href={p.caseStudyUrl} target="_blank" rel="noreferrer">
+                    CASE STUDY ↗
+                  </a>
+                )}
+            </div>
+          )}
         </section>
       ))}
       <h3>Experience</h3>
@@ -67,6 +99,7 @@ export function SemanticPortfolio() {
         Email: zuhairzeb@yahoo.com. LinkedIn: linkedin.com/in/zuhairzeb. GitHub:
         github.com/zuhairzeb.
       </p>
+      {simple && <ContactPanel />}
     </article>
   );
 }

@@ -1,3 +1,4 @@
+import { WorldLife } from "./WorldLife";
 import { SkillsZone } from "./SkillsZone";
 import { ExperienceZone } from "./ExperienceZone";
 import { SociapiZone } from "./SociapiZone";
@@ -62,6 +63,7 @@ export function WorldEnvironment() {
           </group>
         );
       })}
+      <WorldLife />
       {zones.map((zone) =>
         zone.id === "home" ? (
           <HomeZone key={zone.id} zone={zone} />

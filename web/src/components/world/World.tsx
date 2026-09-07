@@ -1,3 +1,5 @@
+import { LocalExplore } from "./LocalExplore";
+import { MobileMapMarkers } from "./MobileMapMarkers";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useState, useRef } from "react";
 import { Character } from "./Character";
@@ -36,8 +38,15 @@ export default function World() {
       className="world-canvas"
       shadows={!mobile}
       dpr={[1, mobile ? 1.5 : 2]}
-      frameloop={state.paused || !visible ? "never" : "always"}
-      camera={{ position: [25, 40, 36], fov: 42, near: 0.1, far: 160 }}
+      frameloop={
+        state.paused || state.menuOpen || !visible ? "never" : "always"
+      }
+      camera={{
+        position: mobile ? [5, 5, 14] : [8, 17, 18],
+        fov: mobile ? 48 : 42,
+        near: 0.1,
+        far: 160,
+      }}
       gl={{ antialias: true, alpha: false, powerPreference: "low-power" }}
       onCreated={({ gl }) => {
         gl.domElement.setAttribute(
@@ -52,6 +61,8 @@ export default function World() {
       <NavigationSystem />
       <Character />
       <CameraRig />
+      <LocalExplore />
+      <MobileMapMarkers />
     </Canvas>
   );
 }

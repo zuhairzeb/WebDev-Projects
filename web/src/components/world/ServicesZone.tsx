@@ -1,16 +1,30 @@
+import { useThree } from "@react-three/fiber";
 import { ZoneBase } from "./ZoneBase";
 import { Sign, Block, HoverObject } from "./Objects";
 import { services } from "../../data/site";
-import { getWorld, navigate, setWorld, interact } from "../../world/store";
+import {
+  getWorld,
+  navigate,
+  setWorld,
+  interact,
+  useWorld,
+} from "../../world/store";
 import type { Zone } from "../../world/zones";
 export function ServicesZone({ zone }: { zone: Zone }) {
+  const state = useWorld();
+  const mobile = useThree((s) => s.size.width <= 760);
+  const compact =
+    !mobile &&
+    !state.desktopMap &&
+    state.currentZone !== "services" &&
+    !(state.isMoving && state.targetZone === "services");
   return (
     <ZoneBase zone={zone}>
       <Sign
-        text="THE DEVELOPER WORKSHOP"
-        width={6.5}
-        height={0.75}
-        position={[0, 4, -3.5]}
+        text={compact ? "SERVICES" : "THE DEVELOPER WORKSHOP"}
+        width={compact ? 2.1 : 6.5}
+        height={compact ? 0.5 : 0.75}
+        position={compact ? [2.7, 1.15, -3.5] : [0, 4, -3.5]}
       />
       {services.map(([name], i) => (
         <group

@@ -123,7 +123,7 @@ export function NavigationSystem() {
       motion.idleTime += dt;
       if (performance.now() > motion.interactionUntil)
         motion.animation =
-          motion.idleTime > 15 && motion.idleTime < 18 ? "Interact" : "Idle";
+          motion.idleTime > 11 && motion.idleTime < 14 ? (state.currentZone === "home" || state.currentZone === "services" ? "Typing" : "Interact") : "Idle";
       if (motion.idleTime > 21) motion.idleTime = 0;
     }
     if (motion.manual) {

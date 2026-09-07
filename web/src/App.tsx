@@ -1,3 +1,6 @@
+import { SimplePortfolio } from "./components/ui/SimplePortfolio";
+import { DesktopMap } from "./components/ui/DesktopMap";
+import { MobileExperience } from "./components/ui/MobileExperience";
 import { LoadingScreen } from "./components/ui/LoadingScreen";
 import { WorldCursor } from "./components/ui/WorldCursor";
 import {
@@ -9,7 +12,6 @@ import {
   type ReactNode,
 } from "react";
 import { DestinationMenu } from "./components/ui/DestinationMenu";
-import { MiniMap } from "./components/ui/MiniMap";
 import { DestinationPanel } from "./components/ui/DestinationPanel";
 import { SimpleWorld } from "./components/ui/SimpleWorld";
 import { SemanticPortfolio } from "./components/ui/SemanticPortfolio";
@@ -36,6 +38,13 @@ class WorldBoundary extends Component<
 }
 export default function App() {
   const s = useWorld();
+  const [mobile, setMobile] = useState(matchMedia("(max-width:760px)").matches);
+  useEffect(() => {
+    const q = matchMedia("(max-width:760px)");
+    const sync = () => setMobile(q.matches);
+    q.addEventListener("change", sync);
+    return () => q.removeEventListener("change", sync);
+  }, []);
   const reduced = useReducedMotion();
   useEffect(() => {
     const syncViewport = () =>
@@ -79,9 +88,10 @@ export default function App() {
     return () => window.removeEventListener("hashchange", route);
   }, []);
   const lite = s.simpleMode || !supported || reduced;
+  if (lite) return <SimplePortfolio canEnterWorld={supported && !reduced} />;
   return (
     <main
-      className={`world-app ${lite ? "lite-mode" : ""} ${s.currentZone !== "home" && s.panelOpen && !s.isMoving ? "has-panel" : ""}`}
+      className={`world-app ${mobile ? "mobile-experience" : ""} ${s.mobileMap || s.desktopMap ? "map-active" : ""} ${s.mobileEntered ? "entered" : "intro"} ${s.mobileEntering ? "entering" : ""} ${s.mobileDetails ? "details-open" : ""} ${lite ? "lite-mode" : ""} ${s.currentZone !== "home" && s.panelOpen && !s.isMoving ? "has-panel" : ""}`}
       data-zone={s.currentZone}
       data-target={s.targetZone}
       data-moving={s.isMoving}
@@ -113,9 +123,20 @@ export default function App() {
           <small>WORLD</small>
         </button>
         <span className="world-edition w-mono">
-          A SMALL WORLD. A LOT OF POSSIBILITIES.
+          {s.isMoving
+            ? "TRAVELLING TO " + s.targetZone.toUpperCase()
+            : "YOU ARE AT / " + s.currentZone.toUpperCase()}
         </span>
         <div className="world-controls">
+          <button
+            className="desktop-map-toggle w-mono"
+            aria-pressed={s.desktopMap}
+            onClick={() =>
+              setWorld({ desktopMap: !s.desktopMap, panelOpen: false })
+            }
+          >
+            WORLD MAP ↗
+          </button>
           <button
             aria-pressed={s.sound}
             onClick={toggleWorldSound}
@@ -158,7 +179,7 @@ export default function App() {
       </div>
       {!lite && !s.worldLoaded && <LoadingScreen />}
       <DestinationPanel />
-      <MiniMap />
+      <DesktopMap />
       {s.isMoving && (
         <div className="travel-status" role="status">
           <span className="w-mono">
@@ -190,6 +211,7 @@ export default function App() {
         <span>CHOOSE A DESTINATION. I'LL TAKE YOU THERE. ↓</span>
       </div>
       <DestinationMenu />
+      <MobileExperience />
       <div className="world-coordinate w-mono">
         PESHAWAR, PK · {new Date().getFullYear()}
         <span>

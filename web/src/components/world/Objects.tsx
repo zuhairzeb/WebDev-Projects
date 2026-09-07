@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, type ReactNode } from "react";
+import { ZoneContext } from "./ZoneContext";
+import { useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { getWorld, setWorld } from "../../world/store";
@@ -38,7 +39,47 @@ export function Sign({
   background?: string;
   rotation?: Point;
 }) {
-  const gl = useThree(state => state.gl);
+  const gl = useThree((state) => state.gl);
+  const zone = useContext(ZoneContext);
+  const signRoot = useRef<THREE.Group>(null);
+  useFrame(({ size }) => {
+    if (!signRoot.current) return;
+    const s = getWorld();
+    const mode = (size.width <= 760 ? s.mobileMap : s.desktopMap)
+      ? "MAP"
+      : !zone || zone === s.currentZone || (s.isMoving && zone === s.targetZone)
+        ? "ACTIVE"
+        : "BACKGROUND";
+    signRoot.current.userData.visualState = mode;
+    const mobile = size.width <= 760;
+    const primary =
+      (width >= 3.5 && !text.includes("\n")) ||
+      text.length <= 3 ||
+      text.startsWith("MAKE") || text === "SERVICES";
+    signRoot.current.visible = mobile
+      ? mode === "ACTIVE" || mode === "MAP" || width >= 3.5 || text.length <= 3
+      : mode === "ACTIVE" || primary;
+    const muted = !mobile && mode === "BACKGROUND" && text !== "MZZ. WORLD";
+    const opacity = mobile && mode === "BACKGROUND" ? 0.32 : 1;
+    signRoot.current.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      const materials = Array.isArray(mesh.material)
+        ? mesh.material
+        : [mesh.material];
+      materials.forEach((m) => {
+        if (m.transparent !== opacity < 1) {
+          m.transparent = opacity < 1;
+          m.needsUpdate = true;
+        }
+        m.opacity = opacity;
+        if (m instanceof THREE.MeshBasicMaterial)
+          m.color.set(muted ? "#deded5" : "#ffffff");
+        else if (m instanceof THREE.MeshStandardMaterial)
+          m.color.set(muted ? "#454743" : "#111111");
+      });
+    });
+  });
   const texture = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 2048;
@@ -71,7 +112,7 @@ export function Sign({
   }, [text, width, height, color, background, gl]);
   useEffect(() => () => texture.dispose(), [texture]);
   return (
-    <group position={position} rotation={rotation}>
+    <group ref={signRoot} position={position} rotation={rotation}>
       <Block size={[width + 0.1, height + 0.1, 0.12]} color="#111111" />
       <mesh position={[0, 0, 0.07]}>
         <planeGeometry args={[width, height]} />
@@ -93,8 +134,23 @@ export function HoverObject({
   children: ReactNode;
   onClick: () => void;
 }) {
+  const hoverRef = useRef<THREE.Group>(null);
+  useFrame((_, dt) => {
+    if (hoverRef.current && !getWorld().paused) {
+      const active = getWorld().hovered === label;
+      hoverRef.current.scale.setScalar(
+        THREE.MathUtils.damp(
+          hoverRef.current.scale.x,
+          active ? 1.07 : 1,
+          8,
+          Math.min(dt, 0.05),
+        ),
+      );
+    }
+  });
   return (
     <group
+      ref={hoverRef}
       onPointerOver={(e) => {
         e.stopPropagation();
         if (getWorld().hovered !== label) setWorld({ hovered: label });
@@ -210,3 +266,4 @@ export function Workstation() {
     </group>
   );
 }
+

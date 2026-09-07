@@ -8,10 +8,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test:browser": "node scripts/world-qa.mjs",
+    "test:browser": "node scripts/modes-qa.mjs",
     "assets:optimize": "node scripts/optimize-assets.mjs",
     "format:check": "prettier --check src scripts vite.config.ts index.html package.json",
-    "test:mobile": "node scripts/world-mobile-qa.mjs"
+    "test:mobile": "node scripts/cinema-final-qa.mjs",
+    "test:simple": "node scripts/simple-polish-qa.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.7.0",

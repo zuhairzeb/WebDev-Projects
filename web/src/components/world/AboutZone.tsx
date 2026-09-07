@@ -21,6 +21,36 @@ export function AboutZone({ zone }: { zone: Zone }) {
       />
       <Workstation />
       <Sign
+        text={
+          "ABOUT ME\nWORDPRESS DEVELOPER · AI STUDENT\nFOUNDER / SOCIAPI SOCIETY"
+        }
+        position={[0, 2.5, -3.45]}
+        width={5.4}
+        height={1.25}
+        background="#111111"
+        color="#f4f1e8"
+      />
+      <Sign
+        text={"4+ YEARS\n10+ WEBSITES"}
+        position={[2.8, 1.4, -0.5]}
+        width={1.2}
+        height={1.1}
+        background="#2357ff"
+        color="#ffffff"
+      />
+      <Sign
+        text="W"
+        position={[-2.7, 1.9, -0.55]}
+        width={0.65}
+        height={0.65}
+        background="#c6f36a"
+      />
+      <Block
+        size={[0.6, 0.06, 0.8]}
+        position={[1.1, 1.1, 0.2]}
+        color="#2357ff"
+      />
+      <Sign
         text="CURIOUS BY DEFAULT."
         position={[0, 0.6, -3.1]}
         width={4.5}

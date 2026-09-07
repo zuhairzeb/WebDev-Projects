@@ -17,7 +17,8 @@ function clips() {
   return [
     new THREE.AnimationClip("Idle", 3, [
       track("Torso.scale[y]", [1, 1.025, 1], 3),
-      track("Head.rotation[y]", [-0.1, 0.1, -0.1], 3),
+      track("Head.rotation[y]", [-0.08, 0.08, -0.08], 3),
+      track("Torso.rotation[z]", [-.025,.025,-.025],3),
     ]),
     new THREE.AnimationClip("Walk", 0.7, [
       track("LeftLeg.rotation[x]", [-0.7, 0.7, -0.7], 0.7),

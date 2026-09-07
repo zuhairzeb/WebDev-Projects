@@ -14,9 +14,11 @@ export function WorldCursor() {
       frame = requestAnimationFrame(() => {
         const target = e.target as Element;
         const clickable = target.closest("button,a,summary");
-        const label = target.closest(".destination-menu,.mini-map")
-          ? "GO"
-          : getWorld().hovered.split(" / ")[0] || (clickable ? "OPEN" : "");
+        const label = target.closest(".world-map-panel")
+          ? ""
+          : target.closest(".destination-menu,.mini-map")
+            ? "GO"
+            : getWorld().hovered.split(" / ")[0] || (clickable ? "OPEN" : "");
         el.textContent = label;
         el.dataset.expanded = String(!!label);
         el.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;

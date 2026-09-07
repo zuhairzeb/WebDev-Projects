@@ -104,7 +104,7 @@ export function DestinationPanel() {
           <button
             className="panel-close"
             aria-label="Close destination panel"
-            onClick={() => setWorld({ panelOpen: false })}
+            onClick={() => setWorld({ panelOpen: false, mobileDetails:false })}
           >
             ×
           </button>

@@ -1,0 +1,41 @@
+{
+  "zones": [
+    "home",
+    "about",
+    "projects",
+    "skills",
+    "experience",
+    "sociapi",
+    "services",
+    "contact"
+  ],
+  "widths": [
+    {
+      "width": 1920,
+      "contentWidth": 1320
+    },
+    {
+      "width": 1440,
+      "contentWidth": 1320
+    },
+    {
+      "width": 1366,
+      "contentWidth": 1286
+    },
+    {
+      "width": 390,
+      "contentWidth": 354
+    }
+  ],
+  "errors": [],
+  "accessibility": [
+    {
+      "id": "color-contrast",
+      "nodes": [
+        [
+          ".contact-email"
+        ]
+      ]
+    }
+  ]
+}

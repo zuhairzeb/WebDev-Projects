@@ -22,12 +22,18 @@ export function SkillsZone({ zone }: { zone: Zone }) {
       {objects.map(([name, label], i) => (
         <group
           key={name}
-          position={[((i % 3) - 1) * 2.2, 0, -Math.floor(i / 3) * 2.1]}
+          position={[((i % 3) - 1) * 2.2, 0, -0.9 - Math.floor(i / 3) * 2.1]}
         >
           <Block
             size={[1.45, 0.5, 1.3]}
             position={[0, 0.3, 0]}
             color="#111111"
+          />
+          <Sign
+            text={name.toUpperCase()}
+            position={[0, 0.85, 0.7]}
+            width={1.9}
+            height={0.4}
           />
           <Float position={[0, 1.7, 0]} speed={0.7 + i * 0.1}>
             <HoverObject

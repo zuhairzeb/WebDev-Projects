@@ -4,6 +4,7 @@ import { zoneById, type Point, type ZoneId } from "./zones";
 export type AnimationName =
   "Idle" | "Walk" | "Interact" | "Typing" | "Celebrate";
 export const motion = {
+  orbit: 0,
   position: [0, 0, 5] as Point,
   rotation: 0,
   pose: [0, 0],
@@ -20,6 +21,13 @@ export const motion = {
   interactionUntil: 0,
 };
 export type WorldState = {
+  desktopMap: boolean;
+  mobileEntering: boolean;
+  menuOpen: boolean;
+  mobileDetails: boolean;
+  localExplore: boolean;
+  mobileEntered: boolean;
+  mobileMap: boolean;
   currentZone: ZoneId;
   targetZone: ZoneId;
   characterPosition: Point;
@@ -40,6 +48,13 @@ export type WorldState = {
   travelProgress: number;
 };
 let state: WorldState = {
+  desktopMap: false,
+  mobileEntering: false,
+  menuOpen: false,
+  mobileDetails: false,
+  localExplore: false,
+  mobileEntered: false,
+  mobileMap: false,
   currentZone: "home",
   targetZone: "home",
   characterPosition: [0, 0, 5],
@@ -107,6 +122,12 @@ export function arrive() {
   interact(state.targetZone === "about" ? "Typing" : "Interact");
 }
 export function navigate(id: ZoneId) {
+  setWorld({
+    mobileMap: false,
+    desktopMap: false,
+    mobileDetails: false,
+    localExplore: false,
+  });
   motion.keys.clear();
   motion.manual = false;
   if (
@@ -129,7 +150,7 @@ export function navigate(id: ZoneId) {
   const length = motion.path
     .slice(1)
     .reduce((total, p, i) => total + distance(motion.path[i], p), 0);
-  motion.duration = Math.min(4, Math.max(1.5, 1.3 + length * 0.06));
+  motion.duration = Math.min(3.5, Math.max(1.4, 1.2 + length * 0.05));
   motion.animation = "Walk";
   motion.animationTime = 0;
   setWorld({
@@ -163,6 +184,11 @@ export function travelWithinZone(id: ZoneId, point: Point) {
   if (state.reduced) arrive();
 }
 export function setProject(index: number) {
-  setWorld({ selectedProject: index, cameraMode: "project", panelOpen: true });
+  setWorld({
+    selectedProject: index,
+    cameraMode: "project",
+    panelOpen: true,
+    mobileDetails: true,
+  });
   interact();
 }

@@ -28,6 +28,12 @@ function Exhibit({ index, slot }: { index: number; slot: number }) {
       5,
       Math.min(dt, 0.05),
     );
+    ref.current.rotation.y = MathUtils.damp(
+      ref.current.rotation.y,
+      active ? 0.12 : (1 - slot) * 0.2,
+      5,
+      Math.min(dt, 0.05),
+    );
     ref.current.scale.setScalar(
       MathUtils.damp(
         ref.current.scale.x,

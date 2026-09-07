@@ -1873,33 +1873,374 @@
 }
 
 /* The mobile dock belongs to the viewport, not the clipped scene container. */
-@media (max-width:760px) {
- .destination-menu {
-  position:fixed;
-  top:auto;
-  bottom:calc(16px + env(safe-area-inset-bottom,0px));
-  left:10px;
-  right:10px;
-  width:auto;
-  height:100px;
-  min-height:100px;
-  max-height:none;
-  box-sizing:border-box;
-  grid-template-rows:repeat(2,minmax(0,1fr));
-  overflow:visible;
-  transform:none;
-  margin:0;
-  z-index:20;
- }
- .destination-menu button { height:100%; min-height:0; box-sizing:border-box; }
- .map-toggle,.has-panel .map-toggle,.world-app[data-moving="true"] .map-toggle { bottom:calc(132px + env(safe-area-inset-bottom,0px)); }
+@media (max-width: 760px) {
+  .destination-menu {
+    position: fixed;
+    top: auto;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: 10px;
+    right: 10px;
+    width: auto;
+    height: 100px;
+    min-height: 100px;
+    max-height: none;
+    box-sizing: border-box;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+    transform: none;
+    margin: 0;
+    z-index: 20;
+  }
+  .destination-menu button {
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+  }
+  .map-toggle,
+  .has-panel .map-toggle,
+  .world-app[data-moving="true"] .map-toggle {
+    bottom: calc(132px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
-@media (min-width:761px) {
- .home-panel { width:250px; padding:14px 15px; }
- .home-panel h1 { font-size:28px; margin:12px 0; letter-spacing:-1.5px; }
- .home-panel p { font-size:11px; line-height:1.5; margin:12px 0; }
- .home-panel .panel-top .w-mono { font-size:8px; }
- .home-panel .world-button { padding:12px 14px; font-size:9px; margin-top:12px; }
- .home-panel .availability-world { margin-top:14px; font-size:8px; }
+@media (min-width: 761px) {
+  .home-panel {
+    width: 250px;
+    padding: 14px 15px;
+  }
+  .home-panel h1 {
+    font-size: 28px;
+    margin: 12px 0;
+    letter-spacing: -1.5px;
+  }
+  .home-panel p {
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 12px 0;
+  }
+  .home-panel .panel-top .w-mono {
+    font-size: 8px;
+  }
+  .home-panel .world-button {
+    padding: 12px 14px;
+    font-size: 9px;
+    margin-top: 12px;
+  }
+  .home-panel .availability-world {
+    margin-top: 14px;
+    font-size: 8px;
+  }
 }
+
+/* Dedicated mobile world experience. */
+@media (max-width: 760px) {
+  .mobile-experience .world-stage,
+  .mobile-experience[data-zone="home"][data-moving="false"] .world-stage {
+    top: 60px;
+    bottom: 80px;
+  }
+  .mobile-experience .home-panel,
+  .mobile-experience .destination-menu,
+  .mobile-experience .map-toggle,
+  .mobile-experience .mini-map,
+  .mobile-experience .world-hint,
+  .mobile-experience .world-coordinate {
+    display: none !important;
+  }
+  .mobile-experience .world-header {
+    height: 60px;
+    background: #f4f1e8;
+    padding: 0 14px;
+  }
+  .mobile-experience .world-logo {
+    font-size: 25px;
+  }
+  .mobile-experience .world-controls {
+    margin-right: 65px;
+  }
+  .mobile-experience .pause-control,
+  .mobile-experience .mode-button {
+    display: none;
+  }
+  .mobile-experience .sound-control {
+    font-size: 11px !important;
+    min-height: 44px;
+  }
+  .mobile-top-menu {
+    position: absolute;
+    right: 14px;
+    top: 8px;
+    height: 44px;
+    font:
+      700 12px "Space Grotesk",
+      sans-serif;
+    z-index: 6;
+  }
+  .mobile-welcome {
+    position: absolute;
+    top: 78px;
+    left: 20px;
+    right: 20px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .mobile-welcome > span {
+    font:
+      11px "IBM Plex Mono",
+      monospace;
+  }
+  .mobile-welcome h1 {
+    font:
+      700 34px/0.95 "Space Grotesk",
+      sans-serif;
+    letter-spacing: -1.5px;
+    margin: 12px 0;
+  }
+  .mobile-welcome em {
+    color: #2357ff;
+    font-style: normal;
+  }
+  .mobile-welcome p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 10px 0;
+  }
+  .mobile-welcome button {
+    pointer-events: auto;
+    padding: 12px 18px;
+    min-height: 44px;
+    background: #2357ff;
+    color: #fff;
+    border: 2px solid #111;
+    box-shadow: 3px 3px #111;
+    font:
+      700 12px "Space Grotesk",
+      sans-serif;
+  }
+  .mobile-dock {
+    position: absolute;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
+    right: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #f4f1e8;
+    border: 2px solid #111;
+    box-shadow: 3px 3px #111;
+    z-index: 12;
+  }
+  .mobile-dock button {
+    min-height: 48px;
+    font:
+      700 13px "Space Grotesk",
+      sans-serif;
+    border-right: 1px solid #111;
+  }
+  .mobile-dock button:last-child {
+    border: 0;
+  }
+  .mobile-dock button[aria-pressed="true"] {
+    background: #2357ff;
+    color: white;
+  }
+  .mobile-sheet-shade {
+    position: absolute;
+    inset: 0;
+    background: #1115;
+    z-index: 14;
+  }
+  .mobile-menu-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f4f1e8;
+    border-top: 3px solid #111;
+    padding: 16px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+    max-height: 80%;
+    overflow: auto;
+    z-index: 15;
+  }
+  .mobile-menu-sheet header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-menu-sheet h2 {
+    font:
+      700 24px "Space Grotesk",
+      sans-serif;
+  }
+  .mobile-menu-sheet header button {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+  .mobile-menu-sheet > button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 48px;
+    width: 100%;
+    border-bottom: 1px solid #aaa;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+  }
+  .mobile-menu-sheet > button span {
+    font: 12px monospace;
+    color: #2357ff;
+  }
+  .mobile-menu-sheet > button i {
+    margin-left: auto;
+  }
+  .mobile-experience .destination-panel:not(.home-panel) {
+    bottom: 84px;
+    max-height: 32%;
+    padding: 16px;
+  }
+  .mobile-experience .destination-panel p {
+    font-size: 13px;
+  }
+  .mobile-experience .reopen-panel {
+    bottom: 86px;
+    font-size: 12px;
+  }
+  .mobile-experience .travel-status {
+    bottom: 86px;
+    left: 20px;
+    right: 20px;
+    top: auto;
+    padding: 10px 14px;
+  }
+  .mobile-experience .travel-status strong {
+    display: none;
+  }
+  .mobile-experience .travel-status .w-mono {
+    font-size: 12px;
+  }
+  .mobile-map-markers {
+    position: absolute;
+    top: 60px;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .mobile-map-markers button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    min-height: 44px;
+    padding: 6px 9px;
+    border: 2px solid #111;
+    background: #f4f1e8;
+    font:
+      700 11px "Space Grotesk",
+      sans-serif;
+    pointer-events: auto;
+    white-space: nowrap;
+  }
+  .mobile-map-markers button[aria-current] {
+    background: #2357ff;
+    color: white;
+  }
+}
+@media(max-width:760px){
+ .mobile-experience:has(.mobile-welcome) .world-stage::after { content:"";position:absolute;inset:0 0 auto;height:260px;background:linear-gradient(#f4f1e8 0%,#f4f1e8ee 60%,transparent);pointer-events:none; }
+ .mobile-map-active .reopen-panel {display:none;}
+ .mobile-experience button {border-radius:0;}
+ .mobile-experience .mobile-top-menu {background:transparent;border:0;}
+ .mobile-experience .mobile-dock button {background:#f4f1e8;border-top:0;border-bottom:0;border-left:0;}
+ .mobile-experience .mobile-dock button[aria-pressed="true"] {background:#2357ff;color:white;}
+}
+
+/* Cinematic desktop HUD and deliberate map mode. */
+.desktop-map-markers {position:absolute;inset:0;pointer-events:none;z-index:4;}
+.desktop-map-markers>button {position:absolute;transform:translate(-50%,-50%);pointer-events:auto;padding:12px 16px;border:2px solid #111;background:#f4f1e8;font:700 12px "Space Grotesk",sans-serif;}
+.desktop-map-markers>button[aria-current] {background:#2357ff;color:#fff;}
+.desktop-map-markers .map-return {left:50%;top:auto;bottom:100px;}
+.map-active .home-panel,.map-active .destination-panel,.map-active .reopen-panel {display:none;}
+@media(min-width:761px){
+ .home-panel {width:260px;left:28px;top:125px;padding:12px 14px;background:#f4f1e8ed;border:0;border-left:2px solid #2357ff;animation:desktop-hud .8s ease-out;}
+ .home-panel .panel-muted,.home-panel .availability-world {display:none;}
+ .home-panel h1 {font-size:32px;}
+ .home-panel p {font-size:12px;}
+ .destination-menu {height:52px;bottom:24px;width:max-content;max-width:calc(100% - 80px);border-width:2px;box-shadow:3px 3px #2357ff;}
+ .destination-menu button {min-height:48px;padding:8px 14px;font-size:10px;}
+ .destination-menu button>span {display:none;}
+ .world-hint {bottom:90px;}
+ .world-coordinate {bottom:5px;}
+ .world-header {height:76px;}
+ .world-controls {display:flex;gap:15px;align-items:center;}
+ .world-controls button {font-size:10px;}
+ .world-edition {font-size:10px;}
+ .travel-status {top:100px;right:25px;width:205px;padding:15px;}
+ .travel-status strong {font-size:36px;letter-spacing:-1px;}
+}
+@keyframes desktop-hud {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(max-width:760px){
+ .desktop-map-toggle,.desktop-map-markers {display:none!important;}
+ .mobile-experience .world-controls {margin-right:0;}
+ .mobile-experience .sound-control {font-size:10px!important;color:#555;}
+ .mobile-experience.intro .world-stage {bottom:0;}
+ .mobile-experience .mobile-welcome {transition:transform .9s ease,opacity .9s ease;}
+ .mobile-experience.entering .mobile-welcome {transform:translateY(-35px) scale(.96);opacity:0;pointer-events:none;}
+ .mobile-experience .mobile-dock {animation:dock-enter .35s ease-out;}
+ .mobile-dock button:active,.mobile-welcome button:active,.mobile-read-more:active {transform:translateY(2px);background:#c6f36a!important;color:#111!important;box-shadow:none;}
+ .mobile-dock button[aria-expanded="true"] {background:#2357ff!important;color:#fff;}
+ .mobile-menu-sheet>button[aria-current] {color:#2357ff;background:#e5eaff;}
+ .mobile-location-hud {position:absolute;top:76px;left:16px;font:700 12px "IBM Plex Mono",monospace;background:#f4f1e8e8;padding:8px 10px;pointer-events:none;z-index:3;}
+ .mobile-location-hud small {display:block;font-size:9px;margin-top:5px;}
+ .mobile-experience:not(.details-open) .destination-panel:not(.home-panel),.mobile-experience .reopen-panel {display:none;}
+ .mobile-read-more {position:absolute;bottom:86px;left:16px;right:16px;background:#f4f1e8;border:2px solid #111;padding:14px;text-align:left;z-index:4;font:700 13px "Space Grotesk",sans-serif;}
+ .mobile-experience.details-open .destination-panel {max-height:52%;}
+ .mobile-experience:has(.mobile-welcome) .world-stage::after {height:265px;}
+}
+@keyframes dock-enter {from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+/* Simple View is an ordinary readable portfolio, independent of the world UI. */
+.lite-mode {overflow-y:auto;height:var(--world-height,100dvh);}
+.lite-mode>.world-stage,.lite-mode>.destination-panel,.lite-mode>.mobile-dock,.lite-mode>.mobile-welcome,.lite-mode>.mobile-location-hud,.lite-mode>.mobile-read-more,.lite-mode>.destination-menu,.lite-mode>.world-hint,.lite-mode>.mini-map,.lite-mode>.travel-status,.lite-mode>.reopen-panel,.lite-mode>.desktop-map-markers {display:none!important;}
+.lite-mode .semantic-portfolio {position:relative!important;clip:auto!important;clip-path:none!important;width:min(920px,100%)!important;height:auto!important;overflow:visible!important;white-space:normal!important;margin:0 auto!important;padding:100px 24px 60px!important;}
+.lite-mode .semantic-portfolio h2 {font:700 clamp(28px,5vw,55px)/1.05 "Space Grotesk",sans-serif;}
+.lite-mode .semantic-portfolio h3 {font-size:30px;border-top:2px solid #111;margin-top:45px;padding-top:22px;}
+.lite-mode .semantic-portfolio h4 {font-size:23px;}
+.lite-mode .semantic-portfolio p {font-size:16px;line-height:1.7;}
+.lite-mode .semantic-portfolio section {padding:20px 0;border-bottom:1px solid #999;}
+.lite-mode .semantic-portfolio img {width:100%;max-height:450px;object-fit:contain;object-position:left;background:#deded5;}
+.lite-mode .world-header {position:sticky;top:0;background:#f4f1e8;}
+.lite-mode .semantic-portfolio {padding-top:25px!important;}
+@media(max-width:760px) and (orientation:landscape){
+ .mobile-welcome {top:70px;width:235px;}
+ .mobile-welcome h1 {font-size:24px;}
+ .mobile-welcome p {font-size:10px;}
+ .mobile-menu-sheet {max-height:78%;}
+}
+.lite-mode .desktop-map-toggle {display:none;}
+@media(max-width:760px){.mobile-experience.lite-mode .mode-button {display:block;font-size:10px!important;}.lite-mode .mobile-map-markers {display:none;}}
+@keyframes dock-enter {from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@media(max-width:760px){
+ .mobile-experience.intro[data-zone="home"][data-moving="false"] .world-stage {bottom:0;}
+ .mobile-experience.details-open[data-zone="projects"] .destination-panel>h1 {font-size:19px;margin:10px 0;}
+}
+@media(max-width:760px) and (orientation:landscape){
+ .mobile-experience .mobile-welcome {top:65px;left:14px;width:220px;}
+ .mobile-experience .mobile-welcome h1 {font-size:24px;}
+ .mobile-experience .mobile-welcome p {font-size:10px;}
+ .mobile-experience .mobile-dock {left:auto;width:300px;right:14px;}
+ .mobile-experience.details-open .destination-panel {left:auto;right:14px;width:280px;max-height:60%;}
+}
+/* Desktop HOME hierarchy refinement; mobile presets and HUD are unchanged. */
+@media(min-width:761px){
+ .home-panel {width:220px;padding:10px 11px;}
+ .home-panel h1 {font-size:28px;margin:10px 0;}
+ .home-panel p {font-size:11px;line-height:1.5;margin:10px 0;}
+ .home-panel .world-button {padding:10px 12px;margin-top:8px;}
+ .home-panel .panel-top .w-mono {font-size:8px;}
+ .destination-menu button {padding-inline:8px;font-size:9px;}
+ .destination-menu button>i {display:none;}
+}
+@media(max-width:760px){.intro-menu{position:absolute;right:14px;top:8px;min-height:44px;padding:10px;border:0;background:transparent;font:700 12px 'Space Grotesk',sans-serif;z-index:7}.mobile-experience.intro .world-controls{margin-right:65px}}
+.world-map-panel{position:absolute;top:95px;right:25px;width:440px;padding:18px;background:#f4f1e8;border:2px solid #111;box-shadow:5px 5px #111;z-index:8}.world-map-panel header{display:flex;align-items:center;justify-content:space-between}.world-map-panel h2{font:700 13px 'IBM Plex Mono',monospace}.world-map-panel header button{width:40px;height:40px;font-size:24px}.map-drawing{position:relative;aspect-ratio:380/350;margin-top:8px}.map-drawing svg{width:100%;height:100%}.map-drawing button{position:absolute;transform:translate(-50%,-50%);padding:7px 8px;background:#f4f1e8;border:2px solid #111;min-height:44px;font:10px 'IBM Plex Mono',monospace}.map-drawing button strong{display:block;font:700 11px 'Space Grotesk',sans-serif}.map-drawing button[aria-current],.map-drawing button:hover{background:#2357ff;color:#fff}.world-map-panel p{font-size:12px}.world-map-panel small{font-size:11px}.world-map-panel button:focus-visible{outline:3px solid #2357ff;outline-offset:3px}
+@media(max-width:1100px){.world-map-panel{width:390px;right:18px;top:85px}}@media(max-width:760px){.world-map-panel{display:none}}

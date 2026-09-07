@@ -1,10 +1,11 @@
 import { ZoneBase } from "./ZoneBase";
 import { Sign, Block, HoverObject } from "./Objects";
-import { getWorld, navigate, setWorld, interact } from "../../world/store";
+import { getWorld, navigate, setWorld, interact, useWorld } from "../../world/store";
 import { experiences } from "../../data/site";
 import { experienceStops } from "../../world/interactionPoints";
 import type { Zone } from "../../world/zones";
 export function ExperienceZone({ zone }: { zone: Zone }) {
+  const s=useWorld();
   return (
     <ZoneBase zone={zone}>
       <Sign
@@ -18,7 +19,7 @@ export function ExperienceZone({ zone }: { zone: Zone }) {
           <Block
             size={[1.85, 0.12, 1.3]}
             position={[0, 0.1, 0]}
-            color={i === 0 ? "#2357ff" : "#d2d5ce"}
+            color={i === s.selectedExperience ? "#2357ff" : "#d2d5ce"}
           />
           <HoverObject
             label={`OPEN / ${exp.role}`}
@@ -42,7 +43,7 @@ export function ExperienceZone({ zone }: { zone: Zone }) {
               width={1.95}
               height={0.6}
               position={[0, 2, -0.5]}
-              background="#111111"
+              background={i===s.selectedExperience?"#2357ff":"#111111"}
               color="#f4f1e8"
             />
             <Sign

@@ -8,24 +8,72 @@ export function CameraRig() {
   const position = useRef(new Vector3());
   const target = useRef(new Vector3());
   const intro = useRef(0);
-  useFrame(({ camera, size }, rawDelta) => {
+  useFrame(({ camera, size, scene }, rawDelta) => {
     const dt = Math.min(rawDelta, 0.05);
     const s = getWorld();
-    if (s.paused) return;
+    if (s.paused || s.menuOpen) return;
     intro.current += dt;
     const z = zoneById(s.currentZone);
     const mobile = size.width < 760;
     const p = motion.position;
-    if (s.isMoving) {
-      position.current.set(p[0] + (mobile ? 10 : 9), 12, p[2] + 15);
-      target.current.set(p[0], 1, p[2] - 1);
+    if (scene.fog && "near" in scene.fog) {
+      scene.fog.near = mobile || s.desktopMap ? 60 : 18;
+      scene.fog.far = mobile || s.desktopMap ? 110 : 65;
+    }
+    if (mobile) {
+      if (s.mobileMap) {
+        const fit = Math.max(1, (size.height / size.width) * 1.08);
+        position.current.set(18 * fit, 39 * fit, 29 * fit);
+        target.current.set(0, 0, 3);
+      } else {
+        const offsets = {
+          home: [3.6, 3.3, 6.4],
+          about: [3.7, 3.8, 6.7],
+          projects: [4.2, 4.1, 7.5],
+          skills: [4, 4.3, 7],
+          experience: [4, 3.8, 7],
+          sociapi: [4.2, 4.4, 8],
+          services: [4, 3.9, 7],
+          contact: [3.4, 3.6, 6.6],
+        };
+        const o = offsets[s.currentZone];
+        const aspect = size.height / size.width;
+        const proximity =
+          s.mobileEntered || s.mobileEntering
+            ? 1.28
+            : aspect < 1.65
+              ? 1.45
+              : 1.35;
+        position.current.set(
+          p[0] + o[0] * proximity,
+          o[1] * proximity,
+          p[2] + o[2] * proximity,
+        );
+        target.current.set(
+          p[0] - (!s.mobileEntered ? 0.5 : 0),
+          !s.mobileEntered ? 1.65 : 1.2,
+          p[2] - 0.5,
+        );
+        if (s.localExplore) {
+          const x = position.current.x - p[0],
+            zz = position.current.z - p[2];
+          position.current.x =
+            p[0] + x * Math.cos(motion.orbit) - zz * Math.sin(motion.orbit);
+          position.current.z =
+            p[2] + x * Math.sin(motion.orbit) + zz * Math.cos(motion.orbit);
+        }
+      }
+    } else if (s.desktopMap) {
+      position.current.set(25, 34, 34);
+      target.current.set(0, 0, 3);
+    } else if (s.isMoving) {
+      const dx = Math.sin(motion.rotation),
+        dz = Math.cos(motion.rotation);
+      position.current.set(p[0] + 7 - dx * 2, 7, p[2] + 11 - dz * 2);
+      target.current.set(p[0] + dx * 1.5, 1, p[2] + dz * 1.5);
     } else if (s.currentZone === "home") {
-      position.current.set(
-        mobile ? 30 : 22,
-        mobile ? 40 : 27,
-        mobile ? 38 : 30,
-      );
-      target.current.set(mobile ? 0 : 1, 0, 1);
+      position.current.set(p[0] + 6.4, 5.3, p[2] + 11.7);
+      target.current.set(p[0] - 1.4, 1.35, p[2] - 0.5);
     } else {
       const offset = z.camera;
       position.current.set(
@@ -38,7 +86,7 @@ export function CameraRig() {
         position.current.add(new Vector3(-1, -1, -2));
       }
     }
-    if (!s.reduced && intro.current < 2) {
+    if (!mobile && !s.reduced && intro.current < 2) {
       position.current.y += Math.pow(1 - intro.current / 2, 3) * 16;
     }
     const alpha = s.reduced ? 1 : 1 - Math.exp(-dt * (s.isMoving ? 3.6 : 2.4));
@@ -52,7 +100,11 @@ export function CameraRig() {
         size.width,
         size.height,
         0,
-        mobile && s.currentZone !== "home" && s.panelOpen
+        mobile &&
+          !s.mobileMap &&
+          s.currentZone !== "home" &&
+          s.panelOpen &&
+          s.mobileDetails
           ? size.height * 0.18
           : 0,
         size.width,

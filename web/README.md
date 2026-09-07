@@ -45,3 +45,21 @@ The loader retains the procedural character while loading or if the model fails.
 All nine original projects, four testimonials, career entries, certifications, FAQ and contact information are retained. Existing real screenshots are reused; the chatbot has a typographic display because it has no real screenshot. No event photographs, chapter counts, reviews or project outcomes were invented. Community numbers use the repository's existing 340+ participants and 50+ members. Original media remain alongside optimized WebP copies. Previously unavailable HomeItems and Ospherics case-study destinations are retained in data but their broken outbound actions are suppressed.
 
 The production canonical URL, social metadata, robots file and sitemap are preserved. Previous page components remain in the repository for reference; the application entry point renders the world.
+
+## Cinematic camera and mobile modes
+
+Desktop opens near HOME. WORLD MAP raises the actual camera to an overview; selecting a marker resumes eased character travel. The follow camera anticipates heading changes. Route markers, a small interactive debug robot, hover responses and secondary idle actions add restrained world motion.
+
+Mobile has an intro, a 900ms entry transition, exploration, map mode and expanded details. MAP / EXPLORE / MENU appears after entry. EXPLORE enables limited drag-to-look camera movement and clears the information layer. Menu rows navigate automatically; arrivals offer a compact action before showing full details. The menu pauses canvas rendering. Simple View now displays the complete portfolio as normal readable HTML with screenshots and contact form.
+
+`npm run test:browser` checks the requested six desktop and five mobile sizes, map travel, intro and details states, and accessibility. `npm run test:mobile` checks local camera dragging, project travel and landscape. Reports and captures are in `artifacts/`. These checks do not constitute a real-device 60fps benchmark.
+
+## Active zones, map panel and professional Simple View
+
+Zone groups expose BACKGROUND, ACTIVE and MAP visual states. Active destinations retain complete signage and interaction; background signs are simplified and muted. About includes a visual profile and existing 4+/10+ figures. Skills stations carry their actual technology names.
+
+The desktop map panel uses the waypoint graph and previews the route on hover/focus. Selecting a destination closes it and walks the character there. Mobile exposes MENU before entry, with the same destination sheet; the exploration dock still appears only after entry or direct destination selection.
+
+`SimplePortfolio.tsx` and `simple-portfolio.css` provide the separate responsive portfolio layout, with a 1320px desktop content area, real project imagery and links, structured experience, skill groups, services, certification titles, expandable real reviews, FAQ and the existing contact form. Unknown certification issuers/dates are not invented.
+
+Use `npm run test:browser` for the eight-zone/mode/viewport audit, `npm run test:simple` for form and accessibility tests, and `node scripts/simple-images-qa.mjs` to verify all eight real screenshots load. Form requests are intercepted locally during QA.
