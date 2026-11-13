@@ -6,6 +6,13 @@ import { cn } from "@/lib/utils"
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
 
+const SAFE_COLOR_PATTERN =
+  /^(?:#[0-9a-fA-F]{3,8}|(?:rgb|rgba|hsl|hsla)\((?:\s*\d{1,3}%?\s*,\s*){2,3}(?:\d{1,3}%?\s*(?:,\s*(?:0|0?\.\d+|1))?)\)|[a-zA-Z-]+)$/
+
+function isSafeCssColor(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0 && value.trim().length < 128 && SAFE_COLOR_PATTERN.test(value.trim())
+}
+
 export type ChartConfig = {
   [k in string]: {
     label?: React.ReactNode
@@ -74,28 +81,37 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
     return null
   }
 
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-  .map(([key, itemConfig]) => {
-    const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
-  })
-  .join("\n")}
-}
-`
-          )
-          .join("\n"),
-      }}
-    />
-  )
+  const css = Object.entries(THEMES)
+    .map(([theme, prefix]) => {
+      const declarations = colorConfig
+        .map(([key, itemConfig]) => {
+          const rawColor =
+            itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
+            itemConfig.color
+
+          if (!isSafeCssColor(rawColor)) {
+            return null
+          }
+
+          return `  --color-${key}: ${rawColor.trim()};`
+        })
+        .filter(Boolean)
+        .join("\n")
+
+      if (!declarations) {
+        return null
+      }
+
+      return `${prefix} [data-chart=${id}] {\n${declarations}\n}`
+    })
+    .filter(Boolean)
+    .join("\n")
+
+  if (!css) {
+    return null
+  }
+
+  return <style dangerouslySetInnerHTML={{ __html: css }} />
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
