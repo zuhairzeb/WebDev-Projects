@@ -398,18 +398,6 @@
   letter-spacing: 0.16em;
   font-size: 15px;
 }
-.sp-review-cta {
-  display: inline-block;
-  margin-top: 28px;
-  padding: 14px 18px;
-  border: 1px solid #111;
-  color: #111;
-  font: 700 12px "IBM Plex Mono", monospace;
-  text-decoration: none;
-}
-.sp-review-cta:hover {
-  background: #c6f36a;
-}
 .portfolio-simple .review-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

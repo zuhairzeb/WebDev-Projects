@@ -1,65 +1,125 @@
-import { useState, type FormEvent } from "react";
-import { email } from "../../data/site";
+import { useEffect, useState, type FormEvent } from "react";
+
+type SubmittedReview = {
+  id: string;
+  name: string;
+  project: string;
+  rating: number;
+  review: string;
+  createdAt: string;
+};
 
 export function ReviewForm() {
-  const [status, setStatus] = useState("");
+  const [reviews, setReviews] = useState<SubmittedReview[]>([]);
+  const [status, setStatus] = useState("Loading client reviews...");
+  const [saving, setSaving] = useState(false);
 
-  const submitReview = (event: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    fetch("/.netlify/functions/reviews")
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Could not load submitted reviews.");
+        return (await response.json()) as SubmittedReview[];
+      })
+      .then((items) => {
+        setReviews(items);
+        setStatus(items.length ? "" : "Be the first to share a review.");
+      })
+      .catch(() => setStatus("Reviews are temporarily unavailable."));
+  }, []);
+
+  const submitReview = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSaving(true);
+    setStatus("");
     const data = new FormData(event.currentTarget);
-    const subject = `Client review from ${data.get("name")}`;
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Project: ${data.get("project") || "Not specified"}`,
-      `Rating: ${data.get("rating")}/5`,
-      "",
-      "Review:",
-      data.get("review"),
-    ].join("\n");
-    const gmail = new URL("https://mail.google.com/mail/");
-    gmail.search = new URLSearchParams({
-      view: "cm",
-      fs: "1",
-      to: email,
-      su: subject,
-      body,
-    }).toString();
-    const compose = window.open(gmail.toString(), "_blank");
-    if (!compose) {
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    try {
+      const response = await fetch("/.netlify/functions/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          project: data.get("project"),
+          rating: data.get("rating"),
+          review: data.get("review"),
+          website: data.get("website"),
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(
+          result.error || "Review service unavailable. Please try again on the live site.",
+        );
+      }
+
+      setReviews((current) => [result as SubmittedReview, ...current]);
+      setStatus("Thanks! Your review is now visible on the site.");
+      event.currentTarget.reset();
+    } catch (error) {
+      setStatus(
+        error instanceof Error
+          ? error.message
+          : "Could not save your review. Please try again.",
+      );
+    } finally {
+      setSaving(false);
     }
-    setStatus("Your review is ready in an email draft. Send it to share it with me.");
-    event.currentTarget.reset();
   };
 
   return (
-    <form className="review-form" onSubmit={submitReview}>
-      <h3>Share your experience</h3>
-      <label>
-        Your name
-        <input name="name" autoComplete="name" required />
-      </label>
-      <label>
-        Project
-        <input name="project" placeholder="Which project did we work on?" />
-      </label>
-      <label>
-        Rating
-        <select name="rating" defaultValue="5">
-          <option value="5">5 stars</option>
-          <option value="4">4 stars</option>
-          <option value="3">3 stars</option>
-          <option value="2">2 stars</option>
-          <option value="1">1 star</option>
-        </select>
-      </label>
-      <label>
-        Your review
-        <textarea name="review" rows={5} required />
-      </label>
-      <button type="submit">CONTINUE TO EMAIL</button>
-      <p className="review-form-status" aria-live="polite">{status}</p>
-      <small>Submitting opens a prefilled email draft so you can send your review.</small>
-    </form>
+    <div className="review-submission-area">
+      <form className="review-form" onSubmit={submitReview}>
+        <h3>Leave a client review</h3>
+        <label>
+          Your name
+          <input name="name" autoComplete="name" minLength={2} maxLength={100} required />
+        </label>
+        <label>
+          Project
+          <input name="project" maxLength={160} placeholder="Which project did we work on?" />
+        </label>
+        <label>
+          Rating
+          <select name="rating" defaultValue="5">
+            <option value="5">5 stars</option>
+            <option value="4">4 stars</option>
+            <option value="3">3 stars</option>
+            <option value="2">2 stars</option>
+            <option value="1">1 star</option>
+          </select>
+        </label>
+        <label>
+          Your review
+          <textarea name="review" rows={5} minLength={10} maxLength={2000} required />
+        </label>
+        <label className="review-honeypot" aria-hidden="true" tabIndex={-1}>
+          Leave this field empty
+          <input name="website" autoComplete="off" tabIndex={-1} />
+        </label>
+        <button type="submit" disabled={saving}>
+          {saving ? "POSTING..." : "POST REVIEW"}
+        </button>
+        <p className="review-form-status" aria-live="polite">{status}</p>
+      </form>
+
+      <div className="submitted-reviews" aria-live="polite">
+        <h3>Client reviews</h3>
+        {reviews.map((item) => (
+          <article className="submitted-review" key={item.id}>
+            <span aria-label={`${item.rating} out of 5 stars`}>
+              {"★".repeat(item.rating)}
+            </span>
+            <blockquote>{item.review}</blockquote>
+            <footer>
+              <strong>{item.name}</strong>
+              {item.project && <span>{item.project}</span>}
+              <time dateTime={item.createdAt}>
+                {new Date(item.createdAt).toLocaleDateString()}
+              </time>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
   );
 }

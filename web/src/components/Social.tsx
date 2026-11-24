@@ -1,4 +1,5 @@
-import { reviews, faqs, email } from "../data/site";
+import { reviews, faqs } from "../data/site";
+import { ReviewForm } from "./ui/ReviewForm";
 import { SectionLabel } from "./Primitives";
 export default function Reviews() {
   return (
@@ -37,12 +38,7 @@ export default function Reviews() {
             </article>
           ))}
         </div>
-        <a
-          className="text-link"
-          href={`mailto:${email}?subject=Client%20review`}
-        >
-          WORKED TOGETHER? SEND ME YOUR FEEDBACK ↗
-        </a>
+        <ReviewForm />
       </section>
       <section id="faq" className="section faq">
         <SectionLabel number="08">BEFORE YOU ASK</SectionLabel>

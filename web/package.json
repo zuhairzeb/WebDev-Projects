@@ -15,6 +15,7 @@
     "test:simple": "node scripts/simple-polish-qa.mjs"
   },
   "dependencies": {
+    "@netlify/blobs": "^11.1.11",
     "@react-three/fiber": "^9.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
