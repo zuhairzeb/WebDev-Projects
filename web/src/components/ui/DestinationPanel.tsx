@@ -19,6 +19,7 @@ import {
 import { experienceStops } from "../../world/interactionPoints";
 import { ProjectViewer } from "./ProjectViewer";
 import { ContactPanel } from "./ContactPanel";
+import { ReviewForm } from "./ReviewForm";
 const titles = {
   home: (
     <>
@@ -32,6 +33,13 @@ const titles = {
       DEVELOPER.
       <br />
       STUDENT. BUILDER.
+    </>
+  ),
+  reviews: (
+    <>
+      CLIENT
+      <br />
+      <em>REVIEWS.</em>
     </>
   ),
   projects: (
@@ -140,24 +148,29 @@ export function DestinationPanel() {
       {s.currentZone === "about" && (
         <>
           <p>
-            I'm Muhammad Zuhair Zeb. I build custom WordPress websites,
-            WooCommerce stores, and multivendor marketplaces for real clients.
+            I'm Muhammad Zuhair Zeb. I was born in Abbottabad, with roots in
+            Swabi. During COVID I taught myself design and video editing before
+            choosing WordPress and starting freelance work.
           </p>
           <p>
             My focus is simple: clean code, fast load times, and sites that help
             businesses grow.
           </p>
           <p>
-            I study BS Artificial Intelligence at Islamia College University
-            Peshawar. I also founded Sociapi Society, a technology community
-            built around learning together and social impact.
+            I've spent over five years building websites for clients, and have
+            delivered more than 30 websites. I now study Artificial Intelligence
+            at Islamia College University Peshawar and founded Sociapi Society
+            to help students learn by doing.
           </p>
           <div className="world-stats">
             <span>
-              <b>4+</b>YEARS EXPERIENCE
+              <b>5+</b>YEARS EXPERIENCE
             </span>
             <span>
-              <b>10+</b>WEBSITES DELIVERED
+              <b>30+</b>WEBSITES DELIVERED
+            </span>
+            <span>
+              <b>520+</b>COMMUNITY PARTICIPANTS
             </span>
           </div>
           <div className="panel-links">
@@ -165,6 +178,7 @@ export function DestinationPanel() {
               DOWNLOAD MY CV ↗
             </a>
             <button onClick={() => navigate("sociapi")}>VISIT SOCIAPI →</button>
+            <button onClick={() => navigate("reviews")}>READ CLIENT REVIEWS</button>
           </div>
           <details>
             <summary>CLIENT WORDS / {reviews.length} REVIEWS</summary>
@@ -177,6 +191,18 @@ export function DestinationPanel() {
               </blockquote>
             ))}
           </details>
+        </>
+      )}
+      {s.currentZone === "reviews" && (
+        <>
+          <p>Feedback from clients I've worked with.</p>
+          {reviews.map((r) => (
+            <blockquote key={r.id}>
+              <p>{r.text}</p>
+              <cite>{r.name} / {r.date} / {r.rating}/5</cite>
+            </blockquote>
+          ))}
+          <ReviewForm />
         </>
       )}
       {s.currentZone === "projects" && <ProjectViewer />}

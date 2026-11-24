@@ -391,6 +391,79 @@
     serif;
   color: #2357ff;
 }
+.sp-review-rating {
+  display: block;
+  margin-bottom: 14px;
+  color: #2357ff;
+  letter-spacing: 0.16em;
+  font-size: 15px;
+}
+.sp-review-cta {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 18px;
+  border: 1px solid #111;
+  color: #111;
+  font: 700 12px "IBM Plex Mono", monospace;
+  text-decoration: none;
+}
+.sp-review-cta:hover {
+  background: #c6f36a;
+}
+.portfolio-simple .review-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+  padding: 28px;
+  border: 1px solid #111;
+  background: #eeeee6;
+}
+.portfolio-simple .review-form h3,
+.portfolio-simple .review-form > small,
+.portfolio-simple .review-form-status {
+  grid-column: 1 / -1;
+}
+.portfolio-simple .review-form h3 {
+  font-size: 24px;
+}
+.portfolio-simple .review-form label {
+  display: grid;
+  gap: 8px;
+  font: 700 12px "IBM Plex Mono", monospace;
+}
+.portfolio-simple .review-form label:nth-of-type(4) {
+  grid-column: 1 / -1;
+}
+.portfolio-simple .review-form input,
+.portfolio-simple .review-form select,
+.portfolio-simple .review-form textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  border: 1px solid #777;
+  border-radius: 0;
+  background: #f4f1e8;
+  color: #111;
+  font: 15px "Space Grotesk", sans-serif;
+}
+.portfolio-simple .review-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.portfolio-simple .review-form button {
+  justify-self: start;
+  padding: 14px 18px;
+  border: 1px solid #111;
+  background: #c6f36a;
+  color: #111;
+  font: 700 12px "IBM Plex Mono", monospace;
+  cursor: pointer;
+}
+.portfolio-simple .review-form-status {
+  margin: 0;
+  font-size: 14px;
+}
 .sp-reviews blockquote {
   font-size: 18px;
   line-height: 1.7;
@@ -681,3 +754,4 @@
 .portfolio-simple .sp-form .form-feedback{font-size:14px;color:#f4f1e8}
 .portfolio-simple .sp-form .form-feedback.success{color:#c6f36a}
 .portfolio-simple .sp-form .form-feedback.error{color:#ffb7a8}
+@media(max-width:760px){.portfolio-simple .review-form{grid-template-columns:1fr;padding:20px}.portfolio-simple .review-form label:nth-of-type(4){grid-column:auto}}

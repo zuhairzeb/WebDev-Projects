@@ -12,6 +12,7 @@ import {
 } from "../../data/site";
 import { setWorld } from "../../world/store";
 import { ContactPanel } from "./ContactPanel";
+import { ReviewForm } from "./ReviewForm";
 import "./simple-portfolio.css";
 const enter = () =>
   setWorld({
@@ -33,7 +34,7 @@ export function SimplePortfolio({
           MZZ.
         </a>
         <nav aria-label="Simple portfolio sections">
-          {["About", "Projects", "Experience", "Skills", "Contact"].map((n) => (
+          {["About", "Projects", "Experience", "Skills", "Reviews", "Contact"].map((n) => (
             <a key={n} href={"#sp-" + n.toLowerCase()}>
               {n}
             </a>
@@ -114,15 +115,23 @@ export function SimplePortfolio({
               I study Artificial Intelligence at Islamia College University
               Peshawar and lead Sociapi Society, a student technology community.
             </p>
+            <p>
+              I was born in Abbottabad, with roots in Swabi. During COVID, I
+              taught myself graphic design and video editing before choosing
+              WordPress and starting freelance work. Today I have over five
+              years of experience and have built 30+ websites. I founded
+              Sociapi Society in December 2025 to help students learn by doing,
+              collaborate, and bring their ideas to life.
+            </p>
             <div className="sp-stats">
               <span>
-                <b>4+</b>Years of experience
+                <b>5+</b>Years of experience
               </span>
               <span>
-                <b>10+</b>Websites delivered
+                <b>30+</b>Websites delivered
               </span>
               <span>
-                <b>340+</b>Community participants
+                <b>520+</b>Community participants
               </span>
             </div>
           </div>
@@ -193,6 +202,13 @@ export function SimplePortfolio({
                     <summary>PROJECT DETAILS +</summary>
                     <p>{p.overview}</p>
                     {p.results && <p>{p.results}</p>}
+                    {p.features && (
+                      <ul>
+                        {p.features.map((feature) => (
+                          <li key={feature}>{feature}</li>
+                        ))}
+                      </ul>
+                    )}
                   </details>
                 )}
               </div>
@@ -308,10 +324,10 @@ export function SimplePortfolio({
             ))}
           </div>
         </section>
-        <section>
+        <section id="sp-reviews">
           <div className="sp-section-title">
             <div>
-              <span className="sp-eyebrow">07 / CLIENT WORDS</span>
+              <span className="sp-eyebrow">07 / CLIENT REVIEWS</span>
               <h2>
                 From the other side
                 <br />
@@ -322,6 +338,9 @@ export function SimplePortfolio({
           <div className="sp-reviews">
             {reviews.map((r) => (
               <article key={r.id}>
+                <span className="sp-review-rating" aria-label={`${r.rating} out of 5 stars`}>
+                  {"★".repeat(r.rating)}
+                </span>
                 <span className="sp-quote">“</span>
                 <blockquote>
                   {r.text.length > 250
@@ -341,6 +360,7 @@ export function SimplePortfolio({
               </article>
             ))}
           </div>
+          <ReviewForm />
         </section>
         <section className="sp-faq">
           <div>

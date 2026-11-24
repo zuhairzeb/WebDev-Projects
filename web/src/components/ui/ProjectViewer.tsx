@@ -70,6 +70,13 @@ export function ProjectViewer() {
           <p>{p.results}</p>
         </>
       )}
+      {p.features && (
+        <ul className="project-feature-list">
+          {p.features.map((feature) => (
+            <li key={feature}>{feature}</li>
+          ))}
+        </ul>
+      )}
       <div className="panel-links">
         {p.liveDemo && !unavailableProjectLinks.has(p.liveDemo) && (
           <a href={p.liveDemo} target="_blank" rel="noreferrer">

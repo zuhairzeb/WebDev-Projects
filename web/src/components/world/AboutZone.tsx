@@ -31,7 +31,7 @@ export function AboutZone({ zone }: { zone: Zone }) {
         color="#f4f1e8"
       />
       <Sign
-        text={"4+ YEARS\n10+ WEBSITES"}
+        text={"5+ YEARS\n30+ WEBSITES"}
         position={[2.8, 1.4, -0.5]}
         width={1.2}
         height={1.1}

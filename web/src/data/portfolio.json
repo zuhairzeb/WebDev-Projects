@@ -201,6 +201,27 @@
       "image": "homeitems.jpg"
     },
     {
+      "id": "pink-center-website",
+      "title": "Pink Center Official Website",
+      "category": "WordPress Website Development",
+      "description": "Developed the official Pink Center website using WordPress and Elementor, with a refreshed visual design and improved performance across mobile and desktop.",
+      "overview": "Updated five website pages, improved the visual design, configured SEO and optimization plugins, optimized images and loading speed, managed Hostinger hosting, and migrated the domain from GoDaddy. Set up three business email accounts.",
+      "results": "Improved the mobile PageSpeed score from 75 to 100 and the desktop score from 97 to 100.",
+      "features": [
+        "Developed and updated five website pages",
+        "Improved website design and visual elements",
+        "Configured SEO and website optimization plugins",
+        "Optimized images and website loading speed",
+        "Improved mobile PageSpeed score from 75 to 100",
+        "Improved desktop PageSpeed score from 97 to 100",
+        "Managed Hostinger hosting setup and domain migration from GoDaddy",
+        "Set up three business email accounts"
+      ],
+      "technologies": ["WordPress", "Elementor", "LiteSpeed Cache", "SEO Tools"],
+      "liveDemo": "https://pinkcenter.org",
+      "image": "pink-center.png"
+    },
+    {
       "id": "ospherics-pharma",
       "title": "Ospherics Pharma",
       "category": "Website Redesign",
@@ -241,7 +262,7 @@
       "id": 3,
       "name": "Homeitems",
       "rating": 5,
-      "text": "This is my e-commerce store I made it from Mr. Zuhair and I like his work because he always fulfills promise when he says thank you 🙏",
+      "text": "This is my e-commerce store I made it from Mr. Zuhair and I like his work because he always fulfills promise when he says thank you \uD83D\uDE4F",
       "date": "Oct 12, 2024"
     },
     {

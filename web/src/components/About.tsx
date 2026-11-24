@@ -30,9 +30,16 @@ export function About() {
             that help businesses grow.
           </p>
           <p>
-            I'm also studying BS Artificial Intelligence at Islamia College
-            University Peshawar, and I founded Sociapi Society to bring people
-            together around technology and social impact.
+            I started by teaching myself graphic design and video editing
+            during COVID, then found my way into WordPress and freelance work.
+            More than five years and 30+ websites later, I still learn by
+            building. I was born in Abbottabad, with roots in Swabi, and now
+            study Artificial Intelligence at Islamia College University
+            Peshawar.
+          </p>
+          <p>
+            I founded Sociapi Society in December 2025 to help students learn
+            through practical work, collaboration, and community projects.
           </p>
           <a
             className="text-link"
@@ -52,9 +59,9 @@ export function About() {
         </div>
       </div>
       <div className="stats-row">
-        <Count value={4} label="YEARS OF EXPERIENCE" />
-        <Count value={10} label="WEBSITES DELIVERED" />
-        <Count value={340} label="EVENT PARTICIPANTS" />
+        <Count value={5} label="YEARS OF EXPERIENCE" />
+        <Count value={30} label="WEBSITES DELIVERED" />
+        <Count value={520} label="COMMUNITY PARTICIPANTS" />
         <Count value={50} label="COMMUNITY MEMBERS" />
       </div>
     </section>

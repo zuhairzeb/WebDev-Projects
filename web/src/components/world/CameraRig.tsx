@@ -29,6 +29,7 @@ export function CameraRig() {
         const offsets = {
           home: [3.6, 3.3, 6.4],
           about: [3.7, 3.8, 6.7],
+          reviews: [4, 4, 7],
           projects: [4.2, 4.1, 7.5],
           skills: [4, 4.3, 7],
           experience: [4, 3.8, 7],

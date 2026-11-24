@@ -1,6 +1,7 @@
 export type ZoneId =
   | "home"
   | "about"
+  | "reviews"
   | "projects"
   | "skills"
   | "experience"
@@ -44,6 +45,15 @@ export const zones: Zone[] = [
     color: "#2357ff",
     camera: [8, 9, 13],
     number: "02",
+  },
+  {
+    id: "reviews",
+    name: "Reviews",
+    subtitle: "Client words",
+    position: [-17, 0, -9],
+    color: "#c6f36a",
+    camera: [8, 9, 12],
+    number: "08",
   },
   {
     id: "skills",

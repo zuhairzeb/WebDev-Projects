@@ -12,6 +12,7 @@ import { Block } from "./Objects";
 import { HomeZone } from "./HomeZone";
 import { AboutZone } from "./AboutZone";
 import { ProjectsZone } from "./ProjectsZone";
+import { ReviewsZone } from "./ReviewsZone";
 export function WorldEnvironment() {
   const paths = useMemo(() => {
     const { points, edges } = getGraph();
@@ -69,6 +70,8 @@ export function WorldEnvironment() {
           <HomeZone key={zone.id} zone={zone} />
         ) : zone.id === "about" ? (
           <AboutZone key={zone.id} zone={zone} />
+        ) : zone.id === "reviews" ? (
+          <ReviewsZone key={zone.id} zone={zone} />
         ) : zone.id === "projects" ? (
           <ProjectsZone key={zone.id} zone={zone} />
         ) : zone.id === "skills" ? (
