@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   projects,
   experiences,
@@ -27,6 +28,20 @@ export function SimplePortfolio({
 }: {
   canEnterWorld?: boolean;
 }) {
+  useEffect(() => {
+    const scrollToSection = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id.startsWith("sp-")) return;
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() =>
+          document.getElementById(id)?.scrollIntoView({ block: "start" }),
+        ),
+      );
+    };
+    scrollToSection();
+    window.addEventListener("hashchange", scrollToSection);
+    return () => window.removeEventListener("hashchange", scrollToSection);
+  }, []);
   return (
     <div className="portfolio-simple">
       <header className="sp-header">

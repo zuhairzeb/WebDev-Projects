@@ -81,7 +81,11 @@ export default function App() {
   useEffect(() => {
     const route = () => {
       const id = location.hash.replace("#", "");
-      if (zones.some((z) => z.id === id)) navigate(id as ZoneId);
+      if (id.startsWith("sp-")) {
+        setWorld({ simpleMode: true, worldLoaded: true });
+      } else if (zones.some((z) => z.id === id)) {
+        navigate(id as ZoneId);
+      }
     };
     route();
     window.addEventListener("hashchange", route);
