@@ -9,6 +9,19 @@ type SubmittedReview = {
   createdAt: string;
 };
 
+const localReviewsKey = "mzz-client-reviews-preview";
+const isVitePreview = () =>
+  ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname) &&
+  ["5173", "5174", "4173"].includes(window.location.port);
+
+function readLocalReviews(): SubmittedReview[] {
+  try {
+    return JSON.parse(localStorage.getItem(localReviewsKey) || "[]");
+  } catch {
+    return [];
+  }
+}
+
 export function ReviewForm() {
   const [reviews, setReviews] = useState<SubmittedReview[]>([]);
   const [status, setStatus] = useState("Loading client reviews...");
@@ -24,14 +37,22 @@ export function ReviewForm() {
         setReviews(items);
         setStatus(items.length ? "" : "Be the first to share a review.");
       })
-      .catch(() => setStatus("Reviews are temporarily unavailable."));
+      .catch(() => {
+        if (isVitePreview()) {
+          setReviews(readLocalReviews());
+          setStatus("Local preview: reviews saved here are only visible in this browser.");
+        } else {
+          setStatus("Reviews are temporarily unavailable.");
+        }
+      });
   }, []);
 
   const submitReview = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     setSaving(true);
     setStatus("");
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(form);
 
     try {
       const response = await fetch("/.netlify/functions/reviews", {
@@ -54,8 +75,25 @@ export function ReviewForm() {
 
       setReviews((current) => [result as SubmittedReview, ...current]);
       setStatus("Thanks! Your review is now visible on the site.");
-      event.currentTarget.reset();
+      form.reset();
     } catch (error) {
+      if (isVitePreview()) {
+        const localReview: SubmittedReview = {
+          id: crypto.randomUUID(),
+          name: String(data.get("name") || "").trim(),
+          project: String(data.get("project") || "").trim(),
+          rating: Number(data.get("rating")),
+          review: String(data.get("review") || "").trim(),
+          createdAt: new Date().toISOString(),
+        };
+        const updated = [localReview, ...readLocalReviews()];
+        localStorage.setItem(localReviewsKey, JSON.stringify(updated));
+        setReviews(updated);
+        setStatus("Saved in this local preview only; it is not shared with other visitors.");
+        form.reset();
+        setSaving(false);
+        return;
+      }
       setStatus(
         error instanceof Error
           ? error.message
