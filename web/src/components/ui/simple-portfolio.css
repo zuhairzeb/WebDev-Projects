@@ -601,13 +601,21 @@
   .sp-header nav {
     order: 3;
     width: 100%;
-    overflow: auto;
-    gap: 22px;
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0 22px;
+    overflow: visible;
   }
   .sp-header button {
     margin-left: auto;
     padding: 10px 13px;
+  }
+  .sp-header nav a {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    font-size: 13px;
   }
   .sp-content > section {
     padding: 55px 0;

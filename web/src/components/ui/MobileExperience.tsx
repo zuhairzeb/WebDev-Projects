@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { navigate, setWorld, useWorld, interact } from "../../world/store";
+import { navigate, setWorld, useWorld, interact, motion } from "../../world/store";
 import { zones } from "../../world/zones";
 export function MobileExperience() {
   const s = useWorld();
@@ -34,14 +34,23 @@ export function MobileExperience() {
   };
   const explore = () => {
     setMenu(false);
+    if (s.localExplore) motion.orbit = 0;
     setWorld({
       mobileEntered: true,
       mobileMap: false,
       panelOpen: false,
       paused: false,
-      localExplore: true,
+      localExplore: !s.localExplore,
     });
   };
+  const openSimpleView = () =>
+    setWorld({
+      simpleMode: true,
+      worldLoaded: true,
+      mobileMap: false,
+      panelOpen: false,
+      menuOpen: false,
+    });
   const enter = () => {
     if (s.mobileEntering) return;
     interact();
@@ -84,6 +93,9 @@ export function MobileExperience() {
           <button onClick={enter} disabled={s.mobileEntering}>
             ENTER WORLD ↗
           </button>
+          <button className="mobile-simple-view" onClick={openSimpleView}>
+            SIMPLE VIEW · READ PORTFOLIO
+          </button>
         </div>
       )}
       {s.mobileMap && !s.simpleMode && !s.reduced && (
@@ -119,10 +131,13 @@ export function MobileExperience() {
           >
             MAP
           </button>
-          <button onClick={explore}>EXPLORE</button>
+          <button aria-pressed={s.localExplore} onClick={explore}>
+            EXPLORE
+          </button>
           <button aria-expanded={menu} onClick={() => setMenu(!menu)}>
             MENU
           </button>
+          <button onClick={openSimpleView}>SIMPLE VIEW</button>
         </nav>
       )}
       {s.mobileEntered && !menu && !s.mobileMap && (
